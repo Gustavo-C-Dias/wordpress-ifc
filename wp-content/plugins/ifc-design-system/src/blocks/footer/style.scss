@@ -1,0 +1,78 @@
+.ifc-ds-footer {
+  width: 100%;
+  background-color: var(--wp--preset--color--neutral-100);
+  padding: var(--wp--preset--spacing--8) var(--wp--preset--spacing--4);
+  
+  @media (min-width: 768px) {
+    padding: var(--wp--preset--spacing--12) var(--wp--preset--spacing--8);
+  }
+
+  &__sections {
+    display: flex;
+    flex-direction: column;
+    gap: var(--wp--preset--spacing--8);
+    margin-bottom: var(--wp--preset--spacing--12);
+    
+    @media (min-width: 768px) {
+      flex-direction: row;
+      justify-content: flex-start;
+      gap: var(--wp--preset--spacing--12);
+      flex-wrap: wrap;
+    }
+  }
+
+  &__section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--wp--preset--spacing--3);
+    flex: 1;
+    min-width: 200px;
+    
+    @media (min-width: 768px) {
+      flex: 0 1 calc(33.333% - var(--wp--preset--spacing--12));
+    }
+  }
+
+  &__section-title {
+    margin-bottom: var(--wp--preset--spacing--2);
+  }
+
+  &__links {
+    display: flex;
+    flex-direction: column;
+    gap: var(--wp--preset--spacing--2);
+  }
+
+  &__link {
+    display: inline-flex;
+    width: fit-content;
+  }
+
+  &__address {
+    border-top: 1px solid var(--wp--preset--color--neutral-300);
+    padding-top: var(--wp--preset--spacing--4);
+    margin-top: var(--wp--preset--spacing--8);
+  }
+
+  &__address-text {
+    text-align: center;
+    
+    @media (min-width: 768px) {
+      text-align: left;
+    }
+  }
+}
+
+// Estilos para o editor
+.editor-styles-wrapper {
+  .ifc-ds-footer {
+    border: 1px dashed var(--wp--preset--color--neutral-300);
+    
+    &__section {
+      padding: var(--wp--preset--spacing--3);
+      background-color: rgba(0, 0, 0, 0.02);
+      border-radius: 4px;
+    }
+  }
+}
+

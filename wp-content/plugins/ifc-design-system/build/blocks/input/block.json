@@ -1,0 +1,105 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "ifc-ds/input",
+  "version": "1.0.0",
+  "title": "IFC Input",
+  "category": "ifc-design-system",
+  "icon": "edit",
+  "description": "Componente de input customizável com label, ícone, placeholder e caption opcionais.",
+  "keywords": [
+    "input",
+    "form",
+    "field",
+    "ifc",
+    "design-system"
+  ],
+  "textdomain": "ifc-design-system",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "render": "file:./render.php",
+  "attributes": {
+    "label": {
+      "type": "string",
+      "default": ""
+    },
+    "placeholder": {
+      "type": "string",
+      "default": ""
+    },
+    "caption": {
+      "type": "string",
+      "default": ""
+    },
+    "icon": {
+      "type": "string",
+      "default": ""
+    },
+    "inputType": {
+      "type": "string",
+      "default": "text",
+      "enum": [
+        "text",
+        "email",
+        "password",
+        "tel",
+        "url",
+        "search"
+      ]
+    },
+    "inputName": {
+      "type": "string",
+      "default": ""
+    },
+    "inputId": {
+      "type": "string",
+      "default": ""
+    },
+    "required": {
+      "type": "boolean",
+      "default": false
+    },
+    "disabled": {
+      "type": "boolean",
+      "default": false
+    },
+    "size": {
+      "type": "string",
+      "default": "medium",
+      "enum": [
+        "small",
+        "medium",
+        "large"
+      ]
+    },
+    "variant": {
+      "type": "string",
+      "default": "default",
+      "enum": [
+        "default",
+        "outlined",
+        "filled"
+      ]
+    },
+    "padding": {
+      "type": "object",
+      "default": {
+        "top": "0",
+        "right": "0",
+        "bottom": "0",
+        "left": "0"
+      }
+    }
+  },
+  "supports": {
+    "html": false,
+    "anchor": true,
+    "className": true,
+    "customClassName": true,
+    "spacing": {
+      "padding": true,
+      "margin": true
+    }
+  }
+}

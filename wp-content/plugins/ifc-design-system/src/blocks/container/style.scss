@@ -1,0 +1,276 @@
+// Componente Container - IFC Design System
+// Utiliza tokens do WordPress theme.json
+
+.ifc-ds-container {
+    display: block;
+    position: relative;
+    border-radius: var(--wp--custom--border--radius, 8px);
+    border-style: solid;
+    transition: all 0.2s ease-in-out;
+    
+    // Estado padrão
+    border-width: 1px;
+    border-color: var(--wp--preset--color--neutral-300, #d1d5db);
+    
+    // Cores de fundo
+    &--bg-white {
+        background-color: var(--wp--preset--color--white, #ffffff);
+    }
+    
+    &--bg-neutral-100 {
+        background-color: var(--wp--preset--color--neutral-100, #f9fafb);
+    }
+    
+    &--bg-neutral-200 {
+        background-color: var(--wp--preset--color--neutral-200, #f3f4f6);
+    }
+    
+    &--bg-neutral-300 {
+        background-color: var(--wp--preset--color--neutral-300, #e5e7eb);
+    }
+    
+    &--bg-neutral-400 {
+        background-color: var(--wp--preset--color--neutral-400, #9ca3af);
+    }
+    
+    &--bg-primary {
+        background-color: var(--wp--preset--color--primary, #1a365d);
+        color: var(--wp--preset--color--white, #ffffff);
+    }
+    
+    &--bg-secondary {
+        background-color: var(--wp--preset--color--secondary, #2d3748);
+        color: var(--wp--preset--color--white, #ffffff);
+    }
+    
+    // Cores de borda
+    &--border-white {
+        border-color: var(--wp--preset--color--white, #ffffff);
+    }
+    
+    &--border-neutral-100 {
+        border-color: var(--wp--preset--color--neutral-100, #f9fafb);
+    }
+    
+    &--border-neutral-200 {
+        border-color: var(--wp--preset--color--neutral-200, #f3f4f6);
+    }
+    
+    &--border-neutral-300 {
+        border-color: var(--wp--preset--color--neutral-300, #e5e7eb);
+    }
+    
+    &--border-neutral-400 {
+        border-color: var(--wp--preset--color--neutral-400, #9ca3af);
+    }
+    
+    &--border-primary {
+        border-color: var(--wp--preset--color--primary, #1a365d);
+    }
+    
+    &--border-secondary {
+        border-color: var(--wp--preset--color--secondary, #2d3748);
+    }
+    
+    // Espessuras de borda
+    &--border-0,
+    &--no-border {
+        border-width: 0;
+    }
+    
+    &--border-1 {
+        border-width: 1px;
+    }
+    
+    &--border-2 {
+        border-width: 2px;
+    }
+    
+    &--border-3 {
+        border-width: 3px;
+    }
+    
+    // Sombra conforme especificações: y=4, blur=8, cor=neutral-700
+    &--shadow {
+        box-shadow: 0 4px 8px 0 rgba(var(--wp--preset--color--neutral-700-rgb, 55, 65, 81), 0.1);
+    }
+    
+    // Hover effect (opcional)
+    &:hover {
+        &.ifc-ds-container--shadow {
+            box-shadow: 0 6px 12px 0 rgba(var(--wp--preset--color--neutral-700-rgb, 55, 65, 81), 0.15);
+        }
+    }
+    
+    // Garantir que o conteúdo interno seja bem distribuído
+    > * {
+        &:first-child {
+            margin-top: 0;
+        }
+        
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+    
+    // Responsividade para espaçamento
+    @media (max-width: 768px) {
+        // Reduzir padding em telas menores se necessário
+        &[style*="padding"] {
+            padding-left: var(--wp--preset--spacing--20, 0.75rem) !important;
+            padding-right: var(--wp--preset--spacing--20, 0.75rem) !important;
+        }
+    }
+    
+    @media (max-width: 480px) {
+        &[style*="padding"] {
+            padding-left: var(--wp--preset--spacing--10, 0.5rem) !important;
+            padding-right: var(--wp--preset--spacing--10, 0.5rem) !important;
+        }
+    }
+    
+    // Estilos do modo lista
+    // Modo lista - layout horizontal
+    &__list--horizontal {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        
+        .ifc-ds-container__list-item,
+        .ifc-ds-container__component-item {
+            flex: 0 0 auto;
+            
+            &:last-child {
+                margin-right: 0 !important;
+            }
+        }    // Responsividade para listas horizontais
+    @media (max-width: 768px) {
+        &--list-mode .ifc-ds-container__list--horizontal {
+            flex-direction: column;
+            
+            .ifc-ds-container__list-item {
+                flex-direction: column;
+                align-items: flex-start;
+                
+                .ifc-ds-container__list-label::after {
+                    display: none;
+                }
+            }
+        }
+    }
+
+    // Estilos para componentes mistos
+    &__component-item {
+        display: block;
+        
+        &:last-child {
+            margin-right: 0 !important;
+            margin-bottom: 0 !important;
+        }
+        
+        // Links dentro do container
+        .ifc-ds-link {
+            display: inline-block;
+        }
+        
+        // Componentes de texto
+        .ifc-ds-text {
+            display: block;
+        }
+        
+        // HTML customizado
+        &[data-type="html"] {
+            
+            // Estilos para elementos HTML comuns
+            p {
+                margin: 0 0 var(--wp--preset--spacing--20) 0;
+                
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+            
+            h1, h2, h3, h4, h5, h6 {
+                margin: 0 0 var(--wp--preset--spacing--30) 0;
+                
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+            
+            ul, ol {
+                margin: 0 0 var(--wp--preset--spacing--20) 0;
+                padding-left: var(--wp--preset--spacing--40);
+                
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+            
+            img {
+                max-width: 100%;
+                height: auto;
+                border-radius: var(--wp--custom--border--radius, 4px);
+            }
+            
+            code {
+                padding: var(--wp--preset--spacing--10) var(--wp--preset--spacing--20);
+                background-color: var(--wp--preset--color--neutral-100);
+                border-radius: var(--wp--custom--border--radius, 4px);
+                font-family: monospace;
+                font-size: 0.875em;
+            }
+            
+            blockquote {
+                margin: 0 0 var(--wp--preset--spacing--30) 0;
+                padding: var(--wp--preset--spacing--30);
+                border-left: 4px solid var(--wp--preset--color--primary);
+                background-color: var(--wp--preset--color--neutral-100);
+                border-radius: 0 var(--wp--custom--border--radius, 4px) var(--wp--custom--border--radius, 4px) 0;
+                
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
+}
+
+// Estados especiais no editor
+.block-editor-block-list__layout .ifc-ds-container {
+    // Placeholder visual no editor quando vazio
+    &:empty::after {
+        content: attr(data-placeholder);
+        color: var(--wp--preset--color--neutral-400, #9ca3af);
+        font-style: italic;
+        display: block;
+        text-align: center;
+        padding: var(--wp--preset--spacing--40, 1.5rem);
+    }
+    
+    // Indicador visual no editor
+    position: relative;
+    
+    &::before {
+        content: '';
+        position: absolute;
+        top: -1px;
+        left: -1px;
+        right: -1px;
+        bottom: -1px;
+        border: 2px dashed transparent;
+        border-radius: var(--wp--custom--border--radius, 8px);
+        pointer-events: none;
+        transition: border-color 0.2s ease;
+    }
+    
+    &:hover::before {
+        border-color: var(--wp--preset--color--primary, #1a365d);
+    }
+    
+    &.is-selected::before {
+        border-color: var(--wp--preset--color--primary, #1a365d);
+        border-style: solid;
+    }
+}
+}

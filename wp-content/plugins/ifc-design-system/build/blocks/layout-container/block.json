@@ -1,0 +1,77 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "ifc-ds/layout-container",
+  "version": "1.0.0",
+  "title": "IFC Layout Container",
+  "category": "ifc-design-system",
+  "icon": "grid-view",
+  "description": "Container de layout baseado no sistema de grid do Design System do Governo Federal",
+  "example": {},
+  "supports": {
+    "html": false,
+    "align": [
+      "wide",
+      "full"
+    ],
+    "spacing": {
+      "margin": true,
+      "padding": true
+    }
+  },
+  "attributes": {
+    "containerType": {
+      "type": "string",
+      "default": "fluid",
+      "enum": [
+        "fluid",
+        "fixed"
+      ]
+    },
+    "allowBleed": {
+      "type": "boolean",
+      "default": false
+    },
+    "maxColumns": {
+      "type": "number",
+      "default": 12
+    },
+    "verticalSpacing": {
+      "type": "string",
+      "default": "medium",
+      "enum": [
+        "none",
+        "small",
+        "medium",
+        "large",
+        "extra-large"
+      ]
+    },
+    "horizontalAlignment": {
+      "type": "string",
+      "default": "center",
+      "enum": [
+        "left",
+        "center",
+        "right"
+      ]
+    },
+    "customMaxWidth": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "providesContext": {
+    "ifc-ds/grid-context": "containerType",
+    "ifc-ds/grid-columns": "maxColumns"
+  },
+  "usesContext": [
+    "postId",
+    "postType"
+  ],
+  "textdomain": "ifc-design-system",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "render": "file:./render.php"
+}

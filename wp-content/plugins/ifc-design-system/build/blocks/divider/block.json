@@ -1,0 +1,77 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "ifc-ds/divider",
+  "title": "Divider",
+  "category": "ifc-design-system",
+  "icon": "minus",
+  "description": "Um divisor visual horizontal ou vertical com diferentes cores disponíveis.",
+  "keywords": [
+    "divider",
+    "separator",
+    "line",
+    "divisor",
+    "separador",
+    "linha"
+  ],
+  "version": "1.0.0",
+  "textdomain": "ifc-design-system",
+  "supports": {
+    "html": false,
+    "align": [
+      "left",
+      "center",
+      "right",
+      "wide",
+      "full"
+    ],
+    "spacing": {
+      "margin": true,
+      "padding": true,
+      "__experimentalDefaultControls": {
+        "margin": false,
+        "padding": false
+      }
+    }
+  },
+  "attributes": {
+    "orientation": {
+      "type": "string",
+      "default": "horizontal",
+      "enum": [
+        "horizontal",
+        "vertical"
+      ]
+    },
+    "color": {
+      "type": "string",
+      "default": "gray",
+      "enum": [
+        "gray",
+        "black",
+        "white"
+      ]
+    },
+    "thickness": {
+      "type": "string",
+      "default": "1"
+    },
+    "length": {
+      "type": "string",
+      "default": "100"
+    },
+    "customHeight": {
+      "type": "number",
+      "default": 40
+    }
+  },
+  "example": {
+    "attributes": {
+      "orientation": "horizontal",
+      "color": "gray"
+    }
+  },
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css"
+}

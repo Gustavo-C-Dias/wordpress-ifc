@@ -1,0 +1,108 @@
+@import '../../tokens/design-tokens.scss';
+@import '../../tokens/mixins.scss';
+
+.ifc-ds-accordion {
+  margin: var(--ifc-space-4) 0;
+  border: var(--ifc-border-width-1) solid var(--ifc-border-default);
+  @include ifc-rounded(md);
+  overflow: hidden;
+  background: var(--ifc-bg-primary);
+  
+  &__toggle {
+    @include ifc-reset-button;
+    @include ifc-text(base, semibold);
+    @include ifc-transition(background-color);
+    @include ifc-flex(row, center, space-between);
+    
+    width: 100%;
+    padding: var(--ifc-space-4);
+    background: var(--ifc-bg-secondary);
+    color: var(--ifc-text-primary);
+    text-align: left;
+    
+    &:hover {
+      background: var(--ifc-bg-tertiary);
+    }
+    
+    &.is-open .ifc-ds-accordion__icon {
+      transform: rotate(180deg);
+    }
+    
+    &:focus-visible {
+      @include ifc-focus-ring;
+    }
+  }
+  
+  &__icon {
+    @include ifc-transition(transform);
+    @include ifc-text(sm);
+    color: var(--ifc-text-tertiary);
+  }
+  
+  &__content {
+    background: var(--ifc-bg-primary);
+    border-top: var(--ifc-border-width-1) solid var(--ifc-border-default);
+    overflow: hidden;
+    @include ifc-transition(all, var(--ifc-duration-300));
+    max-height: 0;
+    padding: 0;
+    
+    &.is-open {
+      max-height: 1000px; // Valor alto para acomodar qualquer conteúdo
+      padding: var(--ifc-space-4);
+    }
+  }
+  
+  &__items {
+    @include ifc-flex(column, stretch);
+    gap: var(--ifc-space-3);
+  }
+  
+  &__text {
+    @include ifc-text(sm, normal, tight);
+    margin: 0;
+    padding: var(--ifc-space-2) var(--ifc-space-3);
+    background: var(--ifc-bg-secondary);
+    @include ifc-rounded(base);
+    color: var(--ifc-text-secondary);
+    border-left: var(--ifc-border-width-4) solid var(--ifc-border-default);
+  }
+  
+  &__link {
+    // Os estilos do link são herdados do componente Link
+    // Apenas customizações específicas para o contexto do accordion
+    
+    .ifc-ds-link__element {
+      border-radius: 0.25rem;
+      transition: all 0.2s ease;
+      
+      &:hover {
+        transform: translateX(4px);
+      }
+    }
+  }
+  
+  // Estados de acessibilidade
+  &:focus-within {
+    box-shadow: 0 0 0 2px var(--wp--preset--color--primary-200, #bfdbfe);
+  }
+  
+  // Responsividade
+  @media (max-width: 768px) {
+    margin: 0.5rem 0;
+    
+    &__toggle {
+      padding: 0.75rem;
+      font-size: 15px;
+    }
+    
+    &__content.is-open {
+      padding: 0.75rem;
+    }
+    
+    &__text {
+      padding: 0.5rem;
+      font-size: 13px;
+    }
+  }
+}

@@ -1,0 +1,80 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "ifc-ds/breadcrumb",
+    "version": "1.0.0",
+    "title": "IFC Breadcrumb",
+    "category": "ifc-design-system",
+    "icon": "admin-home",
+    "description": "Componente de navegação breadcrumb reutilizando o design do componente link.",
+    "keywords": ["breadcrumb", "navigation", "ifc", "design-system", "links"],
+    "textdomain": "ifc-design-system",
+    "editorScript": "file:./index.js",
+    "editorStyle": "file:./index.css",
+    "style": "file:./style-index.css",
+    "render": "file:./render.php",
+    "attributes": {
+        "items": {
+            "type": "array",
+            "default": [
+                {
+                    "label": "Início",
+                    "url": "/",
+                    "icon": "admin-home",
+                    "id": 1
+                },
+                {
+                    "label": "Cursos",
+                    "url": "/cursos",
+                    "icon": "",
+                    "id": 2
+                }
+            ]
+        },
+        "currentPageTitle": {
+            "type": "string",
+            "default": "Página Atual"
+        },
+        "separator": {
+            "type": "string",
+            "default": "/"
+        },
+        "linkType": {
+            "type": "string",
+            "default": "neutral",
+            "enum": ["neutral", "primary"]
+        },
+        "linkSize": {
+            "type": "string",
+            "default": "small",
+            "enum": ["small", "medium", "large"]
+        }
+    },
+    "supports": {
+        "html": false,
+        "align": ["left", "center", "right", "wide", "full"],
+        "spacing": {
+            "margin": true,
+            "padding": true
+        }
+    },
+    "example": {
+        "attributes": {
+            "items": [
+                {
+                    "label": "Início",
+                    "url": "/",
+                    "id": 1
+                },
+                {
+                    "label": "Cursos",
+                    "url": "/cursos",
+                    "id": 2
+                }
+            ],
+            "currentPageTitle": "Curso de Informática",
+            "linkType": "neutral",
+            "linkSize": "small"
+        }
+    }
+}

@@ -1,0 +1,64 @@
+/**
+ * IFC Design System - Input Mixins
+ * Mixins específicos para componentes de input
+ */
+
+@import '../../tokens/design-tokens';
+@import '../../tokens/mixins';
+
+/**
+ * Mixin base para inputs
+ */
+@mixin ifc-input-base {
+  @include ifc-text(base, normal);
+  @include ifc-transition(all);
+  
+  width: 100%;
+  border: var(--ifc-border-width-1) solid var(--ifc-border-default);
+  background-color: var(--ifc-bg-primary);
+  color: var(--ifc-text-primary);
+  outline: none;
+  
+  &::placeholder {
+    color: var(--ifc-text-placeholder);
+  }
+  
+  &:hover:not(:disabled) {
+    border-color: var(--ifc-border-hover);
+  }
+  
+  &:focus {
+    border-color: var(--ifc-border-focus);
+    box-shadow: var(--ifc-shadow-focus);
+  }
+  
+  &:disabled {
+    background-color: var(--ifc-bg-disabled);
+    border-color: var(--ifc-border-disabled);
+    color: var(--ifc-text-disabled);
+    cursor: not-allowed;
+    
+    &::placeholder {
+      color: var(--ifc-text-disabled);
+    }
+  }
+}
+
+/**
+ * Mixin para tamanhos de input
+ */
+@mixin ifc-input-size($size: md) {
+  @if $size == sm {
+    height: var(--ifc-input-height-sm);
+    padding: 0 var(--ifc-input-padding-x-sm);
+    @include ifc-text(sm, normal);
+  } @else if $size == md {
+    height: var(--ifc-input-height-md);
+    padding: 0 var(--ifc-input-padding-x-md);
+    @include ifc-text(base, normal);
+  } @else if $size == lg {
+    height: var(--ifc-input-height-lg);
+    padding: 0 var(--ifc-input-padding-x-lg);
+    @include ifc-text(lg, normal);
+  }
+}

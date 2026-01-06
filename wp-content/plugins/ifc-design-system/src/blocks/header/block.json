@@ -1,0 +1,62 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "ifc-ds/header",
+  "version": "1.0.0",
+  "title": "IFC Header",
+  "category": "ifc-design-system",
+  "icon": "heading",
+  "description": "Cabeçalho do Design System IFC",
+  "example": {},
+  "supports": {
+    "html": false
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "default": "Instituto Federal Catarinense"
+    },
+    "subtitle": {
+      "type": "string",
+      "default": ""
+    },
+    "logoOrientation": {
+      "type": "string",
+      "default": "horizontal"
+    },
+    "logoVariant": {
+      "type": "string",
+      "default": "default"
+    },
+    "accessibilityLinks": {
+      "type": "array",
+      "default": [
+        {"label": "Acessibilidade", "url": "#acessibilidade"},
+        {"label": "Alto Contraste", "url": "#alto-contraste"},
+        {"label": "Mapa do Site", "url": "#mapa-site"}
+      ]
+    },
+    "navigationLinks": {
+      "type": "array",
+      "default": [
+        {"label": "Contato", "url": "#contato"},
+        {"label": "Ouvidoria", "url": "#ouvidoria"},
+        {"label": "Acesso à Informação", "url": "#acesso-informacao"},
+        {"label": "Imprensa", "url": "#imprensa"}
+      ]
+    },
+    "socialMedia": {
+      "type": "array",
+      "default": [
+        {"platform": "youtube", "url": "#youtube"},
+        {"platform": "facebook", "url": "#facebook"}, 
+        {"platform": "instagram", "url": "#instagram"}
+      ]
+    }
+  },
+  "textdomain": "ifc-design-system",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "render": "file:./render.php"
+}

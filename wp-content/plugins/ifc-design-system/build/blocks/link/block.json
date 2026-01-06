@@ -1,0 +1,93 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "ifc-ds/link",
+  "version": "1.0.0",
+  "title": "IFC Link",
+  "category": "ifc-design-system",
+  "icon": "admin-links",
+  "description": "Componente de link customizável com variantes e tamanhos.",
+  "keywords": [
+    "link",
+    "button",
+    "ifc",
+    "design-system"
+  ],
+  "textdomain": "ifc-design-system",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "render": "file:./render.php",
+  "attributes": {
+    "label": {
+      "type": "string",
+      "default": "Link"
+    },
+    "url": {
+      "type": "string",
+      "default": "#"
+    },
+    "icon": {
+      "type": "string",
+      "default": ""
+    },
+    "iconPosition": {
+      "type": "string",
+      "default": "left",
+      "enum": [
+        "left",
+        "right"
+      ]
+    },
+    "type": {
+      "type": "string",
+      "default": "neutral",
+      "enum": [
+        "neutral",
+        "primary",
+        "white"
+      ]
+    },
+    "size": {
+      "type": "string",
+      "default": "medium",
+      "enum": [
+        "small",
+        "medium",
+        "large"
+      ]
+    },
+    "padding": {
+      "type": "object",
+      "default": {
+        "top": "0",
+        "right": "0",
+        "bottom": "0",
+        "left": "0"
+      }
+    },
+    "openInNewTab": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "supports": {
+    "html": false,
+    "align": [
+      "left",
+      "center",
+      "right"
+    ],
+    "spacing": {
+      "margin": true,
+      "padding": true
+    }
+  },
+  "example": {
+    "attributes": {
+      "label": "Link exemplo",
+      "type": "primary",
+      "size": "medium"
+    }
+  }
+}

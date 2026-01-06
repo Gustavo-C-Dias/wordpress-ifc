@@ -1,0 +1,44 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "ifc-ds/text",
+  "version": "1.0.0",
+  "title": "IFC Text",
+  "category": "ifc-design-system",
+  "icon": "editor-textcolor",
+  "description": "Componente de texto do Design System IFC com diferentes estilos tipográficos",
+  "example": {},
+  "supports": {
+    "html": false,
+    "align": ["left", "center", "right"]
+  },
+  "attributes": {
+    "content": {
+      "type": "string",
+      "default": "Digite seu texto aqui"
+    },
+    "textType": {
+      "type": "string",
+      "default": "body",
+      "enum": ["title", "subtitle", "body", "detail", "caption"]
+    },
+    "weight": {
+      "type": "string", 
+      "default": "regular",
+      "enum": ["regular", "semibold", "bold"]
+    },
+    "color": {
+      "type": "string",
+      "default": "primary"
+    },
+    "alignment": {
+      "type": "string",
+      "default": "left"
+    }
+  },
+  "textdomain": "ifc-design-system",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "render": "file:./render.php"
+}

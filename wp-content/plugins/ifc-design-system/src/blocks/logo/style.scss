@@ -1,0 +1,311 @@
+// Componente Logo - IFC Design System
+// Utiliza tokens do WordPress theme.json
+
+.ifc-ds-logo {
+    display: inline-block;
+    position: relative;
+    max-width: 100%;
+    
+    // Imagem do logo
+    &__image {
+        display: block;
+        max-width: 100%;
+        height: auto;
+        object-fit: contain;
+        transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+    }
+
+    // Link wrapper
+    &__link {
+        display: inline-block;
+        text-decoration: none;
+        border: none;
+        outline: none;
+        
+        &:focus {
+            outline: 2px solid var(--wp--preset--color--primary, #1a365d);
+            outline-offset: 2px;
+            border-radius: 2px;
+        }
+        
+        &:hover {
+            .ifc-ds-logo__image {
+                opacity: 0.85;
+                transform: scale(1.02);
+            }
+        }
+        
+        &:active {
+            .ifc-ds-logo__image {
+                transform: scale(0.98);
+            }
+        }
+    }
+
+    // Orientações
+    &--horizontal {
+        .ifc-ds-logo__image {
+            // Logos horizontais têm aspect ratio mais largo
+            max-height: 100px; // Limita altura máxima
+        }
+    }
+
+    &--vertical {
+        .ifc-ds-logo__image {
+            // Logos verticais têm aspect ratio mais alto
+            max-width: 150px; // Limita largura máxima
+        }
+    }
+
+    // Variantes de cor (para contexto/fundo)
+    &--default {
+        // Logo padrão - para fundos claros
+        // A imagem SVG já tem as cores corretas
+        .ifc-ds-logo__image {
+            // Garantir que funcione bem em fundos claros
+            filter: none;
+        }
+    }
+
+    &--white {
+        // Logo branco - para fundos escuros
+        // A imagem SVG já tem as cores corretas
+        // Pode adicionar um fundo sutil para teste
+        
+        // Opcional: fundo sutil para visualização no editor
+        &.ifc-ds-logo--editor {
+            background-color: rgba(0, 0, 0, 0.1);
+            border-radius: 4px;
+            padding: 8px;
+        }
+    }
+
+    // Estilos específicos do editor
+    &--editor {
+        position: relative;
+        
+        // Indicador visual no editor
+        &::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            border: 2px dashed transparent;
+            border-radius: 4px;
+            opacity: 0;
+            transition: all 0.2s ease-in-out;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        &:hover::before,
+        &.is-selected::before {
+            border-color: var(--wp--preset--color--primary, #1a365d);
+            opacity: 1;
+        }
+
+        // Label informativo no editor
+        &::after {
+            content: attr(data-logo-info);
+            position: absolute;
+            top: -30px;
+            left: 0;
+            font-size: 11px;
+            color: var(--wp--preset--color--primary, #1a365d);
+            background: var(--wp--preset--color--white, #ffffff);
+            padding: 2px 6px;
+            border-radius: 2px;
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.2s ease-in-out;
+            pointer-events: none;
+            z-index: 2;
+        }
+        
+        &:hover::after,
+        &.is-selected::after {
+            opacity: 1;
+        }
+    }
+}
+
+// Variações de tamanho para uso em contextos específicos
+.ifc-ds-logo {
+    // Tamanho pequeno (para footer, sidebar, etc)
+    &--small {
+        .ifc-ds-logo__image {
+            max-width: 120px;
+            max-height: 36px;
+        }
+    }
+    
+    // Tamanho médio (padrão)
+    &--medium {
+        .ifc-ds-logo__image {
+            max-width: 200px;
+            max-height: 60px;
+        }
+    }
+    
+    // Tamanho grande (para hero sections, etc)
+    &--large {
+        .ifc-ds-logo__image {
+            max-width: 300px;
+            max-height: 90px;
+        }
+    }
+}
+
+// Contextos específicos
+.ifc-ds-logo {
+    // Logo no header
+    &--header {
+        .ifc-ds-logo__image {
+            max-height: 50px;
+        }
+        
+        @media (min-width: 768px) {
+            .ifc-ds-logo__image {
+                max-height: 60px;
+            }
+        }
+    }
+    
+    // Logo no footer
+    &--footer {
+        .ifc-ds-logo__image {
+            max-height: 40px;
+            opacity: 0.9;
+        }
+    }
+    
+    // Logo inline com texto
+    &--inline {
+        display: inline-flex;
+        align-items: center;
+        vertical-align: middle;
+        
+        .ifc-ds-logo__image {
+            max-height: 1.5em; // Proporcional ao texto
+        }
+    }
+}
+
+// Responsividade
+@media (max-width: 768px) {
+    .ifc-ds-logo {
+        &--horizontal {
+            .ifc-ds-logo__image {
+                max-width: 180px;
+                max-height: 54px;
+            }
+        }
+        
+        &--vertical {
+            .ifc-ds-logo__image {
+                max-width: 60px;
+                max-height: 90px;
+            }
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .ifc-ds-logo {
+        &--horizontal {
+            .ifc-ds-logo__image {
+                max-width: 150px;
+                max-height: 45px;
+            }
+        }
+        
+        &--vertical {
+            .ifc-ds-logo__image {
+                max-width: 50px;
+                max-height: 75px;
+            }
+        }
+    }
+}
+
+// Estados de acessibilidade
+@media (prefers-reduced-motion: reduce) {
+    .ifc-ds-logo {
+        &__image,
+        &::before,
+        &::after {
+            transition: none;
+        }
+        
+        &__link:hover .ifc-ds-logo__image {
+            transform: none;
+        }
+    }
+}
+
+// Alto contraste
+@media (prefers-contrast: high) {
+    .ifc-ds-logo {
+        &--editor::before {
+            border-style: solid;
+            border-width: 2px;
+        }
+        
+        &__link:focus {
+            outline-width: 3px;
+        }
+    }
+}
+
+// Utilitários para alinhamento
+.ifc-ds-logo-center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.ifc-ds-logo-left {
+    display: block;
+    margin-right: auto;
+}
+
+.ifc-ds-logo-right {
+    display: block;
+    margin-left: auto;
+}
+
+// Para uso em flexbox
+.ifc-ds-logo-flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+// Estados de carregamento
+.ifc-ds-logo {
+    &__image {
+        &[loading] {
+            background-color: var(--wp--preset--color--neutral-100, #f3f4f6);
+            background-image: linear-gradient(
+                90deg,
+                var(--wp--preset--color--neutral-100, #f3f4f6),
+                var(--wp--preset--color--neutral-200, #e5e7eb),
+                var(--wp--preset--color--neutral-100, #f3f4f6)
+            );
+            background-size: 200px 100%;
+            background-repeat: no-repeat;
+            animation: loading-shimmer 1.5s infinite;
+        }
+    }
+}
+
+@keyframes loading-shimmer {
+    0% {
+        background-position: -200px 0;
+    }
+    100% {
+        background-position: calc(200px + 100%) 0;
+    }
+}

@@ -1,0 +1,86 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "ifc-ds/logo",
+  "title": "Logo",
+  "category": "ifc-design-system",
+  "icon": "format-image",
+  "description": "Logo institucional com orientações horizontal e vertical, disponível em versões default e white.",
+  "keywords": [
+    "logo",
+    "brand",
+    "identity",
+    "logotipo",
+    "marca",
+    "identidade"
+  ],
+  "version": "1.0.0",
+  "textdomain": "ifc-design-system",
+  "supports": {
+    "html": false,
+    "align": [
+      "left",
+      "center",
+      "right",
+      "wide",
+      "full"
+    ],
+    "spacing": {
+      "margin": true,
+      "padding": true,
+      "__experimentalDefaultControls": {
+        "margin": false,
+        "padding": false
+      }
+    }
+  },
+  "attributes": {
+    "orientation": {
+      "type": "string",
+      "default": "horizontal",
+      "enum": [
+        "horizontal",
+        "vertical"
+      ]
+    },
+    "variant": {
+      "type": "string",
+      "default": "default",
+      "enum": [
+        "default",
+        "white"
+      ]
+    },
+    "width": {
+      "type": "number",
+      "default": 200
+    },
+    "height": {
+      "type": "number",
+      "default": 60
+    },
+    "linkUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "linkTarget": {
+      "type": "string",
+      "default": "_self"
+    },
+    "altText": {
+      "type": "string",
+      "default": "Logo IFC"
+    }
+  },
+  "example": {
+    "attributes": {
+      "orientation": "horizontal",
+      "variant": "default",
+      "width": 200,
+      "height": 60
+    }
+  },
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css"
+}

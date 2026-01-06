@@ -1,0 +1,177 @@
+/**
+ * IFC Design System - Estilos Principais
+ * Arquivo principal que importa todos os tokens e estilos base
+ */
+
+/* Importar tokens de design */
+@import './tokens/design-tokens.scss';
+@import './tokens/mixins.scss';
+
+/* ==========================================
+ * ESTILOS GLOBAIS DO SISTEMA DE DESIGN
+ * ========================================== */
+
+/* Reset básico para componentes IFC */
+.ifc-ds-component {
+  box-sizing: border-box;
+  font-family: var(--ifc-font-family-primary);
+  
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+}
+
+/* Base para todos os wrappers de blocos */
+.wp-block-ifc-ds-accordion,
+.wp-block-ifc-ds-breadcrumb,
+.wp-block-ifc-ds-header,
+.wp-block-ifc-ds-input,
+.wp-block-ifc-ds-link,
+.wp-block-ifc-ds-skip-navigation {
+  @extend .ifc-ds-component;
+}
+
+/* ==========================================
+ * ESTILOS ESPECÍFICOS PARA O EDITOR
+ * ========================================== */
+
+.block-editor-writing-flow {
+  .wp-block-ifc-ds-input {
+    .ifc-ds-input {
+      pointer-events: none; // Desabilita interação no editor
+    }
+  }
+  
+  /* Indicador visual de que o bloco está selecionado */
+  [data-type^="ifc-ds/"].is-selected {
+    outline: var(--ifc-border-width-2) solid var(--ifc-bg-accent);
+    outline-offset: var(--ifc-space-1);
+  }
+}
+
+/* ==========================================
+ * UTILITÁRIOS DE ACESSIBILIDADE
+ * ========================================== */
+
+/* Melhorar contraste para usuários com deficiência visual */
+@media (prefers-contrast: high) {
+  .ifc-ds-component {
+    /* Aumentar espessura das bordas */
+    --ifc-border-width-1: 2px;
+    --ifc-border-width-2: 3px;
+    
+    /* Aumentar contraste das sombras de foco */
+    --ifc-shadow-focus: 0 0 0 4px rgba(var(--wp--preset--color--primary-600), 0.8);
+  }
+}
+
+/* Suporte para usuários que preferem movimento reduzido */
+@media (prefers-reduced-motion: reduce) {
+  .ifc-ds-component * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ==========================================
+ * RESPONSIVIDADE GLOBAL
+ * ========================================== */
+
+/* Ajustes para dispositivos móveis */
+@include ifc-responsive(sm) {
+  .ifc-ds-component {
+    /* Aumentar área de toque em dispositivos móveis */
+    .ifc-ds-accordion__toggle,
+    .ifc-ds-input,
+    .ifc-ds-link {
+      min-height: 44px; /* Recomendação de acessibilidade para área de toque */
+    }
+  }
+}
+
+/* ==========================================
+ * INTEGRAÇÃO COM WORDPRESS
+ * ========================================== */
+
+/* Garantir que os componentes funcionem bem com temas do WordPress */
+.site-content,
+.entry-content,
+.page-content {
+  .wp-block-ifc-ds-accordion,
+  .wp-block-ifc-ds-breadcrumb,
+  .wp-block-ifc-ds-header,
+  .wp-block-ifc-ds-input,
+  .wp-block-ifc-ds-link,
+  .wp-block-ifc-ds-skip-navigation {
+    /* Reset de margens que podem ser aplicadas por temas */
+    &:first-child {
+      margin-top: 0;
+    }
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+/* ==========================================
+ * ESTADOS DE LOADING E PLACEHOLDER
+ * ========================================== */
+
+/* Skeleton loading para componentes */
+.ifc-ds-skeleton {
+  @include ifc-skeleton;
+}
+
+/* Placeholder para componentes vazios no editor */
+.ifc-ds-placeholder {
+  @include ifc-flex(column, center, center);
+  @include ifc-text(sm, medium);
+  
+  min-height: 100px;
+  border: var(--ifc-border-width-2) dashed var(--ifc-border-default);
+  @include ifc-rounded(base);
+  color: var(--ifc-text-tertiary);
+  background-color: var(--ifc-bg-secondary);
+  
+  &__icon {
+    font-size: var(--ifc-font-size-2xl);
+    margin-bottom: var(--ifc-space-2);
+    opacity: 0.5;
+  }
+  
+  &__text {
+    text-align: center;
+    max-width: 200px;
+  }
+}
+
+/* ==========================================
+ * PRINT STYLES
+ * ========================================== */
+
+@media print {
+  .ifc-ds-component {
+    /* Forçar cores escuras para impressão */
+    color: black !important;
+    background: white !important;
+    
+    /* Remover sombras para impressão */
+    box-shadow: none !important;
+    
+    /* Garantir que links sejam visíveis */
+    a {
+      text-decoration: underline !important;
+      color: black !important;
+    }
+    
+    /* Quebras de página apropriadas */
+    .ifc-ds-accordion,
+    .ifc-ds-card {
+      page-break-inside: avoid;
+    }
+  }
+}

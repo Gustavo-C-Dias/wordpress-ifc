@@ -1,0 +1,198 @@
+// Estilos para o componente Input do IFC Design System
+@import '../../tokens/design-tokens.scss';
+@import '../../tokens/mixins.scss';
+@import './mixins.scss';
+
+// Wrapper principal
+.ifc-ds-input-wrapper {
+    @include ifc-flex(column, stretch, flex-start);
+    gap: var(--ifc-space-1);
+    width: 100%;
+    
+    &--disabled {
+        opacity: 0.6;
+        pointer-events: none;
+    }
+}
+
+// Label
+.ifc-ds-input__label {
+    @include ifc-text(sm, medium);
+    display: block;
+    color: var(--ifc-text-primary);
+    margin-bottom: var(--ifc-space-1);
+    
+    .ifc-ds-input__required {
+        color: var(--ifc-text-error);
+        margin-left: var(--ifc-space-0_5);
+    }
+}
+
+// Wrapper do campo (input + ícone)
+.ifc-ds-input__field-wrapper {
+    position: relative;
+    @include ifc-flex(row, center);
+}
+
+// Ícone
+.ifc-ds-input__icon {
+    position: absolute;
+    left: var(--ifc-space-3);
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--ifc-text-tertiary);
+    pointer-events: none;
+    z-index: 1;
+    
+    i {
+        display: block;
+        font-size: var(--ifc-font-size-base);
+        line-height: var(--ifc-line-height-none);
+    }
+}
+
+// Input principal
+.ifc-ds-input {
+    @include ifc-input-base;
+    @include ifc-input-size(md);
+    @include ifc-rounded(base);
+    
+    // Input com ícone
+    &--with-icon {
+        padding-left: calc(var(--ifc-space-3) * 2 + var(--ifc-font-size-base));
+    }
+}
+
+// Caption
+.ifc-ds-input__caption {
+    @include ifc-text(xs, normal, tight);
+    color: var(--ifc-text-tertiary);
+    margin-top: var(--ifc-space-0_5);
+}
+
+// Variações de tamanho
+.ifc-ds-input-wrapper--small {
+    .ifc-ds-input {
+        @include ifc-input-size(sm);
+        
+        &--with-icon {
+            padding-left: calc(var(--ifc-space-2) * 2 + var(--ifc-font-size-sm));
+        }
+    }
+    
+    .ifc-ds-input__icon {
+        left: var(--ifc-space-2);
+        
+        i {
+            font-size: var(--ifc-font-size-sm);
+        }
+    }
+}
+
+.ifc-ds-input-wrapper--medium {
+    .ifc-ds-input {
+        @include ifc-input-size(md);
+    }
+}
+
+.ifc-ds-input-wrapper--large {
+    .ifc-ds-input {
+        @include ifc-input-size(lg);
+        
+        &--with-icon {
+            padding-left: calc(var(--ifc-space-4) * 2 + var(--ifc-font-size-lg));
+        }
+    }
+    
+    .ifc-ds-input__icon {
+        left: var(--ifc-space-4);
+        
+        i {
+            font-size: var(--ifc-font-size-lg);
+        }
+    }
+}
+
+// Variações de estilo
+.ifc-ds-input-wrapper--outlined {
+    .ifc-ds-input {
+        background-color: transparent;
+        border-width: var(--ifc-border-width-2);
+        
+        &:focus {
+            background-color: var(--ifc-bg-primary);
+        }
+    }
+}
+
+.ifc-ds-input-wrapper--filled {
+    .ifc-ds-input {
+        background-color: var(--ifc-bg-secondary);
+        border-color: transparent;
+        
+        &:hover:not(:disabled) {
+            background-color: var(--ifc-bg-tertiary);
+        }
+        
+        &:focus {
+            background-color: var(--ifc-bg-primary);
+            border-color: var(--ifc-border-focus);
+        }
+    }
+}
+
+// Estados de validação
+.ifc-ds-input-wrapper--error {
+    .ifc-ds-input {
+        border-color: var(--ifc-border-error);
+        
+        &:focus {
+            border-color: var(--ifc-border-error);
+            box-shadow: 0 0 0 3px rgba(var(--wp--preset--color--error-500), 0.1);
+        }
+    }
+    
+    .ifc-ds-input__caption {
+        color: var(--ifc-text-error);
+    }
+}
+
+.ifc-ds-input-wrapper--success {
+    .ifc-ds-input {
+        border-color: var(--ifc-border-success);
+        
+        &:focus {
+            border-color: var(--ifc-border-success);
+            box-shadow: 0 0 0 3px rgba(var(--wp--preset--color--success-500), 0.1);
+        }
+    }
+    
+    .ifc-ds-input__caption {
+        color: var(--ifc-text-success);
+    }
+}
+
+// Responsividade
+@include ifc-responsive(md) {
+    .ifc-ds-input-wrapper--large {
+        .ifc-ds-input {
+            @include ifc-input-size(md);
+        }
+    }
+}
+
+// Integração com WordPress
+.wp-block-ifc-ds-input {
+    .ifc-ds-input-wrapper {
+        margin: 0;
+    }
+}
+
+// Estilos específicos para o editor do WordPress
+.block-editor-block-list__layout {
+    .wp-block-ifc-ds-input {
+        .ifc-ds-input {
+            pointer-events: none; // Desabilita interação no editor
+        }
+    }
+}

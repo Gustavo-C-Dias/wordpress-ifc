@@ -1,0 +1,196 @@
+.ifc-ds-skip-navigation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999;
+    background: linear-gradient(135deg, var(--wp--preset--color--primary-600, #0056b3), var(--wp--preset--color--primary-700, #004085));
+    transform: translateY(0);
+    transition: transform 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    
+    &__container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0.75rem 1rem;
+        
+        @media (max-width: 768px) {
+            padding: 0.75rem;
+        }
+    }
+    
+    &__links {
+        display: flex;
+        gap: 0.75rem;
+        flex-wrap: wrap;
+        
+        @media (max-width: 768px) {
+            gap: 0.5rem;
+            justify-content: center;
+        }
+    }
+    
+    &__link {
+        // Os estilos base do link são herdados do componente Link
+        // Customizações específicas para skip navigation
+        
+        .ifc-ds-link__element {
+            padding: 0.5rem 0.75rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 0.25rem;
+            transition: all 0.2s ease;
+            font-size: 14px;
+            font-weight: 500;
+            white-space: nowrap;
+            
+            &:hover {
+                background: rgba(255, 255, 255, 0.2);
+                border-color: rgba(255, 255, 255, 0.5);
+                transform: translateY(-1px);
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            }
+            
+            &:focus {
+                outline: 2px solid white;
+                outline-offset: 2px;
+                background: rgba(255, 255, 255, 0.25);
+            }
+            
+            &:active {
+                transform: translateY(0);
+            }
+            
+            @media (max-width: 768px) {
+                padding: 0.5rem;
+                font-size: 13px;
+            }
+        }
+    }
+}
+
+// Classe utilitária para screen readers
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+// Estilos específicos quando usado dentro do header
+.ifc-ds-header .ifc-ds-skip-navigation {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    
+    // Garantir que o header tenha position relative para o posicionamento
+    .ifc-ds-header {
+        position: relative;
+    }
+}
+
+// Ajustar o header quando contém skip navigation
+.ifc-ds-header {
+    position: relative; // Necessário para o posicionamento absoluto do skip nav
+    
+    // Evitar que o skip navigation interfira no layout do header
+    &:not(:focus-within) .ifc-ds-skip-navigation {
+        pointer-events: none; // Skip navigation invisível não interfere nos cliques
+    }
+    
+    &:focus-within .ifc-ds-skip-navigation {
+        pointer-events: auto;
+    }
+}
+
+// Estilo para quando usado em temas com header fixo
+.admin-bar .ifc-ds-skip-navigation {
+    top: 32px; // Altura da admin bar do WordPress
+    
+    @media screen and (max-width: 782px) {
+        top: 46px; // Altura da admin bar em mobile
+    }
+}
+
+// Animações adicionais para melhor UX
+.ifc-ds-skip-navigation {
+    &__links {
+        .ifc-ds-link {
+            opacity: 0;
+            animation: fadeInUp 0.3s ease forwards;
+            
+            @for $i from 1 through 5 {
+                &:nth-child(#{$i}) {
+                    animation-delay: #{($i - 1) * 0.1}s;
+                }
+            }
+        }
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+// Estados de high contrast para acessibilidade
+@media (prefers-contrast: high) {
+    .ifc-ds-skip-navigation {
+        background: #000;
+        border-bottom: 2px solid #fff;
+        
+        &__link .ifc-ds-link__element {
+            background: #fff;
+            color: #000 !important;
+            border-color: #fff;
+            
+            &:hover,
+            &:focus {
+                background: #f0f0f0;
+            }
+        }
+    }
+}
+
+// Suporte para modo escuro
+@media (prefers-color-scheme: dark) {
+    .ifc-ds-skip-navigation {
+        background: linear-gradient(135deg, #1a365d, #2d3748);
+        
+        &__link .ifc-ds-link__element {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+    }
+}
+
+// Reduzir movimentos para usuários que preferem
+@media (prefers-reduced-motion: reduce) {
+    .ifc-ds-skip-navigation {
+        transition: none;
+        
+        &__links .ifc-ds-link {
+            animation: none;
+        }
+        
+        &__link .ifc-ds-link__element {
+            transition: none;
+        }
+    }
+}

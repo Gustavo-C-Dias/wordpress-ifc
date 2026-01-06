@@ -1,0 +1,63 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "ifc-ds/footer",
+  "version": "1.0.0",
+  "title": "IFC Footer",
+  "category": "ifc-design-system",
+  "icon": "editor-insertmore",
+  "description": "Componente de footer do Design System IFC com seções de links e endereço",
+  "keywords": [
+    "footer",
+    "rodapé",
+    "links",
+    "ifc",
+    "design-system"
+  ],
+  "textdomain": "ifc-design-system",
+  "example": {},
+  "supports": {
+    "html": false
+  },
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "render": "file:./render.php",
+  "attributes": {
+    "linkSections": {
+      "type": "array",
+      "default": [
+        {
+          "titleSection": "Seção 1",
+          "links": [
+            {
+              "label": "Link 1",
+              "url": "#"
+            },
+            {
+              "label": "Link 2",
+              "url": "#"
+            }
+          ]
+        },
+        {
+          "titleSection": "Seção 2",
+          "links": [
+            {
+              "label": "Link 1",
+              "url": "#"
+            },
+            {
+              "label": "Link 2",
+              "url": "#"
+            }
+          ]
+        }
+      ]
+    },
+    "address": {
+      "type": "string",
+      "default": "Digite o endereço aqui"
+    }
+  }
+}

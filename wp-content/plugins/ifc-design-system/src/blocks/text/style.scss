@@ -1,0 +1,136 @@
+// Componente de Texto - IFC Design System
+// Utiliza tokens do WordPress theme.json
+
+.ifc-ds-text {
+    margin: 0;
+    font-family: var(--wp--preset--font-family--inter, system-ui, -apple-system, sans-serif);
+    line-height: 1.5;
+    
+    // Tipos de texto com tamanhos específicos
+    &--title {
+        font-size: var(--wp--preset--font-size--xx-large, 32px);
+        font-weight: var(--wp--custom--font-weight--semibold, 600);
+        line-height: 1.2;
+        margin-bottom: var(--wp--preset--spacing--40, 1.5rem);
+    }
+    
+    &--subtitle {
+        font-size: var(--wp--preset--font-size--x-large, 24px);
+        font-weight: var(--wp--custom--font-weight--semibold, 600);
+        line-height: 1.3;
+        margin-bottom: var(--wp--preset--spacing--30, 1rem);
+    }
+    
+    &--body {
+        font-size: var(--wp--preset--font-size--medium, 16px);
+        line-height: 1.6;
+        margin-bottom: var(--wp--preset--spacing--20, 0.75rem);
+        
+        &.ifc-ds-text--regular {
+            font-weight: var(--wp--custom--font-weight--regular, 400);
+        }
+        
+        &.ifc-ds-text--semibold {
+            font-weight: var(--wp--custom--font-weight--semibold, 600);
+        }
+        
+        &.ifc-ds-text--bold {
+            font-weight: var(--wp--custom--font-weight--bold, 700);
+        }
+    }
+    
+    &--detail {
+        font-size: var(--wp--preset--font-size--small, 14px);
+        line-height: 1.4;
+        margin-bottom: var(--wp--preset--spacing--10, 0.5rem);
+        
+        &.ifc-ds-text--regular {
+            font-weight: var(--wp--custom--font-weight--regular, 400);
+        }
+        
+        &.ifc-ds-text--semibold {
+            font-weight: var(--wp--custom--font-weight--semibold, 600);
+        }
+    }
+    
+    &--caption {
+        font-size: 12px;
+        font-weight: var(--wp--custom--font-weight--regular, 400);
+        line-height: 1.3;
+        margin-bottom: var(--wp--preset--spacing--10, 0.5rem);
+    }
+    
+    // Cores do texto usando tokens do theme.json
+    &--primary {
+        color: var(--wp--preset--color--primary, #1a365d);
+    }
+    
+    &--secondary {
+        color: var(--wp--preset--color--secondary, #2d3748);
+    }
+    
+    &--neutral {
+        color: var(--wp--preset--color--neutral-700, #374151);
+    }
+    
+    &--success {
+        color: var(--wp--preset--color--success, #065f46);
+    }
+    
+    &--warning {
+        color: var(--wp--preset--color--warning, #92400e);
+    }
+    
+    &--error {
+        color: var(--wp--preset--color--error, #991b1b);
+    }
+    
+    // Alinhamentos
+    &--align-left {
+        text-align: left;
+    }
+    
+    &--align-center {
+        text-align: center;
+    }
+    
+    &--align-right {
+        text-align: right;
+    }
+    
+    // Estados interativos (se aplicável)
+    &:empty {
+        display: none;
+    }
+    
+    // Responsividade
+    @media (max-width: 768px) {
+        &--title {
+            font-size: var(--wp--preset--font-size--x-large, 28px);
+        }
+        
+        &--subtitle {
+            font-size: var(--wp--preset--font-size--large, 20px);
+        }
+    }
+    
+    @media (max-width: 480px) {
+        &--title {
+            font-size: var(--wp--preset--font-size--large, 24px);
+        }
+        
+        &--subtitle {
+            font-size: var(--wp--preset--font-size--medium, 18px);
+        }
+    }
+}
+
+// Utilitários para espaçamento quando usado em sequência
+.ifc-ds-text + .ifc-ds-text {
+    margin-top: var(--wp--preset--spacing--20, 0.75rem);
+    
+    &.ifc-ds-text--title,
+    &.ifc-ds-text--subtitle {
+        margin-top: var(--wp--preset--spacing--50, 2rem);
+    }
+}

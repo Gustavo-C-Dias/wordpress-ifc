@@ -1,0 +1,232 @@
+// Componente Divider - IFC Design System
+// Utiliza tokens do WordPress theme.json
+
+.ifc-ds-divider {
+    display: flex;
+    position: relative;
+    box-sizing: border-box;
+    
+    // Base para o divisor
+    &__line {
+        width: 100%;
+        height: 100%;
+        border: 0;
+        margin: 0;
+        padding: 0;
+    }
+
+    // Orientações
+    &--horizontal {
+        align-items: center;
+        justify-content: center;
+        min-height: 1px;
+        width: 100%;
+        
+        .ifc-ds-divider__line {
+            height: 100%;
+        }
+    }
+
+    &--vertical {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-width: 1px;
+        height: auto;
+        
+        .ifc-ds-divider__line {
+            width: 100%;
+        }
+    }
+
+    // Cores usando tokens do WordPress
+    &--gray {
+        .ifc-ds-divider__line {
+            background-color: var(--wp--preset--color--neutral-300, #d1d5db);
+        }
+    }
+
+    &--black {
+        .ifc-ds-divider__line {
+            background-color: var(--wp--preset--color--neutral-800, #1f2937);
+        }
+    }
+
+    &--white {
+        .ifc-ds-divider__line {
+            background-color: var(--wp--preset--color--white, #ffffff);
+        }
+    }
+
+    // Espessuras
+    &--thickness-1 {
+        &.ifc-ds-divider--horizontal {
+            height: 1px;
+        }
+        
+        &.ifc-ds-divider--vertical {
+            width: 1px;
+        }
+    }
+
+    &--thickness-2 {
+        &.ifc-ds-divider--horizontal {
+            height: 2px;
+        }
+        
+        &.ifc-ds-divider--vertical {
+            width: 2px;
+        }
+    }
+
+    &--thickness-3 {
+        &.ifc-ds-divider--horizontal {
+            height: 3px;
+        }
+        
+        &.ifc-ds-divider--vertical {
+            width: 3px;
+        }
+    }
+
+    &--thickness-4 {
+        &.ifc-ds-divider--horizontal {
+            height: 4px;
+        }
+        
+        &.ifc-ds-divider--vertical {
+            width: 4px;
+        }
+    }
+
+    &--thickness-5 {
+        &.ifc-ds-divider--horizontal {
+            height: 5px;
+        }
+        
+        &.ifc-ds-divider--vertical {
+            width: 5px;
+        }
+    }
+
+    // Estilos específicos do editor
+    &--editor {
+        position: relative;
+        
+        // Indicador visual no editor
+        &::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 1px dashed var(--wp--preset--color--primary, #1a365d);
+            border-radius: 2px;
+            opacity: 0;
+            transition: opacity 0.2s ease-in-out;
+            pointer-events: none;
+        }
+        
+        &.ifc-ds-divider--horizontal::before {
+            width: calc(100% + 20px);
+            height: calc(100% + 20px);
+            min-height: 20px;
+        }
+        
+        &.ifc-ds-divider--vertical::before {
+            width: calc(100% + 20px);
+            height: calc(100% + 20px);
+            min-width: 20px;
+        }
+        
+        &:hover::before,
+        &.is-selected::before {
+            opacity: 1;
+        }
+    }
+
+    // Label do editor
+    &__editor-label {
+        position: absolute;
+        top: -25px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 11px;
+        color: var(--wp--preset--color--primary, #1a365d);
+        background: var(--wp--preset--color--white, #ffffff);
+        padding: 2px 6px;
+        border-radius: 2px;
+        white-space: nowrap;
+        opacity: 0;
+        transition: opacity 0.2s ease-in-out;
+        pointer-events: none;
+        z-index: 1;
+        
+        .ifc-ds-divider--editor:hover &,
+        .ifc-ds-divider--editor.is-selected & {
+            opacity: 1;
+        }
+    }
+}
+
+// Responsividade
+@media (max-width: 768px) {
+    .ifc-ds-divider {
+        &--vertical {
+            // Em mobile, limitar altura máxima dos divisores verticais
+            max-height: 60px;
+        }
+    }
+}
+
+// Estados de acessibilidade
+@media (prefers-reduced-motion: reduce) {
+    .ifc-ds-divider {
+        &--editor {
+            &::before,
+            .ifc-ds-divider__editor-label {
+                transition: none;
+            }
+        }
+    }
+}
+
+// Modo dark (se suportado pelo tema)
+@media (prefers-color-scheme: dark) {
+    .ifc-ds-divider {
+        &--gray {
+            .ifc-ds-divider__line {
+                background-color: var(--wp--preset--color--neutral-500, #6b7280);
+            }
+        }
+    }
+}
+
+// Utilitários para uso em outros componentes
+.ifc-ds-divider-inline {
+    display: inline-flex;
+    vertical-align: middle;
+}
+
+.ifc-ds-divider-centered {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+// Variações pré-definidas para facilitar uso
+.ifc-ds-divider--thin-gray {
+    @extend .ifc-ds-divider;
+    @extend .ifc-ds-divider--horizontal;
+    @extend .ifc-ds-divider--gray;
+    @extend .ifc-ds-divider--thickness-1;
+}
+
+.ifc-ds-divider--section-break {
+    @extend .ifc-ds-divider;
+    @extend .ifc-ds-divider--horizontal;
+    @extend .ifc-ds-divider--gray;
+    @extend .ifc-ds-divider--thickness-2;
+    
+    margin: var(--wp--preset--spacing--50, 1.5rem) 0;
+    width: 60% !important;
+}

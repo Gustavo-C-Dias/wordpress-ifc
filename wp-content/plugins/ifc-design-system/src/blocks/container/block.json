@@ -1,0 +1,84 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "ifc-ds/container",
+  "version": "1.0.0",
+  "title": "IFC Container",
+  "category": "ifc-design-system",
+  "icon": "admin-page",
+  "description": "Componente container do Design System IFC com borda, sombra e espaçamento configuráveis",
+  "example": {},
+  "supports": {
+    "html": false,
+    "align": ["wide", "full"],
+    "spacing": {
+      "margin": true,
+      "padding": true
+    }
+  },
+  "attributes": {
+    "padding": {
+      "type": "object",
+      "default": {
+        "top": "30",
+        "right": "30", 
+        "bottom": "30",
+        "left": "30"
+      }
+    },
+    "margin": {
+      "type": "object",
+      "default": {
+        "top": "0",
+        "right": "0",
+        "bottom": "20",
+        "left": "0"
+      }
+    },
+    "borderWidth": {
+      "type": "string",
+      "default": "1"
+    },
+    "borderColor": {
+      "type": "string",
+      "default": "neutral-300"
+    },
+    "shadowEnabled": {
+      "type": "boolean",
+      "default": true
+    },
+    "backgroundColor": {
+      "type": "string",
+      "default": "white"
+    },
+    "listMode": {
+      "type": "boolean",
+      "default": false
+    },
+    "listDirection": {
+      "type": "string",
+      "default": "vertical"
+    },
+    "listItems": {
+      "type": "array",
+      "default": []
+    },
+    "listSpacing": {
+      "type": "string",
+      "default": "20"
+    },
+    "listAlignment": {
+      "type": "string",
+      "default": "left"
+    }
+  },
+  "providesContext": {
+    "ifc-ds/containerPadding": "padding",
+    "ifc-ds/containerMargin": "margin"
+  },
+  "textdomain": "ifc-design-system",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "render": "file:./render.php"
+}
