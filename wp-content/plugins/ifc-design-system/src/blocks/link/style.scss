@@ -61,15 +61,15 @@
 
     &--white {
         .ifc-ds-link__element {
-            color: white;
+            color: var(--wp--preset--color--neutral-100);
             
             &:hover {
-                color: var(--wp--preset--color--neutral-0);
+                color: var(--wp--preset--color--neutral-100);
                 text-decoration: underline;
             }
             
             &:focus {
-                outline-color: white;
+                outline-color: var(--wp--preset--color--neutral-100);
             }
         }
     }

@@ -40,7 +40,7 @@
         
         function insertCourseTemplateClassic() {
             const content = `
-                <!-- wp:ifc-ds/header {"title":"Nome do Curso IFC","subtitle":"Instituto Federal Catarinense"} /-->
+                <!-- wp:ifc-ds/header /-->
                 <!-- wp:ifc-ds/accordion {"title":"Menu do Curso","content":"<ul><li><a href='#sobre'>Sobre o Curso</a></li><li><a href='#matriz'>Matriz Curricular</a></li><li><a href='#professores'>Professores</a></li><li><a href='#contato'>Contato</a></li></ul>"} /-->
 
                 <!-- wp:heading {"level":2} -->
@@ -89,10 +89,7 @@
                 
                 // Verifica se os blocos existem antes de usar
                 if (wp.blocks.getBlockType('ifc-ds/header')) {
-                    blocks.push(createBlock('ifc-ds/header', {
-                        title: 'Nome do Curso IFC',
-                        subtitle: 'Instituto Federal Catarinense'
-                    }));
+                    blocks.push(createBlock('ifc-ds/header'));
                 }
                 
                 if (wp.blocks.getBlockType('ifc-ds/accordion')) {

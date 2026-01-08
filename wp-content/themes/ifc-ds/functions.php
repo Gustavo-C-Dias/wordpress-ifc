@@ -36,7 +36,7 @@ function ifc_ds_register_block_patterns() {
             'title'         => __('Template Padrão de Curso IFC', 'ifc-ds'),
             'description'   => __('Layout padrão para páginas de curso com componentes do IFC', 'ifc-ds'),
             'categories'    => array('ifc-ds'),
-            'content'       => '<!-- wp:ifc-ds/header {"title":"Nome do Curso IFC","subtitle":"Instituto Federal Catarinense"} /-->
+            'content'       => '<!-- wp:ifc-ds/header /-->
 
 <!-- wp:ifc-ds/accordion {"title":"Menu do Curso","content":"<ul><li><a href=\"#sobre\">Sobre o Curso</a></li><li><a href=\"#matriz\">Matriz Curricular</a></li><li><a href=\"#professores\">Professores</a></li><li><a href=\"#contato\">Contato</a></li></ul>"} /-->
 

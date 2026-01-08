@@ -1,7 +1,5 @@
 <?php
 // Atributos do bloco
-$title = $attributes['title'] ?? 'Instituto Federal Catarinense';
-$subtitle = $attributes['subtitle'] ?? '';
 $logoOrientation = $attributes['logoOrientation'] ?? 'horizontal';
 $logoVariant = $attributes['logoVariant'] ?? 'default';
 $accessibilityLinks = $attributes['accessibilityLinks'] ?? [
@@ -106,21 +104,9 @@ if (!function_exists('get_social_icon')) {
             <div class="ifc-ds-logo ifc-ds-header__logo">
                 <img 
                     src="<?php echo esc_url(get_logo_url($logoOrientation, $logoVariant)); ?>"
-                    alt="<?php echo esc_attr($title); ?>"
+                    alt="Instituto Federal Catarinense"
                     class="ifc-ds-logo__image ifc-ds-logo__image--<?php echo esc_attr($logoOrientation); ?> ifc-ds-logo__image--<?php echo esc_attr($logoVariant); ?>"
                 />
-            </div>
-            
-            <!-- Textos do Header -->
-            <div class="ifc-ds-header__text">
-                <h1 class="ifc-ds-text ifc-ds-text--title ifc-ds-text--semibold ifc-ds-text--primary ifc-ds-header__title">
-                    <?php echo esc_html($title); ?>
-                </h1>
-                <?php if (!empty($subtitle)): ?>
-                    <h2 class="ifc-ds-text ifc-ds-text--subtitle ifc-ds-text--regular ifc-ds-text--secondary ifc-ds-header__subtitle">
-                        <?php echo esc_html($subtitle); ?>
-                    </h2>
-                <?php endif; ?>
             </div>
         </div>
         

@@ -15,24 +15,24 @@
   /* Cores Semânticas - Mapeamento dos tokens do theme.json */
   --ifc-color-primary: var(--wp--preset--color--primary-600);
   --ifc-color-primary-hover: var(--wp--preset--color--primary-700);
-  --ifc-color-primary-light: var(--wp--preset--color--primary-50);
+  --ifc-color-primary-light: var(--wp--preset--color--primary-100);
   
-  --ifc-color-text-primary: var(--wp--preset--color--neutral-900);
+  --ifc-color-text-primary: var(--wp--preset--color--neutral-700);
   --ifc-color-text-secondary: var(--wp--preset--color--neutral-600);
   --ifc-color-text-muted: var(--wp--preset--color--neutral-500);
-  --ifc-color-text-inverse: var(--wp--preset--color--neutral-0);
+  --ifc-color-text-inverse: var(--wp--preset--color--neutral-100);
   
-  --ifc-color-bg-primary: var(--wp--preset--color--neutral-0);
-  --ifc-color-bg-secondary: var(--wp--preset--color--neutral-50);
-  --ifc-color-bg-tertiary: var(--wp--preset--color--neutral-100);
+  --ifc-color-bg-primary: var(--wp--preset--color--neutral-100);
+  --ifc-color-bg-secondary: var(--wp--preset--color--neutral-200);
+  --ifc-color-bg-tertiary: var(--wp--preset--color--neutral-300);
   
-  --ifc-color-border-default: var(--wp--preset--color--neutral-200);
-  --ifc-color-border-hover: var(--wp--preset--color--neutral-300);
+  --ifc-color-border-default: var(--wp--preset--color--neutral-300);
+  --ifc-color-border-hover: var(--wp--preset--color--neutral-400);
   --ifc-color-border-focus: var(--wp--preset--color--primary-600);
   
-  --ifc-color-error: var(--wp--preset--color--error-500);
-  --ifc-color-warning: var(--wp--preset--color--warning-500);
-  --ifc-color-success: var(--wp--preset--color--success-500);
+  --ifc-color-error: var(--wp--preset--color--secondary-500);
+  --ifc-color-warning: var(--wp--preset--color--secondary-300);
+  --ifc-color-success: var(--wp--preset--color--primary-500);
 
   /* ==========================================
    * TOKENS DE TIPOGRAFIA (usando WordPress)
@@ -219,7 +219,7 @@ Para adicionar suporte customizado ao dark mode, use:
 
 @media (prefers-contrast: high) {
   :root {
-    --ifc-color-border-default: var(--wp--preset--color--neutral-900);
+    --ifc-color-border-default: var(--wp--preset--color--neutral-700);
     --ifc-color-border-focus: var(--wp--preset--color--primary-600);
     --ifc-shadow-focus: 0 0 0 3px var(--wp--preset--color--primary-600);
     --ifc-contrast-min: 7;

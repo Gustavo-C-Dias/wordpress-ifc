@@ -13,8 +13,6 @@ import './style.scss';
 registerBlockType('ifc-ds/header', {
   edit: ({ attributes, setAttributes }) => {
     const { 
-      title, 
-      subtitle, 
       logoOrientation, 
       logoVariant,
       accessibilityLinks,
@@ -26,16 +24,6 @@ registerBlockType('ifc-ds/header', {
       <>
         <InspectorControls>
           <PanelBody title={__('Configurações do Header', 'ifc-design-system')}>
-            <TextControl
-              label={__('Título', 'ifc-design-system')}
-              value={title}
-              onChange={(value) => setAttributes({ title: value })}
-            />
-            <TextControl
-              label={__('Subtítulo', 'ifc-design-system')}
-              value={subtitle}
-              onChange={(value) => setAttributes({ subtitle: value })}
-            />
             <SelectControl
               label={__('Orientação do Logo', 'ifc-design-system')}
               value={logoOrientation}
@@ -87,24 +75,6 @@ registerBlockType('ifc-ds/header', {
                 variant={logoVariant}
                 className="ifc-ds-header__logo"
               />
-              <div className="ifc-ds-header__text">
-                <TextComponent 
-                  content={title} 
-                  textType="title" 
-                  weight="semibold"
-                  color="primary"
-                  className="ifc-ds-header__title"
-                />
-                {subtitle && (
-                  <TextComponent 
-                    content={subtitle} 
-                    textType="subtitle" 
-                    weight="regular"
-                    color="secondary"
-                    className="ifc-ds-header__subtitle"
-                  />
-                )}
-              </div>
             </div>
             
             <div className="ifc-ds-header__actions">

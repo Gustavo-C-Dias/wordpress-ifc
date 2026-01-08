@@ -62,15 +62,15 @@
     
     // Cores do texto usando tokens do theme.json
     &--primary {
-        color: var(--wp--preset--color--primary, #1a365d);
+        color: var(--wp--preset--color--primary-600);
     }
     
     &--secondary {
-        color: var(--wp--preset--color--secondary, #2d3748);
+        color: var(--wp--preset--color--secondary-600);
     }
     
     &--neutral {
-        color: var(--wp--preset--color--neutral-700, #374151);
+        color: var(--wp--preset--color--neutral-700);
     }
     
     &--success {

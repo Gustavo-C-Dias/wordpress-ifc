@@ -42,19 +42,19 @@
     // Cores usando tokens do WordPress
     &--gray {
         .ifc-ds-divider__line {
-            background-color: var(--wp--preset--color--neutral-300, #d1d5db);
+            background-color: var(--wp--preset--color--neutral-300);
         }
     }
 
     &--black {
         .ifc-ds-divider__line {
-            background-color: var(--wp--preset--color--neutral-800, #1f2937);
+            background-color: var(--wp--preset--color--neutral-700);
         }
     }
 
     &--white {
         .ifc-ds-divider__line {
-            background-color: var(--wp--preset--color--white, #ffffff);
+            background-color: var(--wp--preset--color--neutral-100);
         }
     }
 
@@ -120,7 +120,7 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            border: 1px dashed var(--wp--preset--color--primary, #1a365d);
+            border: 1px dashed var(--wp--preset--color--primary-600);
             border-radius: 2px;
             opacity: 0;
             transition: opacity 0.2s ease-in-out;
@@ -152,8 +152,8 @@
         left: 50%;
         transform: translateX(-50%);
         font-size: 11px;
-        color: var(--wp--preset--color--primary, #1a365d);
-        background: var(--wp--preset--color--white, #ffffff);
+        color: var(--wp--preset--color--primary-600);
+        background: var(--wp--preset--color--neutral-100);
         padding: 2px 6px;
         border-radius: 2px;
         white-space: nowrap;
@@ -196,7 +196,7 @@
     .ifc-ds-divider {
         &--gray {
             .ifc-ds-divider__line {
-                background-color: var(--wp--preset--color--neutral-500, #6b7280);
+                background-color: var(--wp--preset--color--neutral-500);
             }
         }
     }

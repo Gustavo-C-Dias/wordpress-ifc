@@ -12,14 +12,6 @@
     "html": false
   },
   "attributes": {
-    "title": {
-      "type": "string",
-      "default": "Instituto Federal Catarinense"
-    },
-    "subtitle": {
-      "type": "string",
-      "default": ""
-    },
     "logoOrientation": {
       "type": "string",
       "default": "horizontal"

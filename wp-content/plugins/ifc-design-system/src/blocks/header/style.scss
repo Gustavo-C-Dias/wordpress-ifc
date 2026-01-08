@@ -1,12 +1,11 @@
 .ifc-ds-header {
-  background: var(--wp--preset--color--neutral-500);
+  background: var(--wp--preset--color--primary-500);
   position: relative;
   
-  // Primeira seção: Skip Navigation + Links de Acessibilidade
+  // Primeira seção: Skip Navigation
   &__top-section {
-    background: var(--wp--preset--color--neutral-600);
+    background: var(--wp--preset--color--primary-500);
     padding: 0.5rem 1rem;
-    border-bottom: 1px solid var(--wp--preset--color--neutral-400);
   }
   
   &__accessibility {
@@ -39,8 +38,8 @@
         
         &:hover,
         &:focus {
-          background-color: var(--wp--preset--color--primary-500);
-          color: white;
+          background-color: var(--wp--preset--color--primary-600);
+          color: var(--wp--preset--color--neutral-100);
         }
       }
     }
@@ -57,16 +56,17 @@
       
       &:hover,
       &:focus {
-        color: var(--wp--preset--color--primary-300);
+        color: var(--wp--preset--color--neutral-100);
         text-decoration: underline;
+        opacity: 0.9;
       }
     }
   }
   
   // Segunda seção: Logo + Busca + Redes Sociais
   &__main-section {
-    padding: 1rem;
-    background: var(--wp--preset--color--neutral-500);
+    padding: 1.5rem 1rem;
+    background: var(--wp--preset--color--primary-500);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -96,30 +96,6 @@
     flex-shrink: 0;
   }
   
-  &__text {
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-  }
-  
-  &__title {
-    margin: 0;
-    font-size: var(--wp--preset--font-size-3);
-    font-weight: 600;
-    color: var(--wp--preset--color--neutral-100);
-    
-    @media (max-width: 768px) {
-      font-size: var(--wp--preset--font-size-2);
-    }
-  }
-  
-  &__subtitle {
-    margin: 0;
-    font-size: var(--wp--preset--font-size-1);
-    color: var(--wp--preset--color--neutral-200);
-    opacity: 0.9;
-  }
-  
   &__actions {
     display: flex;
     flex-direction: column;
@@ -140,16 +116,16 @@
   &__search-input {
     width: 100%;
     padding: 0.75rem 1rem;
-    border: 2px solid var(--wp--preset--color--neutral-400);
+    border: 2px solid var(--wp--preset--color--neutral-100);
     border-radius: 6px;
     font-size: 1rem;
     background: var(--wp--preset--color--neutral-100);
-    color: var(--wp--preset--color--neutral-900);
+    color: var(--wp--preset--color--neutral-700);
     
     &:focus {
       outline: none;
-      border-color: var(--wp--preset--color--primary-500);
-      box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1);
+      border-color: var(--wp--preset--color--neutral-100);
+      box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
     }
     
     &::placeholder {
@@ -168,15 +144,15 @@
       width: 40px;
       height: 40px;
       border-radius: 50%;
-      background: var(--wp--preset--color--neutral-400);
+      background: rgba(255, 255, 255, 0.2);
       color: var(--wp--preset--color--neutral-100);
       text-decoration: none;
       transition: all 0.2s ease;
       
       &:hover,
       &:focus {
-        background: var(--wp--preset--color--primary-500);
-        color: white;
+        background: var(--wp--preset--color--primary-600);
+        color: var(--wp--preset--color--neutral-100);
         transform: translateY(-2px);
       }
       
@@ -198,15 +174,14 @@
     }
   }
   
-  // Terceira seção: Links de Navegação
+  // Terceira seção: Links Úteis
   &__navigation {
-    background: var(--wp--preset--color--neutral-600);
+    background: var(--wp--preset--color--primary-600);
     padding: 0.75rem 1rem;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 0;
-    border-top: 1px solid var(--wp--preset--color--neutral-400);
     
     @media (max-width: 768px) {
       flex-wrap: wrap;
@@ -230,15 +205,15 @@
       
       &:hover,
       &:focus {
-        background-color: var(--wp--preset--color--primary-500);
-        color: white;
+        background-color: var(--wp--preset--color--primary-700);
+        color: var(--wp--preset--color--neutral-100);
       }
     }
     
     .ifc-ds-divider {
       height: 20px;
       width: 1px;
-      background: var(--wp--preset--color--neutral-400);
+      background: rgba(255, 255, 255, 0.3);
       
       @media (max-width: 768px) {
         display: none;

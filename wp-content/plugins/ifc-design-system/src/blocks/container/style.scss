@@ -10,66 +10,66 @@
     
     // Estado padrão
     border-width: 1px;
-    border-color: var(--wp--preset--color--neutral-300, #d1d5db);
+    border-color: var(--wp--preset--color--neutral-300);
     
     // Cores de fundo
     &--bg-white {
-        background-color: var(--wp--preset--color--white, #ffffff);
+        background-color: var(--wp--preset--color--neutral-100);
     }
     
     &--bg-neutral-100 {
-        background-color: var(--wp--preset--color--neutral-100, #f9fafb);
+        background-color: var(--wp--preset--color--neutral-100);
     }
     
     &--bg-neutral-200 {
-        background-color: var(--wp--preset--color--neutral-200, #f3f4f6);
+        background-color: var(--wp--preset--color--neutral-200);
     }
     
     &--bg-neutral-300 {
-        background-color: var(--wp--preset--color--neutral-300, #e5e7eb);
+        background-color: var(--wp--preset--color--neutral-300);
     }
     
     &--bg-neutral-400 {
-        background-color: var(--wp--preset--color--neutral-400, #9ca3af);
+        background-color: var(--wp--preset--color--neutral-400);
     }
     
     &--bg-primary {
-        background-color: var(--wp--preset--color--primary, #1a365d);
-        color: var(--wp--preset--color--white, #ffffff);
+        background-color: var(--wp--preset--color--primary-600);
+        color: var(--wp--preset--color--neutral-100);
     }
     
     &--bg-secondary {
-        background-color: var(--wp--preset--color--secondary, #2d3748);
-        color: var(--wp--preset--color--white, #ffffff);
+        background-color: var(--wp--preset--color--secondary-600);
+        color: var(--wp--preset--color--neutral-100);
     }
     
     // Cores de borda
     &--border-white {
-        border-color: var(--wp--preset--color--white, #ffffff);
+        border-color: var(--wp--preset--color--neutral-100);
     }
     
     &--border-neutral-100 {
-        border-color: var(--wp--preset--color--neutral-100, #f9fafb);
+        border-color: var(--wp--preset--color--neutral-100);
     }
     
     &--border-neutral-200 {
-        border-color: var(--wp--preset--color--neutral-200, #f3f4f6);
+        border-color: var(--wp--preset--color--neutral-200);
     }
     
     &--border-neutral-300 {
-        border-color: var(--wp--preset--color--neutral-300, #e5e7eb);
+        border-color: var(--wp--preset--color--neutral-300);
     }
     
     &--border-neutral-400 {
-        border-color: var(--wp--preset--color--neutral-400, #9ca3af);
+        border-color: var(--wp--preset--color--neutral-400);
     }
     
     &--border-primary {
-        border-color: var(--wp--preset--color--primary, #1a365d);
+        border-color: var(--wp--preset--color--primary-600);
     }
     
     &--border-secondary {
-        border-color: var(--wp--preset--color--secondary, #2d3748);
+        border-color: var(--wp--preset--color--secondary-600);
     }
     
     // Espessuras de borda
@@ -241,7 +241,7 @@
     // Placeholder visual no editor quando vazio
     &:empty::after {
         content: attr(data-placeholder);
-        color: var(--wp--preset--color--neutral-400, #9ca3af);
+        color: var(--wp--preset--color--neutral-400);
         font-style: italic;
         display: block;
         text-align: center;
@@ -265,11 +265,11 @@
     }
     
     &:hover::before {
-        border-color: var(--wp--preset--color--primary, #1a365d);
+        border-color: var(--wp--preset--color--primary-600);
     }
     
     &.is-selected::before {
-        border-color: var(--wp--preset--color--primary, #1a365d);
+        border-color: var(--wp--preset--color--primary-600);
         border-style: solid;
     }
 }
