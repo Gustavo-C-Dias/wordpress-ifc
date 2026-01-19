@@ -126,9 +126,12 @@ class IFC_Design_System {
             'breadcrumb',
             'divider',
             'input',
+            'layout-container',
+            'container',         
             'link',
             'logo',
-            'skip-navigation'
+            'skip-navigation',
+            'text'               
         ];
         
         foreach ($blocks as $block) {

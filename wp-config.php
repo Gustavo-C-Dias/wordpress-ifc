@@ -6,8 +6,8 @@ define('DB_HOST', 'db');
 define('DB_CHARSET', 'utf8');
 define('DB_COLLATE', '');
 
-define('WP_DEBUG', true);
-define('WP_DEBUG_LOG', true);
+define('WP_DEBUG', false);
+define('WP_DEBUG_LOG', false);
 define('WP_DEBUG_DISPLAY', false);
 
 define('AUTOMATIC_UPDATER_DISABLED', true);

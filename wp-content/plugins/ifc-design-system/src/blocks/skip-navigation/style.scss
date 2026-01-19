@@ -24,14 +24,17 @@
             font-size: 0.875rem;
             font-weight: 500;
             white-space: nowrap;
+            background: none !important;
             
             &:hover {
                 opacity: 0.9;
+                background: none !important;
             }
             
             &:focus {
                 outline: 2px solid var(--wp--preset--color--neutral-100);
                 outline-offset: 2px;
+                background: none !important;
             }
         }
     }

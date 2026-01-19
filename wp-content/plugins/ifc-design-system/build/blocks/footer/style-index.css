@@ -1,1 +1,76 @@
-.ifc-ds-footer{background-color:var(--wp--preset--color--neutral-100);padding:var(--wp--preset--spacing--8) var(--wp--preset--spacing--4);width:100%}@media(min-width:768px){.ifc-ds-footer{padding:var(--wp--preset--spacing--12) var(--wp--preset--spacing--8)}}.ifc-ds-footer__sections{display:flex;flex-direction:column;gap:var(--wp--preset--spacing--8);margin-bottom:var(--wp--preset--spacing--12)}@media(min-width:768px){.ifc-ds-footer__sections{flex-direction:row;flex-wrap:wrap;gap:var(--wp--preset--spacing--12);justify-content:flex-start}}.ifc-ds-footer__section{display:flex;flex:1;flex-direction:column;gap:var(--wp--preset--spacing--3);min-width:200px}@media(min-width:768px){.ifc-ds-footer__section{flex:0 1 calc(33.333% - var(--wp--preset--spacing--12))}}.ifc-ds-footer__section-title{margin-bottom:var(--wp--preset--spacing--2)}.ifc-ds-footer__links{display:flex;flex-direction:column;gap:var(--wp--preset--spacing--2)}.ifc-ds-footer__link{display:inline-flex;width:-moz-fit-content;width:fit-content}.ifc-ds-footer__address{border-top:1px solid var(--wp--preset--color--neutral-300);margin-top:var(--wp--preset--spacing--8);padding-top:var(--wp--preset--spacing--4)}.ifc-ds-footer__address-text{text-align:center}@media(min-width:768px){.ifc-ds-footer__address-text{text-align:left}}.editor-styles-wrapper .ifc-ds-footer{border:1px dashed var(--wp--preset--color--neutral-300)}.editor-styles-wrapper .ifc-ds-footer__section{background-color:var(--wp--preset--color--neutral-200);border-radius:4px;padding:var(--wp--preset--spacing--3)}
+/*!*****************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/blocks/footer/style.scss ***!
+  \*****************************************************************************************************************************************************************************************************************************************************/
+.ifc-ds-footer {
+  width: 100%;
+  background-color: var(--wp--preset--color--neutral-100);
+  padding: var(--wp--preset--spacing--8) var(--wp--preset--spacing--4);
+}
+@media (min-width: 768px) {
+  .ifc-ds-footer {
+    padding: var(--wp--preset--spacing--12) var(--wp--preset--spacing--8);
+  }
+}
+.ifc-ds-footer__sections {
+  display: flex;
+  flex-direction: column;
+  gap: var(--wp--preset--spacing--8);
+  margin-bottom: var(--wp--preset--spacing--12);
+}
+@media (min-width: 768px) {
+  .ifc-ds-footer__sections {
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: var(--wp--preset--spacing--12);
+    flex-wrap: wrap;
+  }
+}
+.ifc-ds-footer__section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--wp--preset--spacing--3);
+  flex: 1;
+  min-width: 200px;
+}
+@media (min-width: 768px) {
+  .ifc-ds-footer__section {
+    flex: 0 1 calc(33.333% - var(--wp--preset--spacing--12));
+  }
+}
+.ifc-ds-footer__section-title {
+  margin-bottom: var(--wp--preset--spacing--2);
+}
+.ifc-ds-footer__links {
+  display: flex;
+  flex-direction: column;
+  gap: var(--wp--preset--spacing--2);
+}
+.ifc-ds-footer__link {
+  display: inline-flex;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+.ifc-ds-footer__address {
+  border-top: 1px solid var(--wp--preset--color--neutral-300);
+  padding-top: var(--wp--preset--spacing--4);
+  margin-top: var(--wp--preset--spacing--8);
+}
+.ifc-ds-footer__address-text {
+  text-align: center;
+}
+@media (min-width: 768px) {
+  .ifc-ds-footer__address-text {
+    text-align: left;
+  }
+}
+
+.editor-styles-wrapper .ifc-ds-footer {
+  border: 1px dashed var(--wp--preset--color--neutral-300);
+}
+.editor-styles-wrapper .ifc-ds-footer__section {
+  padding: var(--wp--preset--spacing--3);
+  background-color: var(--wp--preset--color--neutral-200);
+  border-radius: 4px;
+}
+
+/*# sourceMappingURL=style-index.css.map*/

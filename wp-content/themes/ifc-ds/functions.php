@@ -28,38 +28,6 @@ function ifc_ds_register_page_templates($templates) {
 }
 add_filter('theme_page_templates', 'ifc_ds_register_page_templates');
 
-// Registra padrão de blocos para template de curso
-function ifc_ds_register_block_patterns() {
-    register_block_pattern(
-        'ifc-ds/template-curso-padrao',
-        array(
-            'title'         => __('Template Padrão de Curso IFC', 'ifc-ds'),
-            'description'   => __('Layout padrão para páginas de curso com componentes do IFC', 'ifc-ds'),
-            'categories'    => array('ifc-ds'),
-            'content'       => '<!-- wp:ifc-ds/header /-->
-
-<!-- wp:ifc-ds/accordion {"title":"Menu do Curso","content":"<ul><li><a href=\"#sobre\">Sobre o Curso</a></li><li><a href=\"#matriz\">Matriz Curricular</a></li><li><a href=\"#professores\">Professores</a></li><li><a href=\"#contato\">Contato</a></li></ul>"} /-->
-
-<!-- wp:heading {"level":2} -->
-<h2 class="wp-block-heading">Sobre o Curso</h2>
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-<p>Este curso tem como objetivo formar profissionais qualificados para atuar em diferentes áreas do conhecimento.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading">Contato</h3>
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-<p><strong>Coordenação:</strong> [Nome do coordenador]<br><strong>E-mail:</strong> [email@ifc.edu.br]</p>
-<!-- /wp:paragraph -->',
-        )
-    );
-}
-add_action('init', 'ifc_ds_register_block_patterns');
-
 // Registra categoria para padrões de blocos
 function ifc_ds_register_block_pattern_categories() {
     register_block_pattern_category(
@@ -69,16 +37,111 @@ function ifc_ds_register_block_pattern_categories() {
 }
 add_action('init', 'ifc_ds_register_block_pattern_categories');
 
-// Carrega script para auto-inserir conteúdo no editor
+// Registra padrão de blocos para template de curso
+function ifc_ds_register_block_patterns() {
+    $curso_pattern_content = '<!-- wp:ifc-ds/header /-->
+
+<!-- wp:ifc-ds/layout-container {"containerType":"fixed","maxColumns":12,"verticalSpacing":"large","horizontalAlignment":"center"} -->
+<!-- wp:group {"className":"col-span-2"} -->
+<div class="wp-block-group col-span-2">
+<!-- wp:ifc-ds/accordion {"title":"Menu do Curso","items":[{"id":1,"type":"link","label":"Sobre o Curso","url":"#sobre"},{"id":2,"type":"link","label":"Matriz Curricular","url":"#matriz"},{"id":3,"type":"link","label":"Professores","url":"#professores"},{"id":4,"type":"link","label":"Infraestrutura","url":"#infraestrutura"},{"id":5,"type":"link","label":"Contato","url":"#contato"}],"isOpen":true} /-->
+</div>
+<!-- /wp:group -->
+
+<!-- wp:group {"className":"col-span-8"} -->
+<div class="wp-block-group col-span-8">
+<!-- wp:heading {"level":1} -->
+<h1 class="wp-block-heading">Nome do Curso</h1>
+<!-- /wp:heading -->
+
+<!-- wp:heading {"level":2,"anchor":"sobre"} -->
+<h2 class="wp-block-heading" id="sobre">Sobre o Curso</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Este curso tem como objetivo formar profissionais qualificados para atuar em diferentes áreas do conhecimento.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Objetivos</h3>
+<!-- /wp:heading -->
+
+<!-- wp:list -->
+<ul class="wp-block-list">
+<li>Formar profissionais com sólida base técnica e científica</li>
+<li>Desenvolver competências para atuação no mercado de trabalho</li>
+<li>Promover a pesquisa e extensão na área do curso</li>
+<li>Contribuir para o desenvolvimento regional</li>
+</ul>
+<!-- /wp:list -->
+
+<!-- wp:heading {"level":2,"anchor":"matriz"} -->
+<h2 class="wp-block-heading" id="matriz">Matriz Curricular</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Adicione aqui a matriz curricular do curso.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":2,"anchor":"professores"} -->
+<h2 class="wp-block-heading" id="professores">Professores</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Apresente a equipe de professores do curso.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":2,"anchor":"infraestrutura"} -->
+<h2 class="wp-block-heading" id="infraestrutura">Infraestrutura</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Descreva a infraestrutura disponível para o curso.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":2,"anchor":"contato"} -->
+<h2 class="wp-block-heading" id="contato">Contato</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p><strong>Coordenação:</strong> [Nome do coordenador]<br><strong>E-mail:</strong> [email@ifc.edu.br]<br><strong>Telefone:</strong> [(XX) XXXX-XXXX]</p>
+<!-- /wp:paragraph -->
+</div>
+<!-- /wp:group -->
+
+<!-- wp:group {"className":"col-span-2"} -->
+<div class="wp-block-group col-span-2">
+<!-- wp:ifc-ds/accordion {"title":"Links Úteis","items":[{"id":1,"type":"link","label":"Regulamento do Curso","url":"#regulamento"},{"id":2,"type":"link","label":"Calendário Acadêmico","url":"#calendario"},{"id":3,"type":"link","label":"Processo Seletivo","url":"#processo"},{"id":4,"type":"link","label":"Documentos","url":"#documentos"}],"isOpen":true} /-->
+</div>
+<!-- /wp:group -->
+<!-- /wp:ifc-ds/layout-container -->
+
+<!-- wp:ifc-ds/footer /-->'; 
+
+    register_block_pattern(
+        'ifc-ds/template-curso-padrao',
+        array(
+            'title'         => __('Template Padrão de Curso IFC', 'ifc-ds'),
+            'description'   => __('Layout completo para páginas de curso com header, grid 2-8-2, menus e footer', 'ifc-ds'),
+            'categories'    => array('ifc-ds'),
+            'keywords'      => array('curso', 'ifc', 'template', 'layout'),
+            'blockTypes'    => array('core/post-content'),
+            'content'       => $curso_pattern_content,
+        )
+    );
+}
+add_action('init', 'ifc_ds_register_block_patterns');
+
+// Carrega script para auto-inserir conteúdo no editor Gutenberg
 function ifc_ds_enqueue_editor_assets() {
     // Só carrega no editor de páginas
     $screen = get_current_screen();
-    if (!$screen || ($screen->id !== 'page' && $screen->base !== 'post')) {
+    if (!$screen || $screen->id !== 'page') {
         return;
     }
     
     // Verifica permissões
-    if (!current_user_can('edit_posts')) {
+    if (!current_user_can('edit_pages')) {
         return;
     }
     
@@ -88,102 +151,152 @@ function ifc_ds_enqueue_editor_assets() {
         wp_enqueue_script(
             'ifc-ds-template-auto-content',
             get_template_directory_uri() . '/assets/js/template-auto-content.js',
-            array('jquery', 'wp-blocks', 'wp-data', 'wp-block-editor'),
-            '1.0.2',
+            array('wp-blocks', 'wp-data', 'wp-block-editor', 'wp-element'),
+            filemtime($script_path), // Usa timestamp do arquivo para cache busting
             true
+        );
+
+        // Adiciona flag de debug se WP_DEBUG estiver ativo
+        wp_add_inline_script(
+            'ifc-ds-template-auto-content',
+            'window.IFC_DEBUG = ' . (defined('WP_DEBUG') && WP_DEBUG ? 'true' : 'false') . ';',
+            'before'
         );
     }
 }
-add_action('admin_enqueue_scripts', 'ifc_ds_enqueue_editor_assets');
+add_action('enqueue_block_editor_assets', 'ifc_ds_enqueue_editor_assets');
 
-// Hook para inserir conteúdo automaticamente - versão estável
-function ifc_ds_auto_insert_template_content($post_id, $post, $update) {
-    // Validações de segurança rigorosas
-    if ($update || 
-        $post->post_type !== 'page' || 
-        !current_user_can('edit_post', $post_id) ||
-        wp_is_post_revision($post_id) ||
-        wp_is_post_autosave($post_id)) {
-        return;
-    }
-    
-    // Só funciona se o template for page-curso.php
-    $template = get_page_template_slug($post_id);
-    if ($template !== 'page-curso.php') {
-        return;
-    }
-    
-    // Só insere conteúdo se a página estiver completamente vazia
-    if (!empty(trim($post->post_content))) {
-        return;
-    }
-    
-    // Verifica se não foi processado antes
-    if (get_post_meta($post_id, '_ifc_template_content_inserted', true)) {
-        return;
-    }
-    
-    // Conteúdo simplificado para evitar conflitos
-    $default_content = '<!-- wp:heading {"level":2} -->
-<h2 class="wp-block-heading">Sobre o Curso</h2>
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-<p>Este curso tem como objetivo formar profissionais qualificados para atuar em diferentes áreas do conhecimento.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading">Contato</h3>
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-<p><strong>Coordenação:</strong> [Nome do coordenador]<br><strong>E-mail:</strong> [email@ifc.edu.br]</p>
-<!-- /wp:paragraph -->';
-    
-    // Atualização segura sem remoção de hooks
-    $result = wp_update_post(array(
-        'ID' => $post_id,
-        'post_content' => $default_content
-    ), true);
-    
-    // Marca como processado apenas se bem-sucedida
-    if (!is_wp_error($result)) {
-        update_post_meta($post_id, '_ifc_template_content_inserted', true);
-    }
+/**
+ * Retorna o conteúdo padrão do curso para uso no template PHP
+ * Usado quando a página está vazia no frontend
+ */
+function ifc_ds_get_default_course_content() {
+    ob_start();
+    ?>
+    <div class="ifc-ds-layout-container ifc-ds-layout-container--fixed ifc-ds-layout-container--spacing-large ifc-ds-layout-container--align-center ifc-ds-layout-container--columns-12">
+        <div class="ifc-ds-layout-container__content">
+            <div class="wp-block-group col-span-2">
+                <div class="ifc-ds-accordion" data-is-open="true">
+                    <button class="ifc-ds-accordion__header" aria-expanded="true">
+                        <span class="ifc-ds-accordion__title">Menu do Curso</span>
+                        <span class="ifc-ds-accordion__icon"></span>
+                    </button>
+                    <div class="ifc-ds-accordion__content">
+                        <ul>
+                            <li><a href="#sobre">Sobre o Curso</a></li>
+                            <li><a href="#matriz">Matriz Curricular</a></li>
+                            <li><a href="#professores">Professores</a></li>
+                            <li><a href="#infraestrutura">Infraestrutura</a></li>
+                            <li><a href="#contato">Contato</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="wp-block-group col-span-8">
+                <h1>Nome do Curso</h1>
+                
+                <h2 id="sobre">Sobre o Curso</h2>
+                <p>Este curso tem como objetivo formar profissionais qualificados para atuar em diferentes áreas do conhecimento.</p>
+                
+                <h3>Objetivos</h3>
+                <ul>
+                    <li>Formar profissionais com sólida base técnica e científica</li>
+                    <li>Desenvolver competências para atuação no mercado de trabalho</li>
+                    <li>Promover a pesquisa e extensão na área do curso</li>
+                    <li>Contribuir para o desenvolvimento regional</li>
+                </ul>
+                
+                <h2 id="matriz">Matriz Curricular</h2>
+                <p>Adicione aqui a matriz curricular do curso.</p>
+                
+                <h2 id="professores">Professores</h2>
+                <p>Apresente a equipe de professores do curso.</p>
+                
+                <h2 id="infraestrutura">Infraestrutura</h2>
+                <p>Descreva a infraestrutura disponível para o curso.</p>
+                
+                <h2 id="contato">Contato</h2>
+                <p>
+                    <strong>Coordenação:</strong> [Nome do coordenador]<br>
+                    <strong>E-mail:</strong> [email@ifc.edu.br]<br>
+                    <strong>Telefone:</strong> [(XX) XXXX-XXXX]
+                </p>
+            </div>
+            
+            <div class="wp-block-group col-span-2">
+                <div class="ifc-ds-accordion" data-is-open="true">
+                    <button class="ifc-ds-accordion__header" aria-expanded="true">
+                        <span class="ifc-ds-accordion__title">Links Úteis</span>
+                        <span class="ifc-ds-accordion__icon"></span>
+                    </button>
+                    <div class="ifc-ds-accordion__content">
+                        <ul>
+                            <li><a href="#regulamento">Regulamento do Curso</a></li>
+                            <li><a href="#calendario">Calendário Acadêmico</a></li>
+                            <li><a href="#processo">Processo Seletivo</a></li>
+                            <li><a href="#documentos">Documentos</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php
+    return ob_get_clean();
 }
-add_action('wp_insert_post', 'ifc_ds_auto_insert_template_content', 10, 3);
 
-// Hook simplificado para mudanças de template (desabilitado temporariamente para estabilidade)
-// add_action('admin_init', 'ifc_ds_handle_template_change');
-
-// Função para limpar meta em caso de problemas (apenas para debug)
-function ifc_ds_reset_template_meta($post_id = null) {
-    if ($post_id && current_user_can('edit_post', $post_id)) {
-        delete_post_meta($post_id, '_ifc_template_content_inserted');
-        return true;
-    }
-    return false;
+// Adiciona estilos do editor para o template de curso
+function ifc_ds_add_editor_styles() {
+    $custom_css = '
+        /* Estilos para o editor Gutenberg - Template de Curso */
+        .editor-styles-wrapper .col-span-2 {
+            grid-column: span 2;
+            min-width: 0;
+        }
+        
+        .editor-styles-wrapper .col-span-8 {
+            grid-column: span 8;
+            min-width: 0;
+        }
+        
+        .editor-styles-wrapper .ifc-ds-layout-container--columns-12 .ifc-ds-layout-container__content {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 24px;
+        }
+        
+        /* Indicadores visuais no editor */
+        .editor-styles-wrapper .col-span-2,
+        .editor-styles-wrapper .col-span-8 {
+            border: 1px dashed #ccc;
+            padding: 16px;
+            border-radius: 4px;
+        }
+        
+        .editor-styles-wrapper .col-span-2:hover,
+        .editor-styles-wrapper .col-span-8:hover {
+            border-color: #007cba;
+        }
+    ';
+    
+    wp_add_inline_style('wp-edit-blocks', $custom_css);
 }
+add_action('enqueue_block_editor_assets', 'ifc_ds_add_editor_styles');
 
-// Adiciona um botão de reset na tela de edição (apenas para desenvolvimento)
+// Debug: Adiciona botão de reset na tela de edição (apenas em desenvolvimento)
 if (defined('WP_DEBUG') && WP_DEBUG) {
-    function ifc_ds_add_reset_button() {
+    function ifc_ds_add_debug_info() {
         global $post;
-        if ($post && $post->post_type === 'page' && get_page_template_slug($post->ID) === 'page-curso.php') {
-            echo '<div style="margin: 10px 0; padding: 10px; background: #f0f0f1; border: 1px solid #ddd;">
-                    <strong>Debug IFC Template:</strong> 
-                    <a href="?reset_template_meta=1&post=' . $post->ID . '" class="button">Limpar Meta e Recarregar Template</a>
-                  </div>';
+        if ($post && $post->post_type === 'page') {
+            $template = get_page_template_slug($post->ID);
+            if ($template === 'page-curso.php') {
+                echo '<div style="margin: 10px 0; padding: 10px; background: #fff3cd; border: 1px solid #ffc107; border-radius: 4px;">';
+                echo '<strong>🛠 Debug IFC Template:</strong> Template "Página de Curso" ativo<br>';
+                echo '<small>O template será carregado automaticamente se a página estiver vazia.</small>';
+                echo '</div>';
+            }
         }
     }
-    add_action('edit_form_after_title', 'ifc_ds_add_reset_button');
-    
-    // Processa o reset
-    if (isset($_GET['reset_template_meta']) && isset($_GET['post'])) {
-        $post_id = intval($_GET['post']);
-        if (ifc_ds_reset_template_meta($post_id)) {
-            wp_redirect(admin_url('post.php?post=' . $post_id . '&action=edit&template_reset=1'));
-            exit;
-        }
-    }
+    add_action('edit_form_after_title', 'ifc_ds_add_debug_info');
 }

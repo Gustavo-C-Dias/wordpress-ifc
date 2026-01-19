@@ -1,1 +1,813 @@
-(()=>{"use strict";var e,t={4:()=>{const e=window.React,t=window.wp.blockEditor,a=window.wp.components,i=window.wp.blocks,l=(window.wp.i18n,window.wp.element),n=({content:t,textType:a="body",weight:i="regular",color:l="primary",alignment:n="left",className:r="",...s})=>{if(!t)return null;const o=["ifc-ds-text",`ifc-ds-text--${a}`,`ifc-ds-text--${i}`,`ifc-ds-text--${l}`,`ifc-ds-text--align-${n}`,r].filter(Boolean).join(" "),c=(e=>{switch(e){case"title":return"h1";case"subtitle":return"h2";case"caption":return"small";default:return"p"}})(a);return(0,e.createElement)(c,{className:o,...s},t)},r=({label:e,url:t="#",icon:a,iconPosition:i="left",type:r="neutral",size:s="medium",padding:o={},className:c="",onClick:p,ariaLabel:d,children:m,...g})=>{const u=["ifc-ds-link",`ifc-ds-link--${r}`,`ifc-ds-link--${s}`,c].filter(Boolean).join(" "),f={paddingTop:`var(--wp--preset--spacing--${(o?.top||"0").replace("spacing-","")})`,paddingRight:`var(--wp--preset--spacing--${(o?.right||"0").replace("spacing-","")})`,paddingBottom:`var(--wp--preset--spacing--${(o?.bottom||"0").replace("spacing-","")})`,paddingLeft:`var(--wp--preset--spacing--${(o?.left||"0").replace("spacing-","")})`},v={width:"small"===s?"16px":"large"===s?"24px":"20px",height:"small"===s?"16px":"large"===s?"24px":"20px"},h=()=>a?(0,l.createElement)("span",{className:`ifc-ds-link__icon ifc-ds-link__icon--${i}`,style:v},a.startsWith("http")?(0,l.createElement)("img",{src:a,alt:"",style:v}):(0,l.createElement)("span",{className:`dashicon dashicons-${a}`,style:v})):null,k=["left"===i&&h(),m||(0,l.createElement)(n,{content:e,textType:"small"===s?"detail":"body",weight:"semibold",color:"primary",className:"ifc-ds-link__label"}),"right"===i&&h()].filter(Boolean);return(0,l.createElement)("span",{className:u,...g},(0,l.createElement)("a",{href:t,className:"ifc-ds-link__element",style:f,onClick:p,"aria-label":d},...k))},s=({links:t=[{id:1,label:"Ir para o conteúdo",target:"#main",description:"Pula para o conteúdo principal da página"},{id:2,label:"Ir para o menu",target:"nav",description:"Pula para a navegação principal"},{id:3,label:"Ir para o rodapé",target:"footer",description:"Pula para o rodapé da página"}],className:a="",onClick:i=null})=>(0,e.createElement)("div",{className:`ifc-ds-skip-navigation ${a}`.trim()},(0,e.createElement)("div",{className:"ifc-ds-skip-navigation__container"},(0,e.createElement)("div",{className:"ifc-ds-skip-navigation__links"},t.map(t=>(0,e.createElement)(r,{key:t.id,label:t.label,url:`#${t.target}`,type:"white",size:"medium",className:"ifc-ds-skip-navigation__link",onClick:i||(e=>e.preventDefault())})))));(0,i.registerBlockType)("ifc-ds/skip-navigation",{edit:({attributes:i,setAttributes:l})=>{const{links:n}=i,r=(e,t,a)=>{l({links:n.map(i=>i.id===e?{...i,[t]:a}:i)})};return(0,e.createElement)(e.Fragment,null,(0,e.createElement)(t.InspectorControls,null,(0,e.createElement)(a.PanelBody,{title:"Configurar Links",initialOpen:!0},n.map(t=>(0,e.createElement)("div",{key:t.id,style:{marginBottom:"16px",padding:"12px",border:"1px solid #ddd",borderRadius:"4px"}},(0,e.createElement)("h4",{style:{margin:"0 0 8px 0",fontSize:"14px"}},"Link"," ",t.id),(0,e.createElement)(a.TextControl,{label:"Texto do Link",value:t.label,onChange:e=>r(t.id,"label",e),style:{marginBottom:"8px"}}),(0,e.createElement)(a.__experimentalInputControl,{label:"Seletor de Destino",value:t.target,onChange:e=>r(t.id,"target",e),placeholder:"#main",help:"ID ou seletor CSS do elemento de destino (ex: #main, nav, footer)",style:{marginBottom:"8px"}}),(0,e.createElement)(a.TextControl,{label:"Descrição (aria-label)",value:t.description,onChange:e=>r(t.id,"description",e),help:"Descrição para leitores de tela"}))))),(0,e.createElement)("div",{...(0,t.useBlockProps)()},(0,e.createElement)(s,{links:n,onClick:e=>e.preventDefault()})))}})}},a={};function i(e){var l=a[e];if(void 0!==l)return l.exports;var n=a[e]={exports:{}};return t[e](n,n.exports,i),n.exports}i.m=t,e=[],i.O=(t,a,l,n)=>{if(!a){var r=1/0;for(p=0;p<e.length;p++){for(var[a,l,n]=e[p],s=!0,o=0;o<a.length;o++)(!1&n||r>=n)&&Object.keys(i.O).every(e=>i.O[e](a[o]))?a.splice(o--,1):(s=!1,n<r&&(r=n));if(s){e.splice(p--,1);var c=l();void 0!==c&&(t=c)}}return t}n=n||0;for(var p=e.length;p>0&&e[p-1][2]>n;p--)e[p]=e[p-1];e[p]=[a,l,n]},i.o=(e,t)=>Object.prototype.hasOwnProperty.call(e,t),(()=>{var e={345:0,157:0};i.O.j=t=>0===e[t];var t=(t,a)=>{var l,n,[r,s,o]=a,c=0;if(r.some(t=>0!==e[t])){for(l in s)i.o(s,l)&&(i.m[l]=s[l]);if(o)var p=o(i)}for(t&&t(a);c<r.length;c++)n=r[c],i.o(e,n)&&e[n]&&e[n][0](),e[n]=0;return i.O(p)},a=globalThis.webpackChunkifc_design_system=globalThis.webpackChunkifc_design_system||[];a.forEach(t.bind(null,0)),a.push=t.bind(null,a.push.bind(a))})();var l=i.O(void 0,[157],()=>i(4));l=i.O(l)})();
+/******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
+/******/ 	var __webpack_modules__ = ({
+
+/***/ "./src/blocks/link/component.js":
+/*!**************************************!*\
+  !*** ./src/blocks/link/component.js ***!
+  \**************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   LinkComponent: () => (/* binding */ LinkComponent),
+/* harmony export */   iconCategories: () => (/* binding */ iconCategories),
+/* harmony export */   iconLibrary: () => (/* binding */ iconLibrary),
+/* harmony export */   spacingOptions: () => (/* binding */ spacingOptions)
+/* harmony export */ });
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _text_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../text/component */ "./src/blocks/text/component.js");
+// Componente Link reutilizável para uso em outros blocos
+
+
+
+/**
+ * Renderiza um componente Link reutilizável
+ */
+const LinkComponent = ({
+  label,
+  url = '#',
+  icon,
+  iconPosition = 'left',
+  type = 'neutral',
+  size = 'medium',
+  padding = {},
+  className = '',
+  onClick,
+  ariaLabel,
+  children,
+  ...props
+}) => {
+  const linkClasses = ['ifc-ds-link', `ifc-ds-link--${type}`, `ifc-ds-link--${size}`, className].filter(Boolean).join(' ');
+  const linkStyle = {
+    paddingTop: `var(--wp--preset--spacing--${(padding?.top || '0').replace('spacing-', '')})`,
+    paddingRight: `var(--wp--preset--spacing--${(padding?.right || '0').replace('spacing-', '')})`,
+    paddingBottom: `var(--wp--preset--spacing--${(padding?.bottom || '0').replace('spacing-', '')})`,
+    paddingLeft: `var(--wp--preset--spacing--${(padding?.left || '0').replace('spacing-', '')})`
+  };
+  const iconStyle = {
+    width: size === 'small' ? '16px' : size === 'large' ? '24px' : '20px',
+    height: size === 'small' ? '16px' : size === 'large' ? '24px' : '20px'
+  };
+  const renderIcon = () => {
+    if (!icon) return null;
+    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('span', {
+      className: `ifc-ds-link__icon ifc-ds-link__icon--${iconPosition}`,
+      style: iconStyle
+    }, icon.startsWith('http') ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('img', {
+      src: icon,
+      alt: '',
+      style: iconStyle
+    }) : (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('span', {
+      className: `dashicon dashicons-${icon}`,
+      style: iconStyle
+    }));
+  };
+  const linkContent = [iconPosition === 'left' && renderIcon(), children || (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_text_component__WEBPACK_IMPORTED_MODULE_1__.TextComponent, {
+    content: label,
+    textType: size === 'small' ? 'detail' : 'body',
+    weight: 'semibold',
+    color: 'primary',
+    className: 'ifc-ds-link__label'
+  }), iconPosition === 'right' && renderIcon()].filter(Boolean);
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('span', {
+    className: linkClasses,
+    ...props
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('a', {
+    href: url,
+    className: 'ifc-ds-link__element',
+    style: linkStyle,
+    onClick: onClick,
+    'aria-label': ariaLabel
+  }, ...linkContent));
+};
+
+/**
+ * Biblioteca de ícones predefinidos
+ */
+const iconLibrary = [
+// Navegação e Links
+{
+  name: 'Seta Direita',
+  value: 'arrow-right-alt2',
+  category: 'navigation'
+}, {
+  name: 'Seta Esquerda',
+  value: 'arrow-left-alt2',
+  category: 'navigation'
+}, {
+  name: 'Link Externo',
+  value: 'external',
+  category: 'navigation'
+}, {
+  name: 'Casa',
+  value: 'admin-home',
+  category: 'navigation'
+}, {
+  name: 'Menu',
+  value: 'menu',
+  category: 'navigation'
+},
+// Comunicação
+{
+  name: 'Email',
+  value: 'email',
+  category: 'communication'
+}, {
+  name: 'Telefone',
+  value: 'phone',
+  category: 'communication'
+}, {
+  name: 'Conversa',
+  value: 'format-chat',
+  category: 'communication'
+}, {
+  name: 'Comentários',
+  value: 'admin-comments',
+  category: 'communication'
+},
+// Documentos e Arquivos
+{
+  name: 'Documento',
+  value: 'media-document',
+  category: 'files'
+}, {
+  name: 'PDF',
+  value: 'pdf',
+  category: 'files'
+}, {
+  name: 'Download',
+  value: 'download',
+  category: 'files'
+}, {
+  name: 'Upload',
+  value: 'upload',
+  category: 'files'
+}, {
+  name: 'Anexo',
+  value: 'paperclip',
+  category: 'files'
+},
+// Educação
+{
+  name: 'Livro',
+  value: 'book',
+  category: 'education'
+}, {
+  name: 'Graduação',
+  value: 'awards',
+  category: 'education'
+}, {
+  name: 'Estudante',
+  value: 'admin-users',
+  category: 'education'
+}, {
+  name: 'Escola',
+  value: 'building',
+  category: 'education'
+},
+// Social e Compartilhamento
+{
+  name: 'Compartilhar',
+  value: 'share',
+  category: 'social'
+}, {
+  name: 'Facebook',
+  value: 'facebook',
+  category: 'social'
+}, {
+  name: 'Twitter',
+  value: 'twitter',
+  category: 'social'
+}, {
+  name: 'LinkedIn',
+  value: 'linkedin',
+  category: 'social'
+}, {
+  name: 'Instagram',
+  value: 'instagram',
+  category: 'social'
+}, {
+  name: 'YouTube',
+  value: 'youtube',
+  category: 'social'
+},
+// Ações
+{
+  name: 'Pesquisar',
+  value: 'search',
+  category: 'actions'
+}, {
+  name: 'Editar',
+  value: 'edit',
+  category: 'actions'
+}, {
+  name: 'Visualizar',
+  value: 'visibility',
+  category: 'actions'
+}, {
+  name: 'Adicionar',
+  value: 'plus',
+  category: 'actions'
+}, {
+  name: 'Remover',
+  value: 'minus',
+  category: 'actions'
+}, {
+  name: 'Favorito',
+  value: 'star-filled',
+  category: 'actions'
+}, {
+  name: 'Coração',
+  value: 'heart',
+  category: 'actions'
+},
+// Status
+{
+  name: 'Sucesso',
+  value: 'yes',
+  category: 'status'
+}, {
+  name: 'Erro',
+  value: 'no',
+  category: 'status'
+}, {
+  name: 'Aviso',
+  value: 'warning',
+  category: 'status'
+}, {
+  name: 'Informação',
+  value: 'info',
+  category: 'status'
+},
+// Localização
+{
+  name: 'Localização',
+  value: 'location',
+  category: 'location'
+}, {
+  name: 'Mapa',
+  value: 'admin-site',
+  category: 'location'
+},
+// Tempo
+{
+  name: 'Calendário',
+  value: 'calendar-alt',
+  category: 'time'
+}, {
+  name: 'Relógio',
+  value: 'clock',
+  category: 'time'
+},
+// Mídia
+{
+  name: 'Imagem',
+  value: 'format-image',
+  category: 'media'
+}, {
+  name: 'Vídeo',
+  value: 'format-video',
+  category: 'media'
+}, {
+  name: 'Áudio',
+  value: 'format-audio',
+  category: 'media'
+}];
+
+/**
+ * Categorias de ícones para organização
+ */
+const iconCategories = [{
+  label: 'Todos',
+  value: 'all'
+}, {
+  label: 'Navegação',
+  value: 'navigation'
+}, {
+  label: 'Comunicação',
+  value: 'communication'
+}, {
+  label: 'Arquivos',
+  value: 'files'
+}, {
+  label: 'Educação',
+  value: 'education'
+}, {
+  label: 'Social',
+  value: 'social'
+}, {
+  label: 'Ações',
+  value: 'actions'
+}, {
+  label: 'Status',
+  value: 'status'
+}, {
+  label: 'Localização',
+  value: 'location'
+}, {
+  label: 'Tempo',
+  value: 'time'
+}, {
+  label: 'Mídia',
+  value: 'media'
+}];
+
+/**
+ * Opções de espaçamento reutilizáveis
+ */
+const spacingOptions = [{
+  label: 'Nenhum',
+  value: '0'
+}, {
+  label: 'Space 0.5 (2px)',
+  value: 'space-0-5'
+}, {
+  label: 'Space 1 (4px)',
+  value: 'space-1'
+}, {
+  label: 'Space 2 (8px)',
+  value: 'space-2'
+}, {
+  label: 'Space 3 (12px)',
+  value: 'space-3'
+}, {
+  label: 'Space 4 (16px)',
+  value: 'space-4'
+}, {
+  label: 'Space 5 (20px)',
+  value: 'space-5'
+}, {
+  label: 'Space 6 (24px)',
+  value: 'space-6'
+}, {
+  label: 'Space 8 (32px)',
+  value: 'space-8'
+}, {
+  label: 'Space 10 (40px)',
+  value: 'space-10'
+}, {
+  label: 'Space 12 (48px)',
+  value: 'space-12'
+}, {
+  label: 'Space 16 (64px)',
+  value: 'space-16'
+}, {
+  label: 'Space 20 (80px)',
+  value: 'space-20'
+}, {
+  label: 'Space 24 (96px)',
+  value: 'space-24'
+}];
+
+/***/ }),
+
+/***/ "./src/blocks/skip-navigation/component.js":
+/*!*************************************************!*\
+  !*** ./src/blocks/skip-navigation/component.js ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   SkipNavigationComponent: () => (/* binding */ SkipNavigationComponent),
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _link_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../link/component */ "./src/blocks/link/component.js");
+
+
+
+const SkipNavigationComponent = ({
+  links = [{
+    id: 1,
+    label: 'Ir para o conteúdo',
+    target: '#main',
+    description: 'Pula para o conteúdo principal da página'
+  }, {
+    id: 2,
+    label: 'Ir para o menu',
+    target: 'nav',
+    description: 'Pula para a navegação principal'
+  }, {
+    id: 3,
+    label: 'Ir para o rodapé',
+    target: 'footer',
+    description: 'Pula para o rodapé da página'
+  }],
+  className = '',
+  onClick = null
+}) => {
+  const renderSkipLink = link => {
+    return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_link_component__WEBPACK_IMPORTED_MODULE_2__.LinkComponent, {
+      key: link.id,
+      label: link.label,
+      url: `#${link.target}`,
+      type: "white",
+      size: "medium",
+      className: "ifc-ds-skip-navigation__link",
+      onClick: onClick || (e => e.preventDefault())
+    });
+  };
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: `ifc-ds-skip-navigation ${className}`.trim()
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "ifc-ds-skip-navigation__container"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "ifc-ds-skip-navigation__links"
+  }, links.map(renderSkipLink))));
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (SkipNavigationComponent);
+
+/***/ }),
+
+/***/ "./src/blocks/skip-navigation/index.js":
+/*!*********************************************!*\
+  !*** ./src/blocks/skip-navigation/index.js ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./component */ "./src/blocks/skip-navigation/component.js");
+/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./style.scss */ "./src/blocks/skip-navigation/style.scss");
+
+
+
+
+
+
+(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_3__.registerBlockType)('ifc-ds/skip-navigation', {
+  edit: ({
+    attributes,
+    setAttributes
+  }) => {
+    const {
+      links
+    } = attributes;
+
+    // Função para atualizar link
+    const updateLink = (linkId, field, value) => {
+      setAttributes({
+        links: links.map(link => link.id === linkId ? {
+          ...link,
+          [field]: value
+        } : link)
+      });
+    };
+    return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InspectorControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+      title: 'Configurar Links',
+      initialOpen: true
+    }, links.map(link => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      key: link.id,
+      style: {
+        marginBottom: '16px',
+        padding: '12px',
+        border: '1px solid #ddd',
+        borderRadius: '4px'
+      }
+    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h4", {
+      style: {
+        margin: '0 0 8px 0',
+        fontSize: '14px'
+      }
+    }, 'Link', " ", link.id), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
+      label: 'Texto do Link',
+      value: link.label,
+      onChange: value => updateLink(link.id, 'label', value),
+      style: {
+        marginBottom: '8px'
+      }
+    }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.__experimentalInputControl, {
+      label: 'Seletor de Destino',
+      value: link.target,
+      onChange: value => updateLink(link.id, 'target', value),
+      placeholder: "#main",
+      help: 'ID ou seletor CSS do elemento de destino (ex: #main, nav, footer)',
+      style: {
+        marginBottom: '8px'
+      }
+    }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
+      label: 'Descrição (aria-label)',
+      value: link.description,
+      onChange: value => updateLink(link.id, 'description', value),
+      help: 'Descrição para leitores de tela'
+    }))))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      ...(0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)()
+    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_component__WEBPACK_IMPORTED_MODULE_4__.SkipNavigationComponent, {
+      links: links,
+      onClick: e => e.preventDefault()
+    })));
+  }
+});
+
+/***/ }),
+
+/***/ "./src/blocks/skip-navigation/style.scss":
+/*!***********************************************!*\
+  !*** ./src/blocks/skip-navigation/style.scss ***!
+  \***********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./src/blocks/text/component.js":
+/*!**************************************!*\
+  !*** ./src/blocks/text/component.js ***!
+  \**************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   TextComponent: () => (/* binding */ TextComponent)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+
+/**
+ * Componente de Texto IFC Design System
+ * Para uso interno nos outros componentes do plugin
+ */
+const TextComponent = ({
+  content,
+  textType = 'body',
+  weight = 'regular',
+  color = 'primary',
+  alignment = 'left',
+  className = '',
+  ...props
+}) => {
+  // Se não há conteúdo, não renderiza
+  if (!content) {
+    return null;
+  }
+
+  // Definir tag HTML baseada no tipo
+  const getHtmlTag = type => {
+    switch (type) {
+      case 'title':
+        return 'h1';
+      case 'subtitle':
+        return 'h2';
+      case 'caption':
+        return 'small';
+      default:
+        return 'p';
+    }
+  };
+
+  // Montar classes CSS
+  const classes = ['ifc-ds-text', `ifc-ds-text--${textType}`, `ifc-ds-text--${weight}`, `ifc-ds-text--${color}`, `ifc-ds-text--align-${alignment}`, className].filter(Boolean).join(' ');
+  const Tag = getHtmlTag(textType);
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(Tag, {
+    className: classes,
+    ...props
+  }, content);
+};
+
+/***/ }),
+
+/***/ "@wordpress/block-editor":
+/*!*************************************!*\
+  !*** external ["wp","blockEditor"] ***!
+  \*************************************/
+/***/ ((module) => {
+
+module.exports = window["wp"]["blockEditor"];
+
+/***/ }),
+
+/***/ "@wordpress/blocks":
+/*!********************************!*\
+  !*** external ["wp","blocks"] ***!
+  \********************************/
+/***/ ((module) => {
+
+module.exports = window["wp"]["blocks"];
+
+/***/ }),
+
+/***/ "@wordpress/components":
+/*!************************************!*\
+  !*** external ["wp","components"] ***!
+  \************************************/
+/***/ ((module) => {
+
+module.exports = window["wp"]["components"];
+
+/***/ }),
+
+/***/ "@wordpress/element":
+/*!*********************************!*\
+  !*** external ["wp","element"] ***!
+  \*********************************/
+/***/ ((module) => {
+
+module.exports = window["wp"]["element"];
+
+/***/ }),
+
+/***/ "@wordpress/i18n":
+/*!******************************!*\
+  !*** external ["wp","i18n"] ***!
+  \******************************/
+/***/ ((module) => {
+
+module.exports = window["wp"]["i18n"];
+
+/***/ }),
+
+/***/ "react":
+/*!************************!*\
+  !*** external "React" ***!
+  \************************/
+/***/ ((module) => {
+
+module.exports = window["React"];
+
+/***/ })
+
+/******/ 	});
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = __webpack_modules__;
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/chunk loaded */
+/******/ 	(() => {
+/******/ 		var deferred = [];
+/******/ 		__webpack_require__.O = (result, chunkIds, fn, priority) => {
+/******/ 			if(chunkIds) {
+/******/ 				priority = priority || 0;
+/******/ 				for(var i = deferred.length; i > 0 && deferred[i - 1][2] > priority; i--) deferred[i] = deferred[i - 1];
+/******/ 				deferred[i] = [chunkIds, fn, priority];
+/******/ 				return;
+/******/ 			}
+/******/ 			var notFulfilled = Infinity;
+/******/ 			for (var i = 0; i < deferred.length; i++) {
+/******/ 				var [chunkIds, fn, priority] = deferred[i];
+/******/ 				var fulfilled = true;
+/******/ 				for (var j = 0; j < chunkIds.length; j++) {
+/******/ 					if ((priority & 1 === 0 || notFulfilled >= priority) && Object.keys(__webpack_require__.O).every((key) => (__webpack_require__.O[key](chunkIds[j])))) {
+/******/ 						chunkIds.splice(j--, 1);
+/******/ 					} else {
+/******/ 						fulfilled = false;
+/******/ 						if(priority < notFulfilled) notFulfilled = priority;
+/******/ 					}
+/******/ 				}
+/******/ 				if(fulfilled) {
+/******/ 					deferred.splice(i--, 1)
+/******/ 					var r = fn();
+/******/ 					if (r !== undefined) result = r;
+/******/ 				}
+/******/ 			}
+/******/ 			return result;
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	(() => {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = (module) => {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				() => (module['default']) :
+/******/ 				() => (module);
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	(() => {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	(() => {
+/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	(() => {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = (exports) => {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/jsonp chunk loading */
+/******/ 	(() => {
+/******/ 		// no baseURI
+/******/ 		
+/******/ 		// object to store loaded and loading chunks
+/******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
+/******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
+/******/ 		var installedChunks = {
+/******/ 			"blocks/skip-navigation/index": 0,
+/******/ 			"blocks/skip-navigation/style-index": 0
+/******/ 		};
+/******/ 		
+/******/ 		// no chunk on demand loading
+/******/ 		
+/******/ 		// no prefetching
+/******/ 		
+/******/ 		// no preloaded
+/******/ 		
+/******/ 		// no HMR
+/******/ 		
+/******/ 		// no HMR manifest
+/******/ 		
+/******/ 		__webpack_require__.O.j = (chunkId) => (installedChunks[chunkId] === 0);
+/******/ 		
+/******/ 		// install a JSONP callback for chunk loading
+/******/ 		var webpackJsonpCallback = (parentChunkLoadingFunction, data) => {
+/******/ 			var [chunkIds, moreModules, runtime] = data;
+/******/ 			// add "moreModules" to the modules object,
+/******/ 			// then flag all "chunkIds" as loaded and fire callback
+/******/ 			var moduleId, chunkId, i = 0;
+/******/ 			if(chunkIds.some((id) => (installedChunks[id] !== 0))) {
+/******/ 				for(moduleId in moreModules) {
+/******/ 					if(__webpack_require__.o(moreModules, moduleId)) {
+/******/ 						__webpack_require__.m[moduleId] = moreModules[moduleId];
+/******/ 					}
+/******/ 				}
+/******/ 				if(runtime) var result = runtime(__webpack_require__);
+/******/ 			}
+/******/ 			if(parentChunkLoadingFunction) parentChunkLoadingFunction(data);
+/******/ 			for(;i < chunkIds.length; i++) {
+/******/ 				chunkId = chunkIds[i];
+/******/ 				if(__webpack_require__.o(installedChunks, chunkId) && installedChunks[chunkId]) {
+/******/ 					installedChunks[chunkId][0]();
+/******/ 				}
+/******/ 				installedChunks[chunkId] = 0;
+/******/ 			}
+/******/ 			return __webpack_require__.O(result);
+/******/ 		}
+/******/ 		
+/******/ 		var chunkLoadingGlobal = globalThis["webpackChunkifc_design_system"] = globalThis["webpackChunkifc_design_system"] || [];
+/******/ 		chunkLoadingGlobal.forEach(webpackJsonpCallback.bind(null, 0));
+/******/ 		chunkLoadingGlobal.push = webpackJsonpCallback.bind(null, chunkLoadingGlobal.push.bind(chunkLoadingGlobal));
+/******/ 	})();
+/******/ 	
+/************************************************************************/
+/******/ 	
+/******/ 	// startup
+/******/ 	// Load entry module and return exports
+/******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["blocks/skip-navigation/style-index"], () => (__webpack_require__("./src/blocks/skip-navigation/index.js")))
+/******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
+/******/ 	
+/******/ })()
+;
+//# sourceMappingURL=index.js.map
