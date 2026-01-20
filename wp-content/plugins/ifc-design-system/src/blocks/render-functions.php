@@ -13,15 +13,16 @@ if (!defined('ABSPATH')) {
  * Função para renderizar item do accordion
  */
 if (!function_exists('ifc_ds_render_accordion_item')) {
-    function ifc_ds_render_accordion_item($item) {
+    function ifc_ds_render_accordion_item($item, $is_open = false) {
         if ($item['type'] === 'link') {
             return ifc_ds_render_link([
                 'label' => $item['label'] ?? 'Link',
                 'url' => $item['url'] ?? '#',
                 'type' => 'primary',
-                'size' => 'medium',
+                'size' => 'detail',
                 'class' => 'ifc-ds-accordion__link',
-                'wrapper' => true
+                'wrapper' => true,
+                'tabindex' => $is_open ? null : '-1'
             ]);
         } else {
             return sprintf(

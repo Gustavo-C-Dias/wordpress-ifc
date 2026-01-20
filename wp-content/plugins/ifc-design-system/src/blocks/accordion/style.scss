@@ -3,14 +3,17 @@
 
 .ifc-ds-accordion {
   margin: var(--ifc-space-4) 0;
-  border: var(--ifc-border-width-1) solid var(--ifc-border-default);
+  border-top: 2px solid var(--wp--preset--color--primary-400);
+  border-left: var(--ifc-border-width-1) solid var(--ifc-border-default);
+  border-right: var(--ifc-border-width-1) solid var(--ifc-border-default);
+  border-bottom: var(--ifc-border-width-1) solid var(--ifc-border-default);
   @include ifc-rounded(md);
   overflow: hidden;
   background: var(--ifc-bg-primary);
   
   &__toggle {
     @include ifc-reset-button;
-    @include ifc-text(base, semibold);
+    @include ifc-text(base, bold);
     @include ifc-transition(background-color);
     @include ifc-flex(row, center, space-between);
     
@@ -41,27 +44,37 @@
   
   &__content {
     background: var(--ifc-bg-primary);
-    border-top: var(--ifc-border-width-1) solid var(--ifc-border-default);
     overflow: hidden;
     @include ifc-transition(all, var(--ifc-duration-300));
     max-height: 0;
     padding: 0;
     
     &.is-open {
-      max-height: 1000px; // Valor alto para acomodar qualquer conteúdo
+      max-height: 1000px;
       padding: var(--ifc-space-4);
+      border-top: 1px solid var(--wp--preset--color--primary-400);
     }
   }
   
   &__items {
     @include ifc-flex(column, stretch);
-    gap: var(--ifc-space-3);
+    gap: 0;
+    
+    > * {
+      padding-left: var(--ifc-space-3);
+      padding-top: var(--ifc-space-1);
+      padding-right: var(--ifc-space-1);
+      padding-bottom: var(--ifc-space-1);
+      
+      &:not(:last-child) {
+        border-bottom: 1px solid var(--wp--preset--color--primary-400);
+      }
+    }
   }
   
   &__text {
     @include ifc-text(sm, normal, tight);
     margin: 0;
-    padding: var(--ifc-space-2) var(--ifc-space-3);
     background: var(--ifc-bg-secondary);
     @include ifc-rounded(base);
     color: var(--ifc-text-secondary);

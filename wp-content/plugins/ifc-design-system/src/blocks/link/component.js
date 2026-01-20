@@ -34,8 +34,8 @@ export const LinkComponent = ({
     };
 
     const iconStyle = {
-        width: size === 'small' ? '16px' : size === 'large' ? '24px' : '20px',
-        height: size === 'small' ? '16px' : size === 'large' ? '24px' : '20px'
+        width: size === 'small' || size === 'detail' ? '16px' : size === 'large' ? '24px' : '20px',
+        height: size === 'small' || size === 'detail' ? '16px' : size === 'large' ? '24px' : '20px'
     };
 
     const renderIcon = () => {
@@ -57,8 +57,8 @@ export const LinkComponent = ({
         iconPosition === 'left' && renderIcon(),
         children || createElement(TextComponent, { 
             content: label,
-            textType: size === 'small' ? 'detail' : 'body',
-            weight: 'semibold',
+            textType: size === 'small' || size === 'detail' ? 'detail' : 'body',
+            weight: size === 'detail' ? 'regular' : 'semibold',
             color: 'primary',
             className: 'ifc-ds-link__label'
         }),

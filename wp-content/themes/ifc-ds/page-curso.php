@@ -73,53 +73,102 @@ if (!empty($header_output)) {
         width: 100%;
     }
     
-    /* Garante que as colunas do grid funcionem corretamente */
-    .ifc-ds-layout-container__content {
+    /* Layout Container com Grid de 12 colunas - Alta especificidade */
+    .ifc-ds-layout-container--columns-12 .ifc-ds-layout-container__content {
         display: grid;
+        grid-template-columns: repeat(12, 1fr);
         gap: 24px;
+        width: 100%;
     }
     
-    /* Desktop: Grid 12 colunas */
-    @media (min-width: 1280px) {
-        .ifc-ds-layout-container--columns-12 .ifc-ds-layout-container__content {
-            grid-template-columns: repeat(12, 1fr);
-        }
-        
-        .ifc-ds-layout-container__content .col-span-2 {
-            grid-column: span 2;
-        }
-        
-        .ifc-ds-layout-container__content .col-span-8 {
-            grid-column: span 8;
-        }
+    /* IMPORTANTE: Sobrescreve o padrão do plugin que define span 1 para todos os filhos */
+    .ifc-ds-layout-container__content > .wp-block-group.col-span-3,
+    .ifc-ds-layout-container__content > .col-span-3.wp-block-group,
+    .wp-block-group.col-span-3 {
+        grid-column: span 3 !important;
+        min-width: 0;
     }
     
-    /* Tablet: Stack vertical */
-    @media (max-width: 1279px) and (min-width: 768px) {
-        .ifc-ds-layout-container__content .col-span-2,
-        .ifc-ds-layout-container__content .col-span-8 {
-            grid-column: span 8;
-        }
+    .ifc-ds-layout-container__content > .wp-block-group.col-span-9,
+    .ifc-ds-layout-container__content > .col-span-9.wp-block-group,
+    .wp-block-group.col-span-9 {
+        grid-column: span 9 !important;
+        min-width: 0;
     }
     
-    /* Mobile: Full width */
-    @media (max-width: 767px) {
-        .ifc-ds-layout-container__content .col-span-2,
-        .ifc-ds-layout-container__content .col-span-8 {
-            grid-column: 1 / -1;
-        }
+    /* Estilos para fallback quando não há blocos */
+    .ifc-curso-container {
+        max-width: 1200px;
+        margin: 0 auto;
     }
     
-    /* Estilo do menu lateral (accordion) */
-    .ifc-ds-layout-container__content .col-span-2 {
+    .ifc-curso-sidebar {
         position: sticky;
         top: 20px;
         align-self: start;
     }
     
-    /* Conteúdo principal */
-    .ifc-ds-layout-container__content .col-span-8 h1 {
-        margin-top: 0;
+    .ifc-accordion details {
+        transition: all 0.3s ease;
+    }
+    
+    .ifc-accordion details:hover {
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    .ifc-accordion summary::-webkit-details-marker {
+        display: none;
+    }
+    
+    .ifc-accordion summary::after {
+        content: '▼';
+        float: right;
+        transition: transform 0.3s ease;
+    }
+    
+    .ifc-accordion details[open] summary::after {
+        transform: rotate(-180deg);
+    }
+    
+    .ifc-accordion a {
+        color: #0066cc;
+        text-decoration: none;
+        transition: color 0.2s ease;
+    }
+    
+    .ifc-accordion a:hover {
+        color: #004c99;
+        text-decoration: underline;
+    }
+    
+    /* Responsividade */
+    @media (max-width: 1024px) {
+        .ifc-ds-layout-container--columns-12 .ifc-ds-layout-container__content {
+            grid-template-columns: 1fr !important;
+        }
+        
+        .wp-block-group.col-span-3,
+        .wp-block-group.col-span-9 {
+            grid-column: 1 / -1 !important;
+        }
+        
+        .ifc-curso-container > div {
+            grid-template-columns: 1fr !important;
+        }
+        
+        .ifc-curso-sidebar {
+            position: static;
+        }
+        
+        .ifc-curso-info {
+            grid-template-columns: repeat(2, 1fr) !important;
+        }
+    }
+    
+    @media (max-width: 640px) {
+        .ifc-curso-info {
+            grid-template-columns: 1fr !important;
+        }
     }
 </style>
 

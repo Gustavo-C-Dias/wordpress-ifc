@@ -5,7 +5,7 @@ if (!function_exists('ifc_ds_render_link_icon')) {
             return '';
         }
 
-        $icon_size = $size === 'small' ? '16' : ($size === 'large' ? '24' : '20');
+        $icon_size = ($size === 'small' || $size === 'detail') ? '16' : ($size === 'large' ? '24' : '20');
         $icon_style = sprintf('width: %spx; height: %spx;', $icon_size, $icon_size);
         $position_class = $position ? 'ifc-ds-link__icon--' . $position : '';
 
@@ -52,6 +52,7 @@ if (!function_exists('ifc_ds_render_link')) {
             'open_in_new_tab' => false,
             'class' => '',
             'wrapper' => true,
+            'tabindex' => null,
             'additional_attributes' => []
         ];
 
@@ -86,6 +87,10 @@ if (!function_exists('ifc_ds_render_link')) {
             $link_attributes['rel'] = 'noopener noreferrer';
         }
 
+        if ($args['tabindex'] !== null) {
+            $link_attributes['tabindex'] = $args['tabindex'];
+        }
+
         $icon_html = ifc_ds_render_link_icon($args['icon'], $args['size'], $args['icon_position']);
 
         $link_content = '';
@@ -96,9 +101,10 @@ if (!function_exists('ifc_ds_render_link')) {
         }
         
         // Label com classes do componente de texto
-        $text_type = $args['size'] === 'small' ? 'detail' : 'body';
+        $text_type = ($args['size'] === 'small' || $args['size'] === 'detail') ? 'detail' : 'body';
+        $text_weight = $args['size'] === 'detail' ? 'regular' : 'semibold';
         $link_content .= sprintf(
-            '<span class="ifc-ds-text ifc-ds-text--' . $text_type . ' ifc-ds-text--semibold ifc-ds-text--primary ifc-ds-text--align-left ifc-ds-link__label">%s</span>', 
+            '<span class="ifc-ds-text ifc-ds-text--' . $text_type . ' ifc-ds-text--' . $text_weight . ' ifc-ds-text--primary ifc-ds-text--align-left ifc-ds-link__label">%s</span>', 
             esc_html($args['label'])
         );
         

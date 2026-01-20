@@ -121,6 +121,18 @@
             // }
         }
     }
+
+    &--detail {
+        .ifc-ds-link__element {
+            font-size: 14px;
+            font-weight: 400;
+        }
+        
+        .ifc-ds-link__icon {
+            width: 16px;
+            height: 16px;
+        }
+    }
 }
 
 // Seletor de Ícones - Estilos para o Editor

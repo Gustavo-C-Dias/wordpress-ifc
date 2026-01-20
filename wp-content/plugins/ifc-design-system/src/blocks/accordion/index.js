@@ -57,7 +57,7 @@ registerBlockType('ifc-ds/accordion', {
             label={item.label}
             url={item.url || '#'}
             type="primary"
-            size="medium"
+            size="detail"
             onClick={(e) => e.preventDefault()}
             className="ifc-ds-accordion__link"
           />
@@ -166,8 +166,8 @@ registerBlockType('ifc-ds/accordion', {
           >
             <TextComponent
               content={title}
-              textType="subtitle"
-              weight="semibold"
+              textType="body"
+              weight="bold"
               color="primary"
               className="ifc-ds-accordion__title-text"
             />
