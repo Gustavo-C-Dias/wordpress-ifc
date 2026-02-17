@@ -15,8 +15,49 @@ import {
     __experimentalHeading as Heading
 } from '@wordpress/components';
 import { registerBlockType } from '@wordpress/blocks';
-import { LayoutContainerComponent, GRID_CLASSES, GOVBR_BREAKPOINTS, GOVBR_GRID_CONFIGS } from './component';
 import './style.scss';
+
+/**
+ * Componente Layout Container para renderização no editor
+ */
+const LayoutContainerComponent = ({ 
+    children,
+    containerType = 'fluid',
+    allowBleed = false,
+    maxColumns = 12,
+    verticalSpacing = 'medium',
+    horizontalAlignment = 'center',
+    customMaxWidth = '',
+    className = '',
+    ...props 
+}) => {
+    const classes = [
+        'ifc-ds-layout-container',
+        `ifc-ds-layout-container--${containerType}`,
+        `ifc-ds-layout-container--spacing-${verticalSpacing}`,
+        `ifc-ds-layout-container--align-${horizontalAlignment}`,
+        `ifc-ds-layout-container--columns-${maxColumns}`,
+        allowBleed ? 'ifc-ds-layout-container--bleed' : '',
+        className
+    ].filter(Boolean).join(' ');
+
+    const inlineStyles = containerType === 'fixed' && customMaxWidth ? 
+        { maxWidth: customMaxWidth } : {};
+
+    return (
+        <div 
+            className={classes}
+            style={inlineStyles}
+            data-columns={maxColumns}
+            data-container-type={containerType}
+            {...props}
+        >
+            <div className="ifc-ds-layout-container__content">
+                {children}
+            </div>
+        </div>
+    );
+};
 
 registerBlockType('ifc-ds/layout-container', {
     edit: ({ attributes, setAttributes, clientId }) => {

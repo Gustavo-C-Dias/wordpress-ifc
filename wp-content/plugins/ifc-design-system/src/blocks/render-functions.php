@@ -3,6 +3,8 @@
  * Funções auxiliares para renderização dos blocos do IFC Design System
  * 
  * Estas funções são usadas pelos arquivos render.php dos blocos individuais
+ * 
+ * NOTA: As funções utilitárias base estão em /src/shared/utils.php
  */
 
 if (!defined('ABSPATH')) {
@@ -11,6 +13,7 @@ if (!defined('ABSPATH')) {
 
 /**
  * Função para renderizar item do accordion
+ * Usa funções centralizadas de utils.php
  */
 if (!function_exists('ifc_ds_render_accordion_item')) {
     function ifc_ds_render_accordion_item($item, $is_open = false) {
@@ -25,8 +28,11 @@ if (!function_exists('ifc_ds_render_accordion_item')) {
                 'tabindex' => $is_open ? null : '-1'
             ]);
         } else {
+            // Usa função centralizada para construir classes
+            $classes = ifc_ds_build_text_classes('body', 'regular', 'neutral', 'left', 'ifc-ds-accordion__text');
             return sprintf(
-                '<p class="ifc-ds-text ifc-ds-text--body ifc-ds-text--regular ifc-ds-text--neutral ifc-ds-text--align-left ifc-ds-accordion__text">%s</p>',
+                '<p class="%s">%s</p>',
+                esc_attr($classes),
                 esc_html($item['content'] ?? '')
             );
         }
@@ -35,25 +41,12 @@ if (!function_exists('ifc_ds_render_accordion_item')) {
 
 /**
  * Função para renderizar link do skip navigation do header
+ * DEPRECATED: Use ifc_ds_render_navigation_skip_link() de utils.php
  */
 if (!function_exists('ifc_ds_render_header_skip_link')) {
     function ifc_ds_render_header_skip_link($link) {
-        $target = $link['target'];
-        if (!str_starts_with($target, '#') && !in_array($target, ['nav', 'main', 'footer', 'header'])) {
-            $target = '#' . $target;
-        }
-        
-        return ifc_ds_render_link([
-            'label' => $link['label'],
-            'url' => $target,
-            'type' => 'white',
-            'size' => 'medium',
-            'class' => 'ifc-ds-skip-navigation__link',
-            'wrapper' => true,
-            'additional_attributes' => [
-                'aria-label' => $link['description'] ?? $link['label']
-            ]
-        ]);
+        // Redireciona para função unificada
+        return ifc_ds_render_navigation_skip_link($link);
     }
 }
 
@@ -62,7 +55,7 @@ if (!function_exists('ifc_ds_render_header_skip_link')) {
  */
 if (!function_exists('ifc_ds_render_breadcrumb_link')) {
     function ifc_ds_render_breadcrumb_link($item, $link_type, $link_size) {
-        $link_args = [
+        return ifc_ds_render_link([
             'label' => $item['label'],
             'url' => $item['url'],
             'icon' => $item['icon'] ?? '',
@@ -77,82 +70,34 @@ if (!function_exists('ifc_ds_render_breadcrumb_link')) {
             ],
             'class' => 'ifc-ds-breadcrumb__link',
             'wrapper' => true
-        ];
-        
-        return ifc_ds_render_link($link_args);
-    }
-}
-
-/**
- * Função para renderizar link do skip navigation
- */
-if (!function_exists('ifc_ds_render_skip_navigation_link')) {
-    function ifc_ds_render_skip_navigation_link($link) {
-        $target = $link['target'];
-        if (!str_starts_with($target, '#') && !in_array($target, ['nav', 'main', 'footer', 'header'])) {
-            $target = '#' . $target;
-        }
-        
-        return ifc_ds_render_link([
-            'label' => $link['label'],
-            'url' => $target,
-            'type' => 'white',
-            'size' => 'medium',
-            'class' => 'ifc-ds-skip-navigation__link',
-            'wrapper' => true,
-            'additional_attributes' => [
-                'aria-label' => $link['description'] ?? $link['label']
-            ]
         ]);
     }
 }
 
 /**
+ * Função para renderizar link do skip navigation
+ * DEPRECATED: Use ifc_ds_render_navigation_skip_link() de utils.php
+ */
+if (!function_exists('ifc_ds_render_skip_navigation_link')) {
+    function ifc_ds_render_skip_navigation_link($link) {
+        // Redireciona para função unificada
+        return ifc_ds_render_navigation_skip_link($link);
+    }
+}
+
+/**
  * Função para renderizar componente Text
+ * Wrapper para manter compatibilidade - usa ifc_ds_render_text() de utils.php
  */
 if (!function_exists('render_text_component')) {
     function render_text_component($args) {
-        $content = $args['content'] ?? '';
-        $text_type = $args['textType'] ?? 'body';
-        $weight = $args['weight'] ?? 'regular';
-        $color = $args['color'] ?? 'primary';
-        $alignment = $args['alignment'] ?? 'left';
-        $class_name = $args['className'] ?? '';
-        
-        $classes = [
-            'ifc-ds-text',
-            'ifc-ds-text--' . $text_type,
-            'ifc-ds-text--' . $weight,
-            'ifc-ds-text--' . $color,
-            'ifc-ds-text--align-' . $alignment
-        ];
-        
-        if ($class_name) {
-            $classes[] = $class_name;
-        }
-        
-        $tag_map = [
-            'title' => 'h1',
-            'subtitle' => 'h2',
-            'body' => 'p',
-            'detail' => 'span',
-            'caption' => 'span'
-        ];
-        
-        $tag = $tag_map[$text_type] ?? 'p';
-        
-        return sprintf(
-            '<%s class="%s">%s</%s>',
-            $tag,
-            esc_attr(implode(' ', $classes)),
-            esc_html($content),
-            $tag
-        );
+        return ifc_ds_render_text($args);
     }
 }
 
 /**
  * Função para renderizar componente Link
+ * Para novos usos, prefira ifc_ds_render_link() de link/functions.php
  */
 if (!function_exists('render_link_component')) {
     function render_link_component($args) {
@@ -165,24 +110,22 @@ if (!function_exists('render_link_component')) {
         $target = $args['target'] ?? '_self';
         $class_name = $args['className'] ?? '';
         
-        $classes = [
-            'ifc-ds-link',
-            'ifc-ds-link--' . $type,
-            'ifc-ds-link--' . $size
-        ];
+        // Usa função centralizada para construir classes
+        $classes = ifc_ds_build_link_classes($type, $size, $class_name);
         
         if ($icon) {
-            $classes[] = 'ifc-ds-link--with-icon';
-            $classes[] = 'ifc-ds-link--icon-' . $icon_position;
-        }
-        
-        if ($class_name) {
-            $classes[] = $class_name;
+            $classes .= ' ifc-ds-link--with-icon ifc-ds-link--icon-' . esc_attr($icon_position);
         }
         
         $icon_html = '';
         if ($icon) {
-            $icon_html = sprintf('<span class="ifc-ds-link__icon">%s</span>', esc_html($icon));
+            $icon_size = ifc_ds_get_icon_size($size);
+            $icon_html = sprintf(
+                '<span class="ifc-ds-link__icon" style="width: %spx; height: %spx;">%s</span>',
+                esc_attr($icon_size),
+                esc_attr($icon_size),
+                esc_html($icon)
+            );
         }
         
         $label_html = sprintf('<span class="ifc-ds-link__label">%s</span>', esc_html($label));
@@ -194,7 +137,7 @@ if (!function_exists('render_link_component')) {
         return sprintf(
             '<a href="%s" class="%s" target="%s" rel="%s">%s</a>',
             esc_url($url),
-            esc_attr(implode(' ', $classes)),
+            esc_attr($classes),
             esc_attr($target),
             $target === '_blank' ? 'noopener noreferrer' : '',
             $link_content

@@ -12,29 +12,14 @@ import {
 import { registerBlockType } from '@wordpress/blocks';
 import { DividerComponent } from './component';
 
+// Importa opções centralizadas
+import { 
+    orientationOptions, 
+    dividerColorOptions as colorOptions, 
+    thicknessOptions 
+} from '../../shared/options';
+
 import './style.scss';
-
-// Opções de orientação
-const orientationOptions = [
-    { label: __('Horizontal', 'ifc-design-system'), value: 'horizontal' },
-    { label: __('Vertical', 'ifc-design-system'), value: 'vertical' }
-];
-
-// Opções de cor usando tokens do WordPress
-const colorOptions = [
-    { label: __('Cinza', 'ifc-design-system'), value: 'gray' },
-    { label: __('Preto', 'ifc-design-system'), value: 'black' },
-    { label: __('Branco', 'ifc-design-system'), value: 'white' }
-];
-
-// Opções de espessura
-const thicknessOptions = [
-    { label: __('1px', 'ifc-design-system'), value: '1' },
-    { label: __('2px', 'ifc-design-system'), value: '2' },
-    { label: __('3px', 'ifc-design-system'), value: '3' },
-    { label: __('4px', 'ifc-design-system'), value: '4' },
-    { label: __('5px', 'ifc-design-system'), value: '5' }
-];
 
 registerBlockType('ifc-ds/divider', {
     edit: ({ attributes, setAttributes }) => {

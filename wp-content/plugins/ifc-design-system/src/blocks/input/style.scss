@@ -148,7 +148,7 @@
         
         &:focus {
             border-color: var(--ifc-border-error);
-            box-shadow: 0 0 0 3px rgba(var(--wp--preset--color--error-500), 0.1);
+            box-shadow: 0 0 0 3px rgba(var(--ifc-color-error-500), 0.1);
         }
     }
     
@@ -163,7 +163,7 @@
         
         &:focus {
             border-color: var(--ifc-border-success);
-            box-shadow: 0 0 0 3px rgba(var(--wp--preset--color--success-500), 0.1);
+            box-shadow: 0 0 0 3px rgba(var(--ifc-color-success-500), 0.1);
         }
     }
     

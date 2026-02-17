@@ -14,74 +14,19 @@ import { registerBlockType } from '@wordpress/blocks';
 import { TextComponent } from '../text/component';
 import { LinkComponent } from '../link/component';
 
+// Importa opções centralizadas
+import { 
+    spacingOptions, 
+    colorOptions, 
+    borderWidthOptions, 
+    directionOptions as listDirectionOptions,
+    alignmentOptions as listAlignmentOptions,
+    componentTypeOptions,
+    textTypeOptions,
+    weightOptions
+} from '../../shared/options';
+
 import './style.scss';
-
-// Opções de espaçamento baseadas nos tokens do WordPress
-const spacingOptions = [
-    { label: __('Nenhum (0)', 'ifc-design-system'), value: '0' },
-    { label: __('XXS (4px)', 'ifc-design-system'), value: '10' },
-    { label: __('XS (8px)', 'ifc-design-system'), value: '20' },
-    { label: __('SM (12px)', 'ifc-design-system'), value: '30' },
-    { label: __('MD (16px)', 'ifc-design-system'), value: '40' },
-    { label: __('LG (20px)', 'ifc-design-system'), value: '50' },
-    { label: __('XL (24px)', 'ifc-design-system'), value: '60' },
-    { label: __('XXL (32px)', 'ifc-design-system'), value: '70' },
-    { label: __('3XL (40px)', 'ifc-design-system'), value: '80' },
-];
-
-// Opções de cores para borda e fundo
-const colorOptions = [
-    { label: __('Branco', 'ifc-design-system'), value: 'white' },
-    { label: __('Neutro 100', 'ifc-design-system'), value: 'neutral-100' },
-    { label: __('Neutro 200', 'ifc-design-system'), value: 'neutral-200' },
-    { label: __('Neutro 300', 'ifc-design-system'), value: 'neutral-300' },
-    { label: __('Neutro 400', 'ifc-design-system'), value: 'neutral-400' },
-    { label: __('Primary', 'ifc-design-system'), value: 'primary' },
-    { label: __('Secondary', 'ifc-design-system'), value: 'secondary' }
-];
-
-const borderWidthOptions = [
-    { label: __('Nenhuma', 'ifc-design-system'), value: '0' },
-    { label: __('Fina (1px)', 'ifc-design-system'), value: '1' },
-    { label: __('Média (2px)', 'ifc-design-system'), value: '2' },
-    { label: __('Grossa (3px)', 'ifc-design-system'), value: '3' },
-];
-
-// Opções de direção da lista
-const listDirectionOptions = [
-    { label: __('Vertical', 'ifc-design-system'), value: 'vertical' },
-    { label: __('Horizontal', 'ifc-design-system'), value: 'horizontal' }
-];
-
-// Opções de alinhamento da lista
-const listAlignmentOptions = [
-    { label: __('Esquerda', 'ifc-design-system'), value: 'left' },
-    { label: __('Centro', 'ifc-design-system'), value: 'center' },
-    { label: __('Direita', 'ifc-design-system'), value: 'right' }
-];
-
-// Opções de tipos de componentes
-const componentTypeOptions = [
-    { label: __('Texto Simples', 'ifc-design-system'), value: 'text' },
-    { label: __('Componente de Texto', 'ifc-design-system'), value: 'text-component' },
-    { label: __('Link', 'ifc-design-system'), value: 'link' },
-    { label: __('HTML Personalizado', 'ifc-design-system'), value: 'html' }
-];
-
-// Opções para o componente de texto
-const textTypeOptions = [
-    { label: __('Título', 'ifc-design-system'), value: 'title' },
-    { label: __('Subtítulo', 'ifc-design-system'), value: 'subtitle' },
-    { label: __('Corpo', 'ifc-design-system'), value: 'body' },
-    { label: __('Detalhe', 'ifc-design-system'), value: 'detail' },
-    { label: __('Legenda', 'ifc-design-system'), value: 'caption' }
-];
-
-const weightOptions = [
-    { label: __('Regular', 'ifc-design-system'), value: 'regular' },
-    { label: __('Semibold', 'ifc-design-system'), value: 'semibold' },
-    { label: __('Bold', 'ifc-design-system'), value: 'bold' }
-];
 
 registerBlockType('ifc-ds/container', {
     edit: ({ attributes, setAttributes }) => {
@@ -261,20 +206,20 @@ registerBlockType('ifc-ds/container', {
 
         // Estilos inline para o editor
         const containerStyle = {
-            paddingTop: `var(--wp--preset--spacing--${padding?.top || '30'})`,
-            paddingRight: `var(--wp--preset--spacing--${padding?.right || '30'})`,
-            paddingBottom: `var(--wp--preset--spacing--${padding?.bottom || '30'})`,
-            paddingLeft: `var(--wp--preset--spacing--${padding?.left || '30'})`,
-            marginTop: `var(--wp--preset--spacing--${margin?.top || '0'})`,
-            marginRight: `var(--wp--preset--spacing--${margin?.right || '0'})`,
-            marginBottom: `var(--wp--preset--spacing--${margin?.bottom || '20'})`,
-            marginLeft: `var(--wp--preset--spacing--${margin?.left || '0'})`,
+            paddingTop: `var(--ifc-space-${padding?.top || '30'})`,
+            paddingRight: `var(--ifc-space-${padding?.right || '30'})`,
+            paddingBottom: `var(--ifc-space-${padding?.bottom || '30'})`,
+            paddingLeft: `var(--ifc-space-${padding?.left || '30'})`,
+            marginTop: `var(--ifc-space-${margin?.top || '0'})`,
+            marginRight: `var(--ifc-space-${margin?.right || '0'})`,
+            marginBottom: `var(--ifc-space-${margin?.bottom || '20'})`,
+            marginLeft: `var(--ifc-space-${margin?.left || '0'})`,
         };
 
         // Função para renderizar diferentes tipos de componentes
         const renderComponent = (item) => {
             const itemStyle = {
-                [listDirection === 'vertical' ? 'marginBottom' : 'marginRight']: `var(--wp--preset--spacing--${listSpacing})`
+                [listDirection === 'vertical' ? 'marginBottom' : 'marginRight']: `var(--ifc-space-${listSpacing})`
             };
 
             switch (item.type) {

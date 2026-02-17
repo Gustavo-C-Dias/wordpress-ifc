@@ -3,7 +3,7 @@
 
 .ifc-ds-accordion {
   margin: var(--ifc-space-4) 0;
-  border-top: 2px solid var(--wp--preset--color--primary-400);
+  border-top: 2px solid var(--ifc-color-primary-400);
   border-left: var(--ifc-border-width-1) solid var(--ifc-border-default);
   border-right: var(--ifc-border-width-1) solid var(--ifc-border-default);
   border-bottom: var(--ifc-border-width-1) solid var(--ifc-border-default);
@@ -52,7 +52,7 @@
     &.is-open {
       max-height: 1000px;
       padding: var(--ifc-space-4);
-      border-top: 1px solid var(--wp--preset--color--primary-400);
+      border-top: 1px solid var(--ifc-color-primary-400);
     }
   }
   
@@ -67,7 +67,7 @@
       padding-bottom: var(--ifc-space-1);
       
       &:not(:last-child) {
-        border-bottom: 1px solid var(--wp--preset--color--primary-400);
+        border-bottom: 1px solid var(--ifc-color-primary-400);
       }
     }
   }
@@ -97,7 +97,7 @@
   
   // Estados de acessibilidade
   &:focus-within {
-    box-shadow: 0 0 0 2px var(--wp--preset--color--primary-200, #bfdbfe);
+    box-shadow: 0 0 0 2px var(--ifc-color-primary-200, #bfdbfe);
   }
   
   // Responsividade

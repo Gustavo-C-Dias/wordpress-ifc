@@ -10,39 +10,102 @@ import {
     __experimentalSpacer as Spacer
 } from '@wordpress/components';
 import { registerBlockType } from '@wordpress/blocks';
-import { InputComponent } from './component';
+
+// Importa opções centralizadas
+import { 
+    sizeOptions, 
+    inputVariantOptions as variantOptions, 
+    detailedSpacingOptions as spacingOptions,
+    inputTypeOptions
+} from '../../shared/options';
 
 import './style.scss';
 
-// Opções locais do componente
-const sizeOptions = [
-    { label: 'Pequeno', value: 'small' },
-    { label: 'Médio', value: 'medium' },
-    { label: 'Grande', value: 'large' }
-];
+/**
+ * Componente Input para renderização no editor
+ */
+const InputComponent = ({
+    label = '',
+    placeholder = '',
+    caption = '',
+    icon = '',
+    inputType = 'text',
+    inputName = '',
+    inputId = '',
+    required = false,
+    disabled = false,
+    size = 'medium',
+    variant = 'default',
+    padding = {},
+    className = '',
+    value = '',
+    onChange,
+    ...props
+}) => {
+    const wrapperClasses = [
+        'ifc-ds-input-wrapper',
+        `ifc-ds-input-wrapper--${size}`,
+        `ifc-ds-input-wrapper--${variant}`,
+        icon ? 'ifc-ds-input-wrapper--with-icon' : '',
+        disabled ? 'ifc-ds-input-wrapper--disabled' : '',
+        className
+    ].filter(Boolean).join(' ');
 
-const variantOptions = [
-    { label: 'Padrão', value: 'default' },
-    { label: 'Contornado', value: 'outlined' },
-    { label: 'Preenchido', value: 'filled' }
-];
+    const inputClasses = [
+        'ifc-ds-input',
+        `ifc-ds-input--${size}`,
+        `ifc-ds-input--${variant}`,
+        icon ? 'ifc-ds-input--with-icon' : ''
+    ].filter(Boolean).join(' ');
 
-const spacingOptions = [
-    { label: 'Nenhum', value: '0' },
-    { label: 'Space 0.5 (2px)', value: 'space-0-5' },
-    { label: 'Space 1 (4px)', value: 'space-1' },
-    { label: 'Space 2 (8px)', value: 'space-2' },
-    { label: 'Space 3 (12px)', value: 'space-3' },
-    { label: 'Space 4 (16px)', value: 'space-4' },
-    { label: 'Space 5 (20px)', value: 'space-5' },
-    { label: 'Space 6 (24px)', value: 'space-6' },
-    { label: 'Space 8 (32px)', value: 'space-8' },
-    { label: 'Space 10 (40px)', value: 'space-10' },
-    { label: 'Space 12 (48px)', value: 'space-12' },
-    { label: 'Space 16 (64px)', value: 'space-16' },
-    { label: 'Space 20 (80px)', value: 'space-20' },
-    { label: 'Space 24 (96px)', value: 'space-24' }
-];
+    const wrapperStyle = {
+        paddingTop: `var(--ifc-space-${(padding?.top || '0').replace('spacing-', '')})`,
+        paddingRight: `var(--ifc-space-${(padding?.right || '0').replace('spacing-', '')})`,
+        paddingBottom: `var(--ifc-space-${(padding?.bottom || '0').replace('spacing-', '')})`,
+        paddingLeft: `var(--ifc-space-${(padding?.left || '0').replace('spacing-', '')})`
+    };
+
+    const uniqueId = inputId || `ifc-input-${Math.random().toString(36).substr(2, 9)}`;
+    const captionId = caption ? `${uniqueId}-caption` : undefined;
+
+    return (
+        <div className={wrapperClasses} style={wrapperStyle} {...props}>
+            {label && (
+                <label htmlFor={uniqueId} className="ifc-ds-input__label">
+                    {label}
+                    {required && <span className="ifc-ds-input__required" aria-label="Campo obrigatório">*</span>}
+                </label>
+            )}
+            
+            <div className="ifc-ds-input__field-wrapper">
+                {icon && (
+                    <span className="ifc-ds-input__icon" aria-hidden="true">
+                        <i className={icon}></i>
+                    </span>
+                )}
+                
+                <input
+                    id={uniqueId}
+                    name={inputName || uniqueId}
+                    type={inputType}
+                    className={inputClasses}
+                    placeholder={placeholder}
+                    required={required}
+                    disabled={disabled}
+                    value={value}
+                    onChange={onChange}
+                    aria-describedby={captionId}
+                />
+            </div>
+            
+            {caption && (
+                <div id={captionId} className="ifc-ds-input__caption">
+                    {caption}
+                </div>
+            )}
+        </div>
+    );
+};
 
 registerBlockType('ifc-ds/input', {
     edit: ({ attributes, setAttributes }) => {
@@ -62,18 +125,6 @@ registerBlockType('ifc-ds/input', {
         } = attributes;
 
         const blockProps = useBlockProps();
-
-        // Opções de tipo de input
-        const inputTypeOptions = [
-            { label: 'Texto', value: 'text' },
-            { label: 'Email', value: 'email' },
-            { label: 'Senha', value: 'password' },
-            { label: 'Telefone', value: 'tel' },
-            { label: 'URL', value: 'url' },
-            { label: 'Busca', value: 'search' }
-        ];
-
-        // As opções agora vêm do componente base
 
         return (
             <>

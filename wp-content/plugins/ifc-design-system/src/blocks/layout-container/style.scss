@@ -77,44 +77,33 @@ $govbr-spacing: (
   margin-right: auto;
   position: relative;
   
+  &__content {
+    width: 100%;
+    min-height: 50px;
+  }
+  
   // Container fluído (padrão)
   &--fluid {
     max-width: 100%;
     
     .ifc-ds-layout-container__content {
-      display: grid;
+      display: block;
       width: 100%;
-      
-      // Mobile Portrait (4 colunas)
-      grid-template-columns: repeat(4, 1fr);
-      gap: map-get(map-get($govbr-grid-configs, mobile-portrait), gutter);
       padding: 0 map-get(map-get($govbr-grid-configs, mobile-portrait), margin);
-      
-      // Mobile Landscape / Tablet Portrait (8 colunas)
+
       @include govbr-breakpoint(mobile-landscape) {
-        grid-template-columns: repeat(8, 1fr);
-        gap: map-get(map-get($govbr-grid-configs, mobile-landscape), gutter);
         padding: 0 map-get(map-get($govbr-grid-configs, mobile-landscape), margin);
       }
-      
-      // Tablet Landscape (8 colunas)
+
       @include govbr-breakpoint(tablet-landscape) {
-        grid-template-columns: repeat(8, 1fr);
-        gap: map-get(map-get($govbr-grid-configs, tablet-landscape), gutter);
         padding: 0 map-get(map-get($govbr-grid-configs, tablet-landscape), margin);
       }
-      
-      // Desktop (12 colunas)
+
       @include govbr-breakpoint(desktop) {
-        grid-template-columns: repeat(12, 1fr);
-        gap: map-get(map-get($govbr-grid-configs, desktop), gutter);
         padding: 0 map-get(map-get($govbr-grid-configs, desktop), margin);
       }
-      
-      // TV (12 colunas com gutter maior)
+
       @include govbr-breakpoint(tv) {
-        grid-template-columns: repeat(12, 1fr);
-        gap: map-get(map-get($govbr-grid-configs, tv), gutter);
         padding: 0 map-get(map-get($govbr-grid-configs, tv), margin);
       }
     }
@@ -123,68 +112,29 @@ $govbr-spacing: (
   // Container fixo
   &--fixed {
     .ifc-ds-layout-container__content {
-      display: grid;
+      display: block;
       margin: 0 auto;
-      
-      // Mobile Portrait
       max-width: calc(100% - #{2 * map-get(map-get($govbr-grid-configs, mobile-portrait), margin)});
-      grid-template-columns: repeat(4, 1fr);
-      gap: map-get(map-get($govbr-grid-configs, mobile-portrait), gutter);
       padding: 0 map-get(map-get($govbr-grid-configs, mobile-portrait), margin);
-      
-      // Mobile Landscape / Tablet Portrait
+
       @include govbr-breakpoint(mobile-landscape) {
         max-width: calc(100% - #{2 * map-get(map-get($govbr-grid-configs, mobile-landscape), margin)});
-        grid-template-columns: repeat(8, 1fr);
-        gap: map-get(map-get($govbr-grid-configs, mobile-landscape), gutter);
         padding: 0 map-get(map-get($govbr-grid-configs, mobile-landscape), margin);
       }
-      
-      // Tablet Landscape
+
       @include govbr-breakpoint(tablet-landscape) {
         max-width: map-get(map-get($govbr-grid-configs, tablet-landscape), max-width);
-        grid-template-columns: repeat(8, 1fr);
-        gap: map-get(map-get($govbr-grid-configs, tablet-landscape), gutter);
         padding: 0 map-get(map-get($govbr-grid-configs, tablet-landscape), margin);
       }
-      
-      // Desktop
+
       @include govbr-breakpoint(desktop) {
         max-width: map-get(map-get($govbr-grid-configs, desktop), max-width);
-        grid-template-columns: repeat(12, 1fr);
-        gap: map-get(map-get($govbr-grid-configs, desktop), gutter);
         padding: 0 map-get(map-get($govbr-grid-configs, desktop), margin);
       }
-      
-      // TV - mantém largura fixa recomendada
+
       @include govbr-breakpoint(tv) {
-        max-width: 1920px; // Largura máxima recomendada para TV
-        grid-template-columns: repeat(12, 1fr);
-        gap: map-get(map-get($govbr-grid-configs, tv), gutter);
+        max-width: 1920px;
         padding: 0 map-get(map-get($govbr-grid-configs, tv), margin);
-      }
-    }
-  }
-  
-  // Configurações de colunas específicas
-  @for $i from 1 through 12 {
-    &--columns-#{$i} {
-      .ifc-ds-layout-container__content {
-        // Ajusta o número de colunas conforme especificado
-        @include govbr-breakpoint(desktop) {
-          grid-template-columns: repeat(#{min($i, 12)}, 1fr);
-        }
-        
-        @include govbr-breakpoint(tablet-landscape) {
-          grid-template-columns: repeat(#{min($i, 8)}, 1fr);
-        }
-        
-        @include govbr-breakpoint(mobile-landscape) {
-          grid-template-columns: repeat(#{min($i, 8)}, 1fr);
-        }
-        
-        // Mobile sempre 4 colunas máximo
-        grid-template-columns: repeat(#{min($i, 4)}, 1fr);
       }
     }
   }
@@ -240,33 +190,6 @@ $govbr-spacing: (
     .ifc-ds-bleed-right {
       margin-right: calc(-1 * var(--grid-margin, 40px));
     }
-  }
-  
-  // Conteúdo principal
-  &__content {
-    width: 100%;
-    min-height: 50px; // Altura mínima para visibilidade no editor
-    
-    // Filhos diretos ocupam pelo menos uma coluna
-    > * {
-      grid-column: span 1;
-      min-width: 0; // Previne overflow de conteúdo
-    }
-    
-    // Classes utilitárias para spans de coluna
-    .col-span-1 { grid-column: span 1; }
-    .col-span-2 { grid-column: span 2; }
-    .col-span-3 { grid-column: span 3; }
-    .col-span-4 { grid-column: span 4; }
-    .col-span-5 { grid-column: span 5; }
-    .col-span-6 { grid-column: span 6; }
-    .col-span-7 { grid-column: span 7; }
-    .col-span-8 { grid-column: span 8; }
-    .col-span-9 { grid-column: span 9; }
-    .col-span-10 { grid-column: span 10; }
-    .col-span-11 { grid-column: span 11; }
-    .col-span-12 { grid-column: span 12; }
-    .col-span-full { grid-column: 1 / -1; }
   }
   
   // Label de preview no editor

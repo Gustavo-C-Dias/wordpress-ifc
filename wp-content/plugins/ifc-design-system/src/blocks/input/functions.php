@@ -132,7 +132,7 @@ if (!function_exists('ifc_ds_render_input')) {
             foreach (['top', 'right', 'bottom', 'left'] as $side) {
                 $value = $args['padding'][$side] ?? '0';
                 if ($value !== '0') {
-                    $padding_styles[] = "padding-{$side}: var(--wp--preset--spacing--{$value})";
+                    $padding_styles[] = "padding-{$side}: var(--ifc-space-{$value})";
                 }
             }
             

@@ -1,4 +1,5 @@
 import React from 'react';
+import { buildTextClasses, getHtmlTagForTextType } from '../../shared/class-builder';
 
 /**
  * Componente de Texto IFC Design System
@@ -18,27 +19,10 @@ export const TextComponent = ({
         return null;
     }
 
-    // Definir tag HTML baseada no tipo
-    const getHtmlTag = (type) => {
-        switch (type) {
-            case 'title': return 'h1';
-            case 'subtitle': return 'h2';
-            case 'caption': return 'small';
-            default: return 'p';
-        }
-    };
+    // Montar classes CSS usando builder centralizado
+    const classes = buildTextClasses(textType, weight, color, alignment, className);
 
-    // Montar classes CSS
-    const classes = [
-        'ifc-ds-text',
-        `ifc-ds-text--${textType}`,
-        `ifc-ds-text--${weight}`,
-        `ifc-ds-text--${color}`,
-        `ifc-ds-text--align-${alignment}`,
-        className
-    ].filter(Boolean).join(' ');
-
-    const Tag = getHtmlTag(textType);
+    const Tag = getHtmlTagForTextType(textType);
 
     return (
         <Tag className={classes} {...props}>

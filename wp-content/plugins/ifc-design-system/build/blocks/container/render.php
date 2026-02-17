@@ -75,16 +75,16 @@ if (!function_exists('ifc_ds_render_container_block')) {
     $styles = array();
     
     // Padding
-    if (isset($padding['top'])) $styles[] = 'padding-top: var(--wp--preset--spacing--' . $padding['top'] . ')';
-    if (isset($padding['right'])) $styles[] = 'padding-right: var(--wp--preset--spacing--' . $padding['right'] . ')';
-    if (isset($padding['bottom'])) $styles[] = 'padding-bottom: var(--wp--preset--spacing--' . $padding['bottom'] . ')';
-    if (isset($padding['left'])) $styles[] = 'padding-left: var(--wp--preset--spacing--' . $padding['left'] . ')';
+    if (isset($padding['top'])) $styles[] = 'padding-top: var(--ifc-space-' . $padding['top'] . ')';
+    if (isset($padding['right'])) $styles[] = 'padding-right: var(--ifc-space-' . $padding['right'] . ')';
+    if (isset($padding['bottom'])) $styles[] = 'padding-bottom: var(--ifc-space-' . $padding['bottom'] . ')';
+    if (isset($padding['left'])) $styles[] = 'padding-left: var(--ifc-space-' . $padding['left'] . ')';
     
     // Margin
-    if (isset($margin['top'])) $styles[] = 'margin-top: var(--wp--preset--spacing--' . $margin['top'] . ')';
-    if (isset($margin['right'])) $styles[] = 'margin-right: var(--wp--preset--spacing--' . $margin['right'] . ')';
-    if (isset($margin['bottom'])) $styles[] = 'margin-bottom: var(--wp--preset--spacing--' . $margin['bottom'] . ')';
-    if (isset($margin['left'])) $styles[] = 'margin-left: var(--wp--preset--spacing--' . $margin['left'] . ')';
+    if (isset($margin['top'])) $styles[] = 'margin-top: var(--ifc-space-' . $margin['top'] . ')';
+    if (isset($margin['right'])) $styles[] = 'margin-right: var(--ifc-space-' . $margin['right'] . ')';
+    if (isset($margin['bottom'])) $styles[] = 'margin-bottom: var(--ifc-space-' . $margin['bottom'] . ')';
+    if (isset($margin['left'])) $styles[] = 'margin-left: var(--ifc-space-' . $margin['left'] . ')';
 
     // Montar HTML
     $wrapper_attributes = get_block_wrapper_attributes(array(
@@ -103,8 +103,8 @@ if (!function_exists('ifc_ds_render_container_block')) {
             
             foreach ($list_items as $item) {
                 $item_spacing_style = $list_direction === 'vertical' 
-                    ? 'margin-bottom: var(--wp--preset--spacing--' . $list_spacing . ')'
-                    : 'margin-right: var(--wp--preset--spacing--' . $list_spacing . ')';
+                    ? 'margin-bottom: var(--ifc-space-' . $list_spacing . ')'
+                    : 'margin-right: var(--ifc-space-' . $list_spacing . ')';
                 
                 $item_type = $item['type'] ?? 'text';
                 

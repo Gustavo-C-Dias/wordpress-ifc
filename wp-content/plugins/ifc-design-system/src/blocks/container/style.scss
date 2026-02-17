@@ -10,66 +10,66 @@
     
     // Estado padrão
     border-width: 1px;
-    border-color: var(--wp--preset--color--neutral-300);
+    border-color: var(--ifc-color-neutral-300);
     
     // Cores de fundo
     &--bg-white {
-        background-color: var(--wp--preset--color--neutral-100);
+        background-color: var(--ifc-color-neutral-100);
     }
     
     &--bg-neutral-100 {
-        background-color: var(--wp--preset--color--neutral-100);
+        background-color: var(--ifc-color-neutral-100);
     }
     
     &--bg-neutral-200 {
-        background-color: var(--wp--preset--color--neutral-200);
+        background-color: var(--ifc-color-neutral-200);
     }
     
     &--bg-neutral-300 {
-        background-color: var(--wp--preset--color--neutral-300);
+        background-color: var(--ifc-color-neutral-300);
     }
     
     &--bg-neutral-400 {
-        background-color: var(--wp--preset--color--neutral-400);
+        background-color: var(--ifc-color-neutral-400);
     }
     
     &--bg-primary {
-        background-color: var(--wp--preset--color--primary-600);
-        color: var(--wp--preset--color--neutral-100);
+        background-color: var(--ifc-color-primary-600);
+        color: var(--ifc-color-neutral-100);
     }
     
     &--bg-secondary {
-        background-color: var(--wp--preset--color--secondary-600);
-        color: var(--wp--preset--color--neutral-100);
+        background-color: var(--ifc-color-secondary-600);
+        color: var(--ifc-color-neutral-100);
     }
     
     // Cores de borda
     &--border-white {
-        border-color: var(--wp--preset--color--neutral-100);
+        border-color: var(--ifc-color-neutral-100);
     }
     
     &--border-neutral-100 {
-        border-color: var(--wp--preset--color--neutral-100);
+        border-color: var(--ifc-color-neutral-100);
     }
     
     &--border-neutral-200 {
-        border-color: var(--wp--preset--color--neutral-200);
+        border-color: var(--ifc-color-neutral-200);
     }
     
     &--border-neutral-300 {
-        border-color: var(--wp--preset--color--neutral-300);
+        border-color: var(--ifc-color-neutral-300);
     }
     
     &--border-neutral-400 {
-        border-color: var(--wp--preset--color--neutral-400);
+        border-color: var(--ifc-color-neutral-400);
     }
     
     &--border-primary {
-        border-color: var(--wp--preset--color--primary-600);
+        border-color: var(--ifc-color-primary-600);
     }
     
     &--border-secondary {
-        border-color: var(--wp--preset--color--secondary-600);
+        border-color: var(--ifc-color-secondary-600);
     }
     
     // Espessuras de borda
@@ -92,13 +92,13 @@
     
     // Sombra conforme especificações: y=4, blur=8, cor=neutral-700
     &--shadow {
-        box-shadow: 0 4px 8px 0 rgba(var(--wp--preset--color--neutral-700-rgb, 55, 65, 81), 0.1);
+        box-shadow: 0 4px 8px 0 rgba(var(--ifc-color-neutral-700-rgb, 55, 65, 81), 0.1);
     }
     
     // Hover effect (opcional)
     &:hover {
         &.ifc-ds-container--shadow {
-            box-shadow: 0 6px 12px 0 rgba(var(--wp--preset--color--neutral-700-rgb, 55, 65, 81), 0.15);
+            box-shadow: 0 6px 12px 0 rgba(var(--ifc-color-neutral-700-rgb, 55, 65, 81), 0.15);
         }
     }
     
@@ -117,15 +117,15 @@
     @media (max-width: 768px) {
         // Reduzir padding em telas menores se necessário
         &[style*="padding"] {
-            padding-left: var(--wp--preset--spacing--20, 0.75rem) !important;
-            padding-right: var(--wp--preset--spacing--20, 0.75rem) !important;
+            padding-left: var(--ifc-space-20, 0.75rem) !important;
+            padding-right: var(--ifc-space-20, 0.75rem) !important;
         }
     }
     
     @media (max-width: 480px) {
         &[style*="padding"] {
-            padding-left: var(--wp--preset--spacing--10, 0.5rem) !important;
-            padding-right: var(--wp--preset--spacing--10, 0.5rem) !important;
+            padding-left: var(--ifc-space-10, 0.5rem) !important;
+            padding-right: var(--ifc-space-10, 0.5rem) !important;
         }
     }
     
@@ -183,7 +183,7 @@
             
             // Estilos para elementos HTML comuns
             p {
-                margin: 0 0 var(--wp--preset--spacing--20) 0;
+                margin: 0 0 var(--ifc-space-20) 0;
                 
                 &:last-child {
                     margin-bottom: 0;
@@ -191,7 +191,7 @@
             }
             
             h1, h2, h3, h4, h5, h6 {
-                margin: 0 0 var(--wp--preset--spacing--30) 0;
+                margin: 0 0 var(--ifc-space-30) 0;
                 
                 &:last-child {
                     margin-bottom: 0;
@@ -199,8 +199,8 @@
             }
             
             ul, ol {
-                margin: 0 0 var(--wp--preset--spacing--20) 0;
-                padding-left: var(--wp--preset--spacing--40);
+                margin: 0 0 var(--ifc-space-20) 0;
+                padding-left: var(--ifc-space-40);
                 
                 &:last-child {
                     margin-bottom: 0;
@@ -214,18 +214,18 @@
             }
             
             code {
-                padding: var(--wp--preset--spacing--10) var(--wp--preset--spacing--20);
-                background-color: var(--wp--preset--color--neutral-100);
+                padding: var(--ifc-space-10) var(--ifc-space-20);
+                background-color: var(--ifc-color-neutral-100);
                 border-radius: var(--wp--custom--border--radius, 4px);
                 font-family: monospace;
                 font-size: 0.875em;
             }
             
             blockquote {
-                margin: 0 0 var(--wp--preset--spacing--30) 0;
-                padding: var(--wp--preset--spacing--30);
-                border-left: 4px solid var(--wp--preset--color--primary);
-                background-color: var(--wp--preset--color--neutral-100);
+                margin: 0 0 var(--ifc-space-30) 0;
+                padding: var(--ifc-space-30);
+                border-left: 4px solid var(--ifc-color-primary);
+                background-color: var(--ifc-color-neutral-100);
                 border-radius: 0 var(--wp--custom--border--radius, 4px) var(--wp--custom--border--radius, 4px) 0;
                 
                 &:last-child {
@@ -241,11 +241,11 @@
     // Placeholder visual no editor quando vazio
     &:empty::after {
         content: attr(data-placeholder);
-        color: var(--wp--preset--color--neutral-400);
+        color: var(--ifc-color-neutral-400);
         font-style: italic;
         display: block;
         text-align: center;
-        padding: var(--wp--preset--spacing--40, 1.5rem);
+        padding: var(--ifc-space-40, 1.5rem);
     }
     
     // Indicador visual no editor
@@ -265,11 +265,11 @@
     }
     
     &:hover::before {
-        border-color: var(--wp--preset--color--primary-600);
+        border-color: var(--ifc-color-primary-600);
     }
     
     &.is-selected::before {
-        border-color: var(--wp--preset--color--primary-600);
+        border-color: var(--ifc-color-primary-600);
         border-style: solid;
     }
 }

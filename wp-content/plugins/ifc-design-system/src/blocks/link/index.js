@@ -13,7 +13,15 @@ import {
     __experimentalInputControl as InputControl
 } from '@wordpress/components';
 import { registerBlockType } from '@wordpress/blocks';
-import { LinkComponent, spacingOptions, iconLibrary, iconCategories } from './component';
+import { LinkComponent } from './component';
+import { 
+    iconLibrary, 
+    iconCategories, 
+    detailedSpacingOptions as spacingOptions,
+    linkTypeOptions,
+    linkSizeOptions,
+    iconPositionOptions
+} from '../../shared/options';
 import { useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
@@ -119,22 +127,14 @@ registerBlockType('ifc-ds/link', {
                         <SelectControl
                             label={'Tipo'}
                             value={type}
-                            options={[
-                                { label: 'Neutro', value: 'neutral' },
-                                { label: 'Primário', value: 'primary' },
-                                { label: 'Branco', value: 'white' }
-                            ]}
+                            options={linkTypeOptions}
                             onChange={(value) => setAttributes({ type: value })}
                         />
 
                         <SelectControl
                             label={'Tamanho'}
                             value={size}
-                            options={[
-                                { label: 'Pequeno', value: 'small' },
-                                { label: 'Médio', value: 'medium' },
-                                { label: 'Grande', value: 'large' }
-                            ]}
+                            options={linkSizeOptions}
                             onChange={(value) => setAttributes({ size: value })}
                         />
                     </PanelBody>
@@ -148,10 +148,7 @@ registerBlockType('ifc-ds/link', {
                         <SelectControl
                             label={'Posição do Ícone'}
                             value={iconPosition}
-                            options={[
-                                { label: 'Esquerda', value: 'left' },
-                                { label: 'Direita', value: 'right' }
-                            ]}
+                            options={iconPositionOptions}
                             onChange={(value) => setAttributes({ iconPosition: value })}
                         />
 

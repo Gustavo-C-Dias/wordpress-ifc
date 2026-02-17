@@ -18,25 +18,14 @@ import {
 import { registerBlockType } from '@wordpress/blocks';
 import { LogoComponent, getLogoUrl } from './component';
 
+// Importa opções centralizadas
+import { 
+    orientationOptions, 
+    logoVariantOptions as variantOptions, 
+    linkTargetOptions 
+} from '../../shared/options';
+
 import './style.scss';
-
-// Opções de orientação
-const orientationOptions = [
-    { label: __('Horizontal', 'ifc-design-system'), value: 'horizontal' },
-    { label: __('Vertical', 'ifc-design-system'), value: 'vertical' }
-];
-
-// Opções de variante de cor
-const variantOptions = [
-    { label: __('Padrão', 'ifc-design-system'), value: 'default' },
-    { label: __('Branco', 'ifc-design-system'), value: 'white' }
-];
-
-// Opções de target do link
-const linkTargetOptions = [
-    { label: __('Mesma janela', 'ifc-design-system'), value: '_self' },
-    { label: __('Nova janela', 'ifc-design-system'), value: '_blank' }
-];
 
 registerBlockType('ifc-ds/logo', {
     edit: ({ attributes, setAttributes }) => {

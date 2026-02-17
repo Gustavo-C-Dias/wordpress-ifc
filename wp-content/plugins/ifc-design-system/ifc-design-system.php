@@ -18,6 +18,10 @@ define('IFC_DS_VERSION', '1.0.0');
 define('IFC_DS_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('IFC_DS_PLUGIN_PATH', plugin_dir_path(__FILE__));
 
+// Utilitários compartilhados
+require_once IFC_DS_PLUGIN_PATH . 'src/shared/utils.php';
+
+// Funções específicas de componentes
 require_once IFC_DS_PLUGIN_PATH . 'src/blocks/link/functions.php';
 require_once IFC_DS_PLUGIN_PATH . 'src/blocks/input/functions.php';
 require_once IFC_DS_PLUGIN_PATH . 'src/blocks/render-functions.php';

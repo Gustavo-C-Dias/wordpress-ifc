@@ -8,16 +8,3 @@ Version: 1.0.0
 License: GPL v2 or later
 Text Domain: ifc-ds
 */
-
-/* Estilos mínimos para garantir integração visual e reconhecimento do tema pelo WordPress */
-body {
-    background: #fff;
-    color: #222;
-    font-family: 'Open Sans', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-.ifc-curso-template {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 2rem;
-}
