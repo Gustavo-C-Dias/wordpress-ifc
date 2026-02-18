@@ -45,7 +45,6 @@ class IFC_Design_System {
     public function init() {
         $this->register_block_category();
         $this->register_blocks();
-        $this->register_block_patterns();
 
         load_plugin_textdomain('ifc-design-system', false, dirname(plugin_basename(__FILE__)) . '/languages');
     }
@@ -93,27 +92,6 @@ class IFC_Design_System {
                 }
             }
         }
-    }
-    
-    private function register_block_patterns() {
-        register_block_pattern_category('ifc-ds-patterns', array(
-            'label' => __('IFC Design System', 'ifc-design-system')
-        ));
-        
-        register_block_pattern('ifc-ds/curso-header', array(
-            'title' => __('Cabeçalho de Curso IFC', 'ifc-design-system'),
-            'description' => __('Cabeçalho padrão para páginas de curso', 'ifc-design-system'),
-            'categories' => array('ifc-ds-patterns'),
-            'content' => '<!-- wp:ifc-ds/header {"title":"Nome do Curso"} /-->
-                         <!-- wp:ifc-ds/breadcrumb {"items":[{"label":"Início","url":"/"},{"label":"Cursos","url":"/cursos"},{"label":"Nome do Curso","url":"#"}]} /-->'
-        ));
-        
-        register_block_pattern('ifc-ds/navigation-menu', array(
-            'title' => __('Menu de Navegação IFC', 'ifc-design-system'),
-            'description' => __('Menu acordion padrão para navegação', 'ifc-design-system'),
-            'categories' => array('ifc-ds-patterns'),
-            'content' => '<!-- wp:ifc-ds/accordion {"title":"Menu do Curso","content":"<ul><li><a href=\"#sobre\">Sobre o Curso</a></li><li><a href=\"#matriz\">Matriz Curricular</a></li><li><a href=\"#contato\">Contato</a></li></ul>"} /-->'
-        ));
     }
     
     public function enqueue_editor_assets() {

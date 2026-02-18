@@ -117,9 +117,9 @@ export const orientationOptions = [
  */
 export const borderWidthOptions = [
     { label: __('Nenhuma', 'ifc-design-system'), value: '0' },
-    { label: __('Fina (1px)', 'ifc-design-system'), value: '1' },
-    { label: __('Média (2px)', 'ifc-design-system'), value: '2' },
-    { label: __('Grossa (3px)', 'ifc-design-system'), value: '3' },
+    { label: __('Fina', 'ifc-design-system'), value: '1' },
+    { label: __('Média', 'ifc-design-system'), value: '2' },
+    { label: __('Grossa', 'ifc-design-system'), value: '3' },
 ];
 
 /**

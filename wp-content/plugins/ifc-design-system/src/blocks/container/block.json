@@ -50,26 +50,6 @@
     "backgroundColor": {
       "type": "string",
       "default": "white"
-    },
-    "listMode": {
-      "type": "boolean",
-      "default": false
-    },
-    "listDirection": {
-      "type": "string",
-      "default": "vertical"
-    },
-    "listItems": {
-      "type": "array",
-      "default": []
-    },
-    "listSpacing": {
-      "type": "string",
-      "default": "20"
-    },
-    "listAlignment": {
-      "type": "string",
-      "default": "left"
     }
   },
   "providesContext": {

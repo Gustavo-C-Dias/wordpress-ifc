@@ -127,15 +127,13 @@ function generateOptionsFile(themeJson) {
     const neutralColors = colorPalette.filter(c => c.slug.startsWith('neutral-'));
     
     return `/**
- * IFC Design System - Opções Geradas Automaticamente
+ * IFC Design System
  * 
  * ATENÇÃO: Este arquivo é gerado automaticamente pelo script generate-options.js
- * NÃO EDITE MANUALMENTE - suas alterações serão sobrescritas!
  * 
  * Para modificar as opções, edite o theme.json e execute:
  * npm run generate:options
  * 
- * Gerado em: ${new Date().toISOString()}
  */
 import { __ } from '@wordpress/i18n';
 
@@ -223,8 +221,6 @@ function main() {
     console.log(`   - Tamanhos de fonte: ${settings.typography?.fontSizes?.length || 0}`);
     console.log(`   - Famílias de fonte: ${settings.typography?.fontFamilies?.length || 0}`);
     console.log(`   - Sombras: ${settings.shadow?.presets?.length || 0}`);
-    
-    console.log('\n✨ Concluído! Lembre-se de importar de options.generated.js');
 }
 
 // Executar
