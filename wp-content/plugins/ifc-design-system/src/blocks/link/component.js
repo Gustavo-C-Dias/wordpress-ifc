@@ -4,7 +4,7 @@ import { TextComponent } from '../text/component';
 import { buildLinkClasses, getLinkIconSize } from '../../shared/class-builder';
 import { iconLibrary, iconCategories, detailedSpacingOptions as spacingOptions } from '../../shared/options';
 
-// Re-exporta para compatibilidade com componentes que importam daqui
+// Re-exporta opções para uso por outros componentes
 export { iconLibrary, iconCategories, spacingOptions };
 
 /**
@@ -25,6 +25,7 @@ export const LinkComponent = ({
     ...props
 }) => {
     const linkClasses = buildLinkClasses(type, size, className);
+    const textColor = type === 'neutral' ? 'neutral' : 'primary';
 
     const linkStyle = {
         paddingTop: `var(--ifc-space-${(padding?.top || '0').replace('spacing-', '')})`,
@@ -60,7 +61,7 @@ export const LinkComponent = ({
             content: label,
             textType: size === 'small' || size === 'detail' ? 'detail' : 'body',
             weight: size === 'detail' ? 'regular' : 'semibold',
-            color: 'primary',
+            color: textColor,
             className: 'ifc-ds-link__label'
         }),
         iconPosition === 'right' && renderIcon()

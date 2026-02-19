@@ -449,13 +449,6 @@
       }
     }
   },
-  "customTemplates": [
-    {
-      "name": "page-curso",
-      "title": "Página de Curso IFC",
-      "postTypes": ["page"]
-    }
-  ],
   "templateParts": [],
   "patterns": [
     "ifc-ds/template-curso-padrao"

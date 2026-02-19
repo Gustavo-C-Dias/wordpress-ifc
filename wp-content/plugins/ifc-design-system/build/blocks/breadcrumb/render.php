@@ -13,7 +13,7 @@ $items = $attributes['items'] ?? [
 ];
 $current_page_title = $attributes['currentPageTitle'] ?? 'Página Atual';
 $separator = $attributes['separator'] ?? '/';
-$link_type = $attributes['linkType'] ?? 'neutral';
+$link_type = 'neutral';
 $link_size = $attributes['linkSize'] ?? 'small';
 
 // Função ifc_ds_render_breadcrumb_link está definida em render-functions.php
@@ -39,9 +39,8 @@ $classes = ['ifc-ds-breadcrumb'];
         
         <li class="ifc-ds-breadcrumb__item ifc-ds-breadcrumb__item--current">
             <?php 
-            $text_type = $link_size === 'small' ? 'detail' : 'body';
             // Usa função centralizada para construir classes
-            $current_classes = ifc_ds_build_text_classes($text_type, 'semibold', 'neutral', 'left', 'ifc-ds-breadcrumb__current');
+            $current_classes = ifc_ds_build_text_classes('detail', 'regular', 'neutral', 'left', 'ifc-ds-breadcrumb__current');
             ?>
             <span class="<?php echo esc_attr($current_classes); ?>" aria-current="page">
                 <?php echo esc_html($current_page_title); ?>

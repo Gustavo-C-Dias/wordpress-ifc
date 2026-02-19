@@ -21,7 +21,6 @@ registerBlockType('ifc-ds/breadcrumb', {
             items,
             currentPageTitle,
             separator,
-            linkType,
             linkSize
         } = attributes;
 
@@ -31,8 +30,8 @@ registerBlockType('ifc-ds/breadcrumb', {
                     <TextComponent
                         key="current"
                         content={currentPageTitle}
-                        textType={linkSize === 'small' ? 'detail' : 'body'}
-                        weight="semibold"
+                        textType="detail"
+                        weight="regular"
                         color="neutral"
                         className="ifc-ds-breadcrumb__current"
                         aria-current="page"
@@ -47,14 +46,8 @@ registerBlockType('ifc-ds/breadcrumb', {
                     url={item.url}
                     icon={item.icon || null}
                     iconPosition="left"
-                    type={linkType}
+                    type="neutral"
                     size={linkSize}
-                    padding={{
-                        top: '1',
-                        right: '2', 
-                        bottom: '1',
-                        left: '2'
-                    }}
                     className="ifc-ds-breadcrumb__link"
                     onClick={(e) => e.preventDefault()}
                 />
@@ -111,16 +104,6 @@ registerBlockType('ifc-ds/breadcrumb', {
                     </PanelBody>
 
                     <PanelBody title={'Aparência dos Links'}>
-                        <SelectControl
-                            label={'Tipo dos Links'}
-                            value={linkType}
-                            options={[
-                                { label: 'Neutro', value: 'neutral' },
-                                { label: 'Primário', value: 'primary' }
-                            ]}
-                            onChange={(value) => setAttributes({ linkType: value })}
-                        />
-
                         <SelectControl
                             label={'Tamanho dos Links'}
                             value={linkSize}

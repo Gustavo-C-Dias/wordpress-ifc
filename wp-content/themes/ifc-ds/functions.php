@@ -18,13 +18,6 @@ function ifc_ds_theme_setup() {
 }
 add_action('after_setup_theme', 'ifc_ds_theme_setup');
 
-// Registra templates customizados
-function ifc_ds_register_page_templates($templates) {
-    $templates['page-curso.php'] = 'Página de Curso IFC';
-    return $templates;
-}
-add_filter('theme_page_templates', 'ifc_ds_register_page_templates');
-
 // Registra categoria para padrões de blocos
 function ifc_ds_register_block_pattern_categories() {
     register_block_pattern_category(
@@ -57,8 +50,6 @@ add_action('init', 'ifc_ds_register_block_patterns');
  */
 function ifc_ds_get_curso_pattern_content() {
     return '
-<!-- wp:ifc-ds/header /-->
-
 <!-- wp:ifc-ds/layout-container {"containerType":"fixed","maxColumns":12} -->
     <!-- wp:group -->
     <div class="wp-block-group ifc-ds-curso-breadcrumb col-span-full">
@@ -97,9 +88,17 @@ function ifc_ds_get_curso_pattern_content() {
 
     <!-- wp:group -->
     <div class="wp-block-group ifc-ds-curso-main">
-        <!-- wp:heading {"level":1} -->
-            <h1 class="wp-block-heading">Nome do Curso</h1>
-        <!-- /wp:heading -->
+        <!-- wp:group -->
+        <div class="wp-block-group ifc-ds-curso-heading">
+            <!-- wp:image {"sizeSlug":"full","linkDestination":"none"} -->
+            <figure class="wp-block-image size-full"><img src="' . esc_url( get_template_directory_uri() . '/assets/img/bsi.png' ) . '" alt="Imagem do curso"/></figure>
+            <!-- /wp:image -->
+
+            <!-- wp:ifc-ds/text {"content":"Nome do Curso","textType":"title","weight":"semibold"} /-->
+
+            <!-- wp:ifc-ds/text {"content":"' . esc_html( 'Atualizado em ' . date_i18n( 'j \d\e F \d\e Y', get_post_modified_time( 'U' ) ) ) . '","textType":"detail","weight":"regular","className":"ifc-ds-text--neutral ifc-ds-text--align-left"} /-->
+        </div>
+        <!-- /wp:group -->
 
         <!-- wp:ifc-ds/container {"backgroundColor":"neutral-200","padding":{"top":"4","right":"4","bottom":"4","left":"4"}} -->
             <!-- wp:group -->
@@ -107,8 +106,7 @@ function ifc_ds_get_curso_pattern_content() {
                 <!-- wp:group -->
                 <div class="wp-block-group ifc-ds-info-item">
                     <!-- wp:paragraph -->
-                        <p>Duração</p>
-                        <p>4 anos</p>
+                        <p>Duração</p><p>4 anos</p>
                     <!-- /wp:paragraph -->
                 </div>
                 <!-- /wp:group -->
@@ -116,8 +114,7 @@ function ifc_ds_get_curso_pattern_content() {
                 <!-- wp:group -->
                 <div class="wp-block-group ifc-ds-info-item">
                     <!-- wp:paragraph -->
-                        <p>Modalidade</p>
-                        <p>Presencial</p>
+                        <p>Modalidade</p><p>Presencial</p>
                     <!-- /wp:paragraph -->
                 </div>
                 <!-- /wp:group -->
@@ -125,8 +122,7 @@ function ifc_ds_get_curso_pattern_content() {
                 <!-- wp:group -->
                 <div class="wp-block-group ifc-ds-info-item">
                     <!-- wp:paragraph -->
-                        <p>Carga Horária</p>
-                        <p>3.200h</p>
+                        <p>Carga Horária</p><p>3.200h</p>
                     <!-- /wp:paragraph -->
                 </div>
                 <!-- /wp:group -->
@@ -134,8 +130,7 @@ function ifc_ds_get_curso_pattern_content() {
                 <!-- wp:group -->
                 <div class="wp-block-group ifc-ds-info-item">
                     <!-- wp:paragraph -->
-                        <p>Vagas</p>
-                        <p>40</p>
+                        <p>Vagas</p><p>40</p>
                     <!-- /wp:paragraph -->
                 </div>
                 <!-- /wp:group -->
@@ -168,9 +163,7 @@ function ifc_ds_get_curso_pattern_content() {
         <!-- /wp:paragraph -->
     </div>
     <!-- /wp:group -->
-<!-- /wp:ifc-ds/layout-container -->
-
-<!-- wp:ifc-ds/footer /-->';
+<!-- /wp:ifc-ds/layout-container -->';
 }
 
 function ifc_ds_add_frontend_curso_grid_styles() {

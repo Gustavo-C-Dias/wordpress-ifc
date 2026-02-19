@@ -156,7 +156,7 @@
  */
 @mixin ifc-card {
   background-color: var(--ifc-color-bg-primary);
-  border: var(--ifc-border-width-1) solid var(--ifc-border-default);
+  border: var(--ifc-border-width-1) solid var(--ifc-color-border-default);
   @include ifc-rounded(lg);
   @include ifc-shadow(base);
   padding: var(--ifc-card-padding);
@@ -168,9 +168,9 @@
 @mixin ifc-skeleton {
   background: linear-gradient(
     90deg,
-    var(--ifc-bg-secondary) 25%,
-    var(--ifc-bg-tertiary) 50%,
-    var(--ifc-bg-secondary) 75%
+    var(--ifc-color-bg-secondary) 25%,
+    var(--ifc-color-bg-tertiary) 50%,
+    var(--ifc-color-bg-secondary) 75%
   );
   background-size: 200% 100%;
   animation: ifc-skeleton-loading 1.5s infinite;

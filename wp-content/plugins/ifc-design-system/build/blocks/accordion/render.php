@@ -8,7 +8,6 @@
  */
 
 $title = $attributes['title'] ?? 'Título do Accordion';
-$items = $attributes['items'] ?? [];
 $is_open = $attributes['isOpen'] ?? false;
 $unique_id = 'accordion-' . wp_unique_id();
 
@@ -32,9 +31,7 @@ $title_classes = ifc_ds_build_text_classes('body', 'bold', 'primary', 'left', 'i
         aria-hidden="<?php echo $is_open ? 'false' : 'true'; ?>"
     >
         <div class="ifc-ds-accordion__items">
-            <?php foreach ($items as $item): ?>
-                <?php echo ifc_ds_render_accordion_item($item, $is_open); ?>
-            <?php endforeach; ?>
+            <?php echo $content; ?>
         </div>
     </div>
 </div>

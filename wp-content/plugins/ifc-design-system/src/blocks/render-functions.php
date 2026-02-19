@@ -12,34 +12,6 @@ if (!defined('ABSPATH')) {
 }
 
 /**
- * Função para renderizar item do accordion
- * Usa funções centralizadas de utils.php
- */
-if (!function_exists('ifc_ds_render_accordion_item')) {
-    function ifc_ds_render_accordion_item($item, $is_open = false) {
-        if ($item['type'] === 'link') {
-            return ifc_ds_render_link([
-                'label' => $item['label'] ?? 'Link',
-                'url' => $item['url'] ?? '#',
-                'type' => 'primary',
-                'size' => 'detail',
-                'class' => 'ifc-ds-accordion__link',
-                'wrapper' => true,
-                'tabindex' => $is_open ? null : '-1'
-            ]);
-        } else {
-            // Usa função centralizada para construir classes
-            $classes = ifc_ds_build_text_classes('body', 'regular', 'neutral', 'left', 'ifc-ds-accordion__text');
-            return sprintf(
-                '<p class="%s">%s</p>',
-                esc_attr($classes),
-                esc_html($item['content'] ?? '')
-            );
-        }
-    }
-}
-
-/**
  * Função para renderizar link do skip navigation do header
  * DEPRECATED: Use ifc_ds_render_navigation_skip_link() de utils.php
  */
@@ -62,12 +34,6 @@ if (!function_exists('ifc_ds_render_breadcrumb_link')) {
             'icon_position' => 'left',
             'type' => $link_type,
             'size' => $link_size,
-            'padding' => [
-                'top' => '1',
-                'right' => '2',
-                'bottom' => '1',
-                'left' => '2'
-            ],
             'class' => 'ifc-ds-breadcrumb__link',
             'wrapper' => true
         ]);
@@ -87,7 +53,7 @@ if (!function_exists('ifc_ds_render_skip_navigation_link')) {
 
 /**
  * Função para renderizar componente Text
- * Wrapper para manter compatibilidade - usa ifc_ds_render_text() de utils.php
+ * Wrapper para uso interno - usa ifc_ds_render_text() de utils.php
  */
 if (!function_exists('render_text_component')) {
     function render_text_component($args) {

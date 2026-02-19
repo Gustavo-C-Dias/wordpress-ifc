@@ -3,7 +3,6 @@
 
 // Breadcrumb Component Styles
 .ifc-ds-breadcrumb {
-    
     &__list {
         display: flex;
         flex-wrap: wrap;
@@ -11,50 +10,22 @@
         list-style: none;
         margin: 0;
         padding: 0;
-        font-family: 'Open Sans', sans-serif;
     }
     
     &__item {
         display: flex;
         align-items: center;
-        
-        // Os links do breadcrumb herdam automaticamente os estilos do componente Link
-        // Apenas customizações específicas para breadcrumb
-        .ifc-ds-link {
-            .ifc-ds-link__element {
-                font-weight: 400; // Mais leve para breadcrumb
-                border-radius: 4px;
-            }
-        }
-        
-        // Item atual (não é link)
-        &--current {
-            .ifc-ds-breadcrumb__current {
-                color: var(--ifc-color-neutral-600);
-                font-weight: 600;
-                font-size: inherit;
-                line-height: 1.2;
-            }
-        }
     }
     
     &__separator {
         margin: 0 var(--ifc-space-2);
         color: var(--ifc-color-neutral-400);
-        font-weight: 400;
         user-select: none;
         
         // Separadores comuns
         &:before {
             content: attr(data-separator);
         }
-    }
-    
-    &__current {
-        padding: var(--ifc-space-1) var(--ifc-space-2);
-        border-radius: 4px;
-        background-color: var(--ifc-color-neutral-100);
-        border: 1px solid var(--ifc-color-neutral-300);
     }
     
     // Estados de acessibilidade
@@ -69,61 +40,20 @@
     // Responsividade
     @media (max-width: 768px) {
         &__list {
-            flex-direction: column;
-            align-items: flex-start;
-            gap: var(--ifc-space-1);
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            overflow-y: hidden;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+
+            &::-webkit-scrollbar {
+                display: none;
+            }
         }
         
         &__item {
-            width: 100%;
-        }
-        
-        &__separator {
-            display: none;
-        }
-        
-        // Adicionar setas para mobile
-        &__item:not(:last-child):after {
-            content: "↓";
-            margin-left: auto;
-            color: var(--ifc-color-neutral-400);
-            font-size: 12px;
-        }
-    }
-    
-    // Variações de estilo para o componente todo
-    &--compact {
-        .ifc-ds-breadcrumb__separator {
-            margin: 0 var(--ifc-space-1);
-        }
-        
-        .ifc-ds-link__element,
-        .ifc-ds-breadcrumb__current {
-            padding: var(--ifc-space-1);
-        }
-    }
-    
-    // Estado para breadcrumb longo
-    &--overflow {
-        .ifc-ds-breadcrumb__list {
-            overflow-x: auto;
-            white-space: nowrap;
-            
-            &::-webkit-scrollbar {
-                height: 4px;
-            }
-            
-            &::-webkit-scrollbar-track {
-                background: var(--ifc-color-neutral-200);
-            }
-            
-            &::-webkit-scrollbar-thumb {
-                background: var(--ifc-color-neutral-400);
-                border-radius: 2px;
-            }
-        }
-        
-        .ifc-ds-breadcrumb__item {
+            width: auto;
             flex-shrink: 0;
         }
     }

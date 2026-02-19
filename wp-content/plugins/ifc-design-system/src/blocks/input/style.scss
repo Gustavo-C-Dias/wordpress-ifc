@@ -19,12 +19,12 @@
 .ifc-ds-input__label {
     @include ifc-text(sm, medium);
     display: block;
-    color: var(--ifc-text-primary);
+    color: var(--ifc-color-text-primary);
     margin-bottom: var(--ifc-space-1);
     
     .ifc-ds-input__required {
-        color: var(--ifc-text-error);
-        margin-left: var(--ifc-space-0_5);
+        color: var(--ifc-color-error);
+        margin-left: var(--ifc-space-0-5);
     }
 }
 
@@ -40,7 +40,7 @@
     left: var(--ifc-space-3);
     top: 50%;
     transform: translateY(-50%);
-    color: var(--ifc-text-tertiary);
+    color: var(--ifc-color-text-muted);
     pointer-events: none;
     z-index: 1;
     
@@ -66,8 +66,8 @@
 // Caption
 .ifc-ds-input__caption {
     @include ifc-text(xs, normal, tight);
-    color: var(--ifc-text-tertiary);
-    margin-top: var(--ifc-space-0_5);
+    color: var(--ifc-color-text-muted);
+    margin-top: var(--ifc-space-0-5);
 }
 
 // Variações de tamanho
@@ -120,23 +120,23 @@
         border-width: var(--ifc-border-width-2);
         
         &:focus {
-            background-color: var(--ifc-bg-primary);
+            background-color: var(--ifc-color-bg-primary);
         }
     }
 }
 
 .ifc-ds-input-wrapper--filled {
     .ifc-ds-input {
-        background-color: var(--ifc-bg-secondary);
+        background-color: var(--ifc-color-bg-secondary);
         border-color: transparent;
         
         &:hover:not(:disabled) {
-            background-color: var(--ifc-bg-tertiary);
+            background-color: var(--ifc-color-bg-tertiary);
         }
         
         &:focus {
-            background-color: var(--ifc-bg-primary);
-            border-color: var(--ifc-border-focus);
+            background-color: var(--ifc-color-bg-primary);
+            border-color: var(--ifc-color-border-focus);
         }
     }
 }
@@ -144,31 +144,31 @@
 // Estados de validação
 .ifc-ds-input-wrapper--error {
     .ifc-ds-input {
-        border-color: var(--ifc-border-error);
+        border-color: var(--ifc-color-error);
         
         &:focus {
-            border-color: var(--ifc-border-error);
-            box-shadow: 0 0 0 3px rgba(var(--ifc-color-error-500), 0.1);
+            border-color: var(--ifc-color-error);
+            box-shadow: 0 0 0 3px color-mix(in srgb, var(--ifc-color-error) 10%, transparent);
         }
     }
     
     .ifc-ds-input__caption {
-        color: var(--ifc-text-error);
+        color: var(--ifc-color-error);
     }
 }
 
 .ifc-ds-input-wrapper--success {
     .ifc-ds-input {
-        border-color: var(--ifc-border-success);
+        border-color: var(--ifc-color-success);
         
         &:focus {
-            border-color: var(--ifc-border-success);
-            box-shadow: 0 0 0 3px rgba(var(--ifc-color-success-500), 0.1);
+            border-color: var(--ifc-color-success);
+            box-shadow: 0 0 0 3px color-mix(in srgb, var(--ifc-color-success) 10%, transparent);
         }
     }
     
     .ifc-ds-input__caption {
-        color: var(--ifc-text-success);
+        color: var(--ifc-color-success);
     }
 }
 

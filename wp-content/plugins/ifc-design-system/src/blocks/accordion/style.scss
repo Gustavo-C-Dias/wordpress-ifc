@@ -4,28 +4,20 @@
 .ifc-ds-accordion {
   margin: var(--ifc-space-4) 0;
   border-top: 2px solid var(--ifc-color-primary-400);
-  border-left: var(--ifc-border-width-1) solid var(--ifc-border-default);
-  border-right: var(--ifc-border-width-1) solid var(--ifc-border-default);
-  border-bottom: var(--ifc-border-width-1) solid var(--ifc-border-default);
-  @include ifc-rounded(md);
+  border-bottom: 1px solid var(--ifc-color-primary-400);
   overflow: hidden;
-  background: var(--ifc-bg-primary);
+  background: var(--ifc-color-bg-primary);
   
   &__toggle {
     @include ifc-reset-button;
-    @include ifc-text(base, bold);
     @include ifc-transition(background-color);
     @include ifc-flex(row, center, space-between);
     
     width: 100%;
-    padding: var(--ifc-space-4);
-    background: var(--ifc-bg-secondary);
-    color: var(--ifc-text-primary);
+    padding: 8px;
+    background: var(--ifc-color-bg-primary);
+    color: var(--ifc-color-text-primary);
     text-align: left;
-    
-    &:hover {
-      background: var(--ifc-bg-tertiary);
-    }
     
     &.is-open .ifc-ds-accordion__icon {
       transform: rotate(180deg);
@@ -39,11 +31,11 @@
   &__icon {
     @include ifc-transition(transform);
     @include ifc-text(sm);
-    color: var(--ifc-text-tertiary);
+    color: var(--ifc-color-text-muted);
   }
   
   &__content {
-    background: var(--ifc-bg-primary);
+    background: var(--ifc-color-bg-primary);
     overflow: hidden;
     @include ifc-transition(all, var(--ifc-duration-300));
     max-height: 0;
@@ -51,9 +43,12 @@
     
     &.is-open {
       max-height: 1000px;
-      padding: var(--ifc-space-4);
       border-top: 1px solid var(--ifc-color-primary-400);
     }
+  }
+
+  &__title-text {
+    @include ifc-text(base, bold);
   }
   
   &__items {
@@ -61,10 +56,7 @@
     gap: 0;
     
     > * {
-      padding-left: var(--ifc-space-3);
-      padding-top: var(--ifc-space-1);
-      padding-right: var(--ifc-space-1);
-      padding-bottom: var(--ifc-space-1);
+      padding: 8px;
       
       &:not(:last-child) {
         border-bottom: 1px solid var(--ifc-color-primary-400);
@@ -75,10 +67,8 @@
   &__text {
     @include ifc-text(sm, normal, tight);
     margin: 0;
-    background: var(--ifc-bg-secondary);
-    @include ifc-rounded(base);
-    color: var(--ifc-text-secondary);
-    border-left: var(--ifc-border-width-4) solid var(--ifc-border-default);
+    background: var(--ifc-color-bg-secondary);
+    color: var(--ifc-color-text-secondary);
   }
   
   &__link {
@@ -86,7 +76,6 @@
     // Apenas customizações específicas para o contexto do accordion
     
     .ifc-ds-link__element {
-      border-radius: 0.25rem;
       transition: all 0.2s ease;
       
       &:hover {
@@ -105,12 +94,11 @@
     margin: 0.5rem 0;
     
     &__toggle {
-      padding: 0.75rem;
-      font-size: 15px;
+      padding: 8px;
     }
     
     &__content.is-open {
-      padding: 0.75rem;
+      padding: 8px;
     }
     
     &__text {

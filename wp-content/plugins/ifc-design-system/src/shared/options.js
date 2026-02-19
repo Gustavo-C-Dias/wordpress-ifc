@@ -21,7 +21,7 @@ export {
     shadowOptions
 } from './options.generated.js';
 
-// Alias para compatibilidade
+// Aliases de conveniência para uso nos blocos
 export { spacingOptions as detailedSpacingOptions } from './options.generated.js';
 export { allColorOptions as colorOptions } from './options.generated.js';
 

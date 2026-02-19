@@ -78,6 +78,9 @@ $govbr-spacing: (
   position: relative;
   
   &__content {
+    display: grid;
+    grid-template-columns: repeat(var(--grid-columns), minmax(0, 1fr));
+    column-gap: var(--grid-gutter);
     width: 100%;
     min-height: 50px;
   }
@@ -87,7 +90,7 @@ $govbr-spacing: (
     max-width: 100%;
     
     .ifc-ds-layout-container__content {
-      display: block;
+      display: grid;
       width: 100%;
       padding: 0 map-get(map-get($govbr-grid-configs, mobile-portrait), margin);
 
@@ -112,7 +115,7 @@ $govbr-spacing: (
   // Container fixo
   &--fixed {
     .ifc-ds-layout-container__content {
-      display: block;
+      display: grid;
       margin: 0 auto;
       max-width: calc(100% - #{2 * map-get(map-get($govbr-grid-configs, mobile-portrait), margin)});
       padding: 0 map-get(map-get($govbr-grid-configs, mobile-portrait), margin);
@@ -231,6 +234,9 @@ $govbr-spacing: (
     }
     
     &__content {
+      display: block;
+      grid-template-columns: none;
+      column-gap: 0;
       position: relative;
       min-height: 100px;
       

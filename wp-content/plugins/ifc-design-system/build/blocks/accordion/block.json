@@ -16,22 +16,6 @@
       "type": "string",
       "default": "Título do Accordion"
     },
-    "items": {
-      "type": "array",
-      "default": [
-        {
-          "id": 1,
-          "type": "text",
-          "content": "Este é um texto de exemplo"
-        },
-        {
-          "id": 2,
-          "type": "link",
-          "label": "Link de Exemplo",
-          "url": "https://exemplo.com"
-        }
-      ]
-    },
     "isOpen": {
       "type": "boolean",
       "default": false

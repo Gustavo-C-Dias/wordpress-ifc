@@ -46,7 +46,7 @@
   
   /* Indicador visual de que o bloco está selecionado */
   [data-type^="ifc-ds/"].is-selected {
-    outline: var(--ifc-border-width-2) solid var(--ifc-bg-accent);
+    outline: var(--ifc-border-width-2) solid var(--ifc-color-border-focus);
     outline-offset: var(--ifc-space-1);
   }
 }
@@ -63,7 +63,7 @@
     --ifc-border-width-2: 3px;
     
     /* Aumentar contraste das sombras de foco */
-    --ifc-shadow-focus: 0 0 0 4px rgba(var(--ifc-color-primary-600), 0.8);
+    --ifc-shadow-focus: 0 0 0 4px color-mix(in srgb, var(--ifc-color-primary-600) 80%, transparent);
   }
 }
 
@@ -132,10 +132,10 @@
   @include ifc-text(sm, medium);
   
   min-height: 100px;
-  border: var(--ifc-border-width-2) dashed var(--ifc-border-default);
+  border: var(--ifc-border-width-2) dashed var(--ifc-color-border-default);
   @include ifc-rounded(base);
-  color: var(--ifc-text-tertiary);
-  background-color: var(--ifc-bg-secondary);
+  color: var(--ifc-color-text-muted);
+  background-color: var(--ifc-color-bg-secondary);
   
   &__icon {
     font-size: var(--ifc-font-size-2xl);

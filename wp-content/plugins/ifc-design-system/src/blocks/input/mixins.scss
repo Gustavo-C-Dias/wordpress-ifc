@@ -14,32 +14,32 @@
   @include ifc-transition(all);
   
   width: 100%;
-  border: var(--ifc-border-width-1) solid var(--ifc-border-default);
-  background-color: var(--ifc-bg-primary);
-  color: var(--ifc-text-primary);
+  border: var(--ifc-border-width-1) solid var(--ifc-color-border-default);
+  background-color: var(--ifc-color-bg-primary);
+  color: var(--ifc-color-text-primary);
   outline: none;
   
   &::placeholder {
-    color: var(--ifc-text-placeholder);
+    color: var(--ifc-color-neutral-500);
   }
   
   &:hover:not(:disabled) {
-    border-color: var(--ifc-border-hover);
+    border-color: var(--ifc-color-border-hover);
   }
   
   &:focus {
-    border-color: var(--ifc-border-focus);
+    border-color: var(--ifc-color-border-focus);
     box-shadow: var(--ifc-shadow-focus);
   }
   
   &:disabled {
-    background-color: var(--ifc-bg-disabled);
-    border-color: var(--ifc-border-disabled);
-    color: var(--ifc-text-disabled);
+    background-color: var(--ifc-color-bg-secondary);
+    border-color: var(--ifc-color-border-default);
+    color: var(--ifc-color-neutral-400);
     cursor: not-allowed;
     
     &::placeholder {
-      color: var(--ifc-text-disabled);
+      color: var(--ifc-color-neutral-400);
     }
   }
 }
