@@ -18,13 +18,15 @@
     }
     
     &__separator {
+        display: inline-flex;
+        align-items: center;
         margin: 0 var(--ifc-space-2);
         color: var(--ifc-color-neutral-400);
         user-select: none;
-        
-        // Separadores comuns
-        &:before {
-            content: attr(data-separator);
+
+        svg {
+            width: 14px;
+            height: 14px;
         }
     }
     

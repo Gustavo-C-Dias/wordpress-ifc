@@ -35,10 +35,6 @@
             "type": "string",
             "default": "Página Atual"
         },
-        "separator": {
-            "type": "string",
-            "default": "/"
-        },
         "linkType": {
             "type": "string",
             "default": "neutral",

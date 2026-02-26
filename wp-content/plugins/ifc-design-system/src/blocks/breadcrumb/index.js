@@ -20,9 +20,16 @@ registerBlockType('ifc-ds/breadcrumb', {
         const {
             items,
             currentPageTitle,
-            separator,
             linkSize
         } = attributes;
+
+        const renderSeparator = () => (
+            <span className="ifc-ds-breadcrumb__separator" aria-hidden="true">
+                <svg viewBox="0 0 20 20" role="presentation" focusable="false">
+                    <path d="M7 4l6 6-6 6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+            </span>
+        );
 
         const renderBreadcrumbLink = (item, isLast = false) => {
             if (isLast) {
@@ -93,14 +100,6 @@ registerBlockType('ifc-ds/breadcrumb', {
                             onChange={(value) => setAttributes({ currentPageTitle: value })}
                             placeholder="Ex: Curso de Informática"
                         />
-                        
-                        <TextControl
-                            label={'Separador'}
-                            value={separator}
-                            onChange={(value) => setAttributes({ separator: value })}
-                            placeholder="/"
-                            help={'Caractere usado para separar os itens'}
-                        />
                     </PanelBody>
 
                     <PanelBody title={'Aparência dos Links'}>
@@ -166,14 +165,7 @@ registerBlockType('ifc-ds/breadcrumb', {
                         {items.map((item, index) => (
                             <li key={item.id} className="ifc-ds-breadcrumb__item">
                                 {renderBreadcrumbLink(item)}
-                                {index < items.length && (
-                                    <span 
-                                        className="ifc-ds-breadcrumb__separator"
-                                        aria-hidden="true"
-                                    >
-                                        {separator}
-                                    </span>
-                                )}
+                                {index < items.length && renderSeparator()}
                             </li>
                         ))}
                         <li className="ifc-ds-breadcrumb__item ifc-ds-breadcrumb__item--current">

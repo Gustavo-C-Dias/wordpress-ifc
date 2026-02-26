@@ -1,12 +1,11 @@
 /**
- * IFC Design System - Opções Geradas Automaticamente
+ * IFC Design System
  * 
  * ATENÇÃO: Este arquivo é gerado automaticamente pelo script generate-options.js
  * 
  * Para modificar as opções, edite o theme.json e execute:
  * npm run generate:options
  * 
- * Gerado em: 2026-02-18T14:07:29.578Z
  */
 import { __ } from '@wordpress/i18n';
 

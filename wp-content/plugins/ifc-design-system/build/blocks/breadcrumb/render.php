@@ -12,9 +12,10 @@ $items = $attributes['items'] ?? [
     ['label' => 'Início', 'url' => '/', 'icon' => 'admin-home', 'id' => 1]
 ];
 $current_page_title = $attributes['currentPageTitle'] ?? 'Página Atual';
-$separator = $attributes['separator'] ?? '/';
 $link_type = 'neutral';
 $link_size = $attributes['linkSize'] ?? 'small';
+
+$separator_svg = '<svg viewBox="0 0 20 20" role="presentation" focusable="false" aria-hidden="true"><path d="M7 4l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>';
 
 // Função ifc_ds_render_breadcrumb_link está definida em render-functions.php
 
@@ -31,7 +32,7 @@ $classes = ['ifc-ds-breadcrumb'];
                 ?>
                 <?php if ($index < count($items)): ?>
                     <span class="ifc-ds-breadcrumb__separator" aria-hidden="true">
-                        <?php echo esc_html($separator); ?>
+                        <?php echo $separator_svg; ?>
                     </span>
                 <?php endif; ?>
             </li>
