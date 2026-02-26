@@ -18,25 +18,18 @@ import { __ } from '@wordpress/i18n';
  */
 export const spacingOptions = [
     { label: __('0', 'ifc-design-system'), value: '0' },
-    { label: __('1px', 'ifc-design-system'), value: 'px' },
-    { label: __('0.5 (2px)', 'ifc-design-system'), value: '0-5' },
-    { label: __('1 (4px)', 'ifc-design-system'), value: '1' },
-    { label: __('1.5 (6px)', 'ifc-design-system'), value: '1-5' },
-    { label: __('2 (8px)', 'ifc-design-system'), value: '2' },
-    { label: __('2.5 (10px)', 'ifc-design-system'), value: '2-5' },
-    { label: __('3 (12px)', 'ifc-design-system'), value: '3' },
-    { label: __('3.5 (14px)', 'ifc-design-system'), value: '3-5' },
-    { label: __('4 (16px)', 'ifc-design-system'), value: '4' },
-    { label: __('5 (20px)', 'ifc-design-system'), value: '5' },
-    { label: __('6 (24px)', 'ifc-design-system'), value: '6' },
-    { label: __('7 (28px)', 'ifc-design-system'), value: '7' },
-    { label: __('8 (32px)', 'ifc-design-system'), value: '8' },
-    { label: __('9 (36px)', 'ifc-design-system'), value: '9' },
-    { label: __('10 (40px)', 'ifc-design-system'), value: '10' },
-    { label: __('12 (48px)', 'ifc-design-system'), value: '12' },
-    { label: __('16 (64px)', 'ifc-design-system'), value: '16' },
-    { label: __('20 (80px)', 'ifc-design-system'), value: '20' },
-    { label: __('24 (96px)', 'ifc-design-system'), value: '24' }
+    { label: __('0.5 (4px)', 'ifc-design-system'), value: '0-5' },
+    { label: __('1 (8px)', 'ifc-design-system'), value: '1' },
+    { label: __('1.5 (12px)', 'ifc-design-system'), value: '1-5' },
+    { label: __('2 (16px)', 'ifc-design-system'), value: '2' },
+    { label: __('3 (24px)', 'ifc-design-system'), value: '3' },
+    { label: __('4 (32px)', 'ifc-design-system'), value: '4' },
+    { label: __('5 (40px)', 'ifc-design-system'), value: '5' },
+    { label: __('6 (48px)', 'ifc-design-system'), value: '6' },
+    { label: __('7 (56px)', 'ifc-design-system'), value: '7' },
+    { label: __('8 (64px)', 'ifc-design-system'), value: '8' },
+    { label: __('9 (72px)', 'ifc-design-system'), value: '9' },
+    { label: __('10 (80px)', 'ifc-design-system'), value: '10' }
 ];
 
 /**
@@ -109,32 +102,20 @@ export const neutralColorOptions = [
  * Tamanhos de fonte (do theme.json typography.fontSizes)
  */
 export const fontSizeOptions = [
-    { label: __('Extra Small (0.75rem)', 'ifc-design-system'), value: 'xs' },
-    { label: __('Small (0.875rem)', 'ifc-design-system'), value: 'sm' },
-    { label: __('Base (1rem)', 'ifc-design-system'), value: 'base' },
-    { label: __('Large (1.125rem)', 'ifc-design-system'), value: 'lg' },
-    { label: __('Extra Large (1.25rem)', 'ifc-design-system'), value: 'xl' },
-    { label: __('2X Large (1.5rem)', 'ifc-design-system'), value: '2xl' },
-    { label: __('3X Large (1.875rem)', 'ifc-design-system'), value: '3xl' },
-    { label: __('4X Large (2.25rem)', 'ifc-design-system'), value: '4xl' }
+    { label: __('1.75 (14px)', 'ifc-design-system'), value: '1-75' },
+    { label: __('2 (16px)', 'ifc-design-system'), value: '2' },
+    { label: __('3 (24px)', 'ifc-design-system'), value: '3' },
+    { label: __('4 (32px)', 'ifc-design-system'), value: '4' }
 ];
 
 /**
  * Famílias de fonte (do theme.json typography.fontFamilies)
  */
 export const fontFamilyOptions = [
-    { label: __('Primary Font Family', 'ifc-design-system'), value: 'primary' },
-    { label: __('Heading Font Family', 'ifc-design-system'), value: 'heading' },
-    { label: __('Monospace Font Family', 'ifc-design-system'), value: 'monospace' }
+    { label: __('Primary Font Family', 'ifc-design-system'), value: 'primary' }
 ];
 
 /**
  * Sombras (do theme.json shadow.presets)
  */
-export const shadowOptions = [
-    { label: __('Small', 'ifc-design-system'), value: 'sm' },
-    { label: __('Base', 'ifc-design-system'), value: 'base' },
-    { label: __('Medium', 'ifc-design-system'), value: 'md' },
-    { label: __('Large', 'ifc-design-system'), value: 'lg' },
-    { label: __('Extra Large', 'ifc-design-system'), value: 'xl' }
-];
+export const shadowOptions = [];

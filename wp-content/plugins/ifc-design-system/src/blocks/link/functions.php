@@ -69,7 +69,7 @@ if (!function_exists('ifc_ds_render_link')) {
         }
 
         $padding_style = sprintf(
-            'padding: var(--ifc-space-%s) var(--ifc-space-%s) var(--ifc-space-%s) var(--ifc-space-%s);',
+            'padding: var(--ifc-spacing-%s) var(--ifc-spacing-%s) var(--ifc-spacing-%s) var(--ifc-spacing-%s);',
             esc_attr($args['padding']['top'] ?? '0'),
             esc_attr($args['padding']['right'] ?? '0'),
             esc_attr($args['padding']['bottom'] ?? '0'),

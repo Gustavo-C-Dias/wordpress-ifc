@@ -1,0 +1,155 @@
+/**
+ * IFC Design System - Design Tokens Globais
+ * 
+ * Este arquivo define as variáveis CSS customizadas (--ifc-*)
+ * que são utilizadas por todos os componentes do sistema de design
+ */
+
+:root {
+  /* ==========================================
+   * PALETA DE CORES
+   * ========================================== */
+  
+  --ifc-color-primary-100: var(--wp--preset--color--primary-100);
+  --ifc-color-primary-200: var(--wp--preset--color--primary-200);
+  --ifc-color-primary-300: var(--wp--preset--color--primary-300);
+  --ifc-color-primary-400: var(--wp--preset--color--primary-400);
+  --ifc-color-primary-500: var(--wp--preset--color--primary-500);
+  --ifc-color-primary-600: var(--wp--preset--color--primary-600);
+  --ifc-color-primary-700: var(--wp--preset--color--primary-700);
+
+  --ifc-color-secondary-100: var(--wp--preset--color--secondary-100);
+  --ifc-color-secondary-200: var(--wp--preset--color--secondary-200);
+  --ifc-color-secondary-300: var(--wp--preset--color--secondary-300);
+  --ifc-color-secondary-400: var(--wp--preset--color--secondary-400);
+  --ifc-color-secondary-500: var(--wp--preset--color--secondary-500);
+  --ifc-color-secondary-600: var(--wp--preset--color--secondary-600);
+  --ifc-color-secondary-700: var(--wp--preset--color--secondary-700);
+
+  --ifc-color-neutral-100: var(--wp--preset--color--neutral-100);
+  --ifc-color-neutral-200: var(--wp--preset--color--neutral-200);
+  --ifc-color-neutral-300: var(--wp--preset--color--neutral-300);
+  --ifc-color-neutral-400: var(--wp--preset--color--neutral-400);
+  --ifc-color-neutral-500: var(--wp--preset--color--neutral-500);
+  --ifc-color-neutral-600: var(--wp--preset--color--neutral-600);
+  --ifc-color-neutral-700: var(--wp--preset--color--neutral-700);
+
+  --ifc-color-error: #DC3545;
+  --ifc-color-success: #28A745;
+
+  /* ==========================================
+   * TIPOGRAFIA
+   * ========================================== */
+  
+  --ifc-font-family: var(--wp--preset--font-family--primary);
+
+  --ifc-font-size-1-75: var(--wp--preset--font-size--1-75);
+  --ifc-font-size-2: var(--wp--preset--font-size--2);
+  --ifc-font-size-3: var(--wp--preset--font-size--3);
+  --ifc-font-size-4: var(--wp--preset--font-size--4);
+
+  --ifc-font-weight-regular: 400;
+  --ifc-font-weight-semibold: 600;
+  --ifc-font-weight-bold: 700;
+
+  /* ==========================================
+   * ESPAÇAMENTO
+   * ========================================== */
+   
+  --ifc-spacing-0: var(--wp--preset--spacing--0);
+  --ifc-spacing-0-5: var(--wp--preset--spacing--0-5);
+  --ifc-spacing-1: var(--wp--preset--spacing--1);
+  --ifc-spacing-2: var(--wp--preset--spacing--2);
+  --ifc-spacing-3: var(--wp--preset--spacing--3);
+  --ifc-spacing-4: var(--wp--preset--spacing--4);
+  --ifc-spacing-5: var(--wp--preset--spacing--5);
+  --ifc-spacing-6: var(--wp--preset--spacing--6);
+  --ifc-spacing-7: var(--wp--preset--spacing--7);
+  --ifc-spacing-8: var(--wp--preset--spacing--8);
+  --ifc-spacing-9: var(--wp--preset--spacing--9);
+  --ifc-spacing-10: var(--wp--preset--spacing--10);
+
+  /* ==========================================
+   * BORDAS
+   * ========================================== */
+   
+  /* Border Widths */
+  --ifc-border-width-0-0: 0;
+  --ifc-border-width-0-1: 1px;
+  --ifc-border-width-0-25: 2px;
+  --ifc-border-width-0-5: 4px;
+  --ifc-border-width-1: 8px;
+
+  /* Border Radius */
+  --ifc-radius-0-5: 0.25rem;   /* 4px */
+  --ifc-radius-1: 0.5rem;      /* 8px */
+  --ifc-radius-2: 1rem;       /* 16px */
+  --ifc-radius-3: 1.5rem;     /* 24px */
+
+  /* ==========================================
+   * SOMBRAS
+   * ========================================== */
+
+  --ifc-shadow-none: none;
+  --ifc-shadow-base: 0 4px 8px 0 rgba(0, 0, 0, 0.12);
+  --ifc-shadow-focus: 0 0 0 2px var(--ifc-color-primary-600);
+
+  /* ==========================================
+   * ANIMAÇÃO
+   * ========================================== */
+   
+  /* Durations */
+  --ifc-transition-duration-1: 100ms;
+  --ifc-transition-duration-2: 200ms;
+  --ifc-transition-duration-3: 300ms;
+  --ifc-transition-duration-4: 400ms;
+
+  /* Easing */
+  --ifc-transition-type-linear: linear;
+  --ifc-transition-type-ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ifc-transition-type-ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ifc-transition-type-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* ==========================================
+   * Breakpoints
+   * ========================================== */
+
+  --ifc-screen-sm: 640px;
+  --ifc-screen-md: 768px;
+  --ifc-screen-lg: 1024px;
+  --ifc-screen-xl: 1280px;
+  --ifc-screen-2xl: 1536px;
+
+  /* ==========================================
+   * ACESSIBILIDADE
+   * ========================================== */
+   
+  --ifc-focus-ring-width: 2px;
+  --ifc-focus-ring-offset: 2px;
+  --ifc-focus-ring-color: var(--ifc-color-primary);
+  --ifc-contrast-min: 4.5;
+  --ifc-contrast-enhanced: 7;
+}
+
+/* ==========================================
+ * HIGH CONTRAST SUPPORT
+ * ========================================== */
+
+@media (prefers-contrast: high) {
+  :root {
+    --ifc-contrast-min: 7;
+  }
+}
+
+/* ==========================================
+ * REDUCED MOTION SUPPORT
+ * ========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --ifc-transition-duration-1: 0ms;
+    --ifc-transition-duration-2: 0ms;
+    --ifc-transition-duration-3: 0ms;
+    --ifc-transition-duration-4: 0ms;
+  }
+}

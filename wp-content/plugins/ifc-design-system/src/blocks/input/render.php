@@ -10,7 +10,6 @@ $input_args = [
     'input_id' => $attributes['inputId'] ?? '',
     'required' => $attributes['required'] ?? false,
     'disabled' => $attributes['disabled'] ?? false,
-    'size' => $attributes['size'] ?? 'medium',
     'variant' => $attributes['variant'] ?? 'default',
     'padding' => $attributes['padding'] ?? [
         'top' => '0',
@@ -26,7 +25,6 @@ $input_html = ifc_ds_render_input($input_args);
 // Classes CSS para o wrapper do bloco
 $wrapper_classes = [
     'ifc-ds-input-wrapper',
-    'ifc-ds-input-wrapper--' . $input_args['size'],
     'ifc-ds-input-wrapper--' . $input_args['variant']
 ];
 

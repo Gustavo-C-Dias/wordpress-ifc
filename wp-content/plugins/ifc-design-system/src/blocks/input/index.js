@@ -13,7 +13,6 @@ import { registerBlockType } from '@wordpress/blocks';
 
 // Importa opções centralizadas
 import { 
-    sizeOptions, 
     inputVariantOptions as variantOptions, 
     detailedSpacingOptions as spacingOptions,
     inputTypeOptions
@@ -34,7 +33,6 @@ const InputComponent = ({
     inputId = '',
     required = false,
     disabled = false,
-    size = 'medium',
     variant = 'default',
     padding = {},
     className = '',
@@ -44,7 +42,6 @@ const InputComponent = ({
 }) => {
     const wrapperClasses = [
         'ifc-ds-input-wrapper',
-        `ifc-ds-input-wrapper--${size}`,
         `ifc-ds-input-wrapper--${variant}`,
         icon ? 'ifc-ds-input-wrapper--with-icon' : '',
         disabled ? 'ifc-ds-input-wrapper--disabled' : '',
@@ -53,16 +50,15 @@ const InputComponent = ({
 
     const inputClasses = [
         'ifc-ds-input',
-        `ifc-ds-input--${size}`,
         `ifc-ds-input--${variant}`,
         icon ? 'ifc-ds-input--with-icon' : ''
     ].filter(Boolean).join(' ');
 
     const wrapperStyle = {
-        paddingTop: `var(--ifc-space-${(padding?.top || '0').replace('spacing-', '')})`,
-        paddingRight: `var(--ifc-space-${(padding?.right || '0').replace('spacing-', '')})`,
-        paddingBottom: `var(--ifc-space-${(padding?.bottom || '0').replace('spacing-', '')})`,
-        paddingLeft: `var(--ifc-space-${(padding?.left || '0').replace('spacing-', '')})`
+        paddingTop: `var(--ifc-spacing-${(padding?.top || '0').replace('spacing-', '')})`,
+        paddingRight: `var(--ifc-spacing-${(padding?.right || '0').replace('spacing-', '')})`,
+        paddingBottom: `var(--ifc-spacing-${(padding?.bottom || '0').replace('spacing-', '')})`,
+        paddingLeft: `var(--ifc-spacing-${(padding?.left || '0').replace('spacing-', '')})`
     };
 
     const uniqueId = inputId || `ifc-input-${Math.random().toString(36).substr(2, 9)}`;
@@ -119,7 +115,6 @@ registerBlockType('ifc-ds/input', {
             inputId,
             required,
             disabled,
-            size,
             variant,
             padding
         } = attributes;
@@ -191,13 +186,6 @@ registerBlockType('ifc-ds/input', {
 
                     <PanelBody title="Aparência" initialOpen={false}>
                         <SelectControl
-                            label="Tamanho"
-                            value={size}
-                            options={sizeOptions}
-                            onChange={(value) => setAttributes({ size: value })}
-                        />
-                        
-                        <SelectControl
                             label="Variante"
                             value={variant}
                             options={variantOptions}
@@ -262,7 +250,6 @@ registerBlockType('ifc-ds/input', {
                         inputId={inputId}
                         required={required}
                         disabled={disabled}
-                        size={size}
                         variant={variant}
                         padding={padding}
                         // Para visualização no editor

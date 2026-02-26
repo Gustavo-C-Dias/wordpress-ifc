@@ -8,6 +8,25 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
+// Função para formatar data em português
+function ifc_ds_format_date_pt_br($timestamp) {
+    // Se o timestamp for inválido ou 0, usa a data atual
+    if (!$timestamp || $timestamp <= 0) {
+        $timestamp = current_time('timestamp');
+    }
+    
+    $months_pt = [
+        'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
+        'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
+    ];
+    
+    $day = date('j', $timestamp);
+    $month = $months_pt[(int)date('n', $timestamp) - 1];
+    $year = date('Y', $timestamp);
+    
+    return sprintf('%d de %s de %d', $day, $month, $year);
+}
+
 // Suporte a recursos do WordPress
 function ifc_ds_theme_setup() {
     add_theme_support('title-tag');
@@ -15,8 +34,21 @@ function ifc_ds_theme_setup() {
     add_theme_support('wp-block-styles');
     add_theme_support('responsive-embeds');
     add_theme_support('editor-styles');
+    add_editor_style('assets/css/design-tokens.css');
 }
 add_action('after_setup_theme', 'ifc_ds_theme_setup');
+
+// Enqueue Google Fonts
+function ifc_ds_enqueue_fonts() {
+    wp_enqueue_style(
+        'ifc-ds-google-fonts',
+        'https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap',
+        array(),
+        null
+    );
+}
+add_action('wp_enqueue_scripts', 'ifc_ds_enqueue_fonts');
+add_action('admin_enqueue_scripts', 'ifc_ds_enqueue_fonts');
 
 // Registra categoria para padrões de blocos
 function ifc_ds_register_block_pattern_categories() {
@@ -94,9 +126,9 @@ function ifc_ds_get_curso_pattern_content() {
             <figure class="wp-block-image size-full"><img src="' . esc_url( get_template_directory_uri() . '/assets/img/bsi.png' ) . '" alt="Imagem do curso"/></figure>
             <!-- /wp:image -->
 
-            <!-- wp:ifc-ds/text {"content":"Nome do Curso","textType":"title","weight":"semibold"} /-->
+            <!-- wp:ifc-ds/text {"content":"Nome do Curso","textType":"title","weight":"semibold","alignment":"center","color":"neutral"} /-->
 
-            <!-- wp:ifc-ds/text {"content":"' . esc_html( 'Atualizado em ' . date_i18n( 'j \d\e F \d\e Y', get_post_modified_time( 'U' ) ) ) . '","textType":"detail","weight":"regular","className":"ifc-ds-text--neutral ifc-ds-text--align-left"} /-->
+            <!-- wp:ifc-ds/text {"content":"' . esc_html( 'Atualizado em ' . ifc_ds_format_date_pt_br( get_post_modified_time( 'U' ) ) ) . '","textType":"detail","weight":"regular","alignment":"center","color":"neutral","className":"ifc-ds-text--update-date"} /-->
         </div>
         <!-- /wp:group -->
 
@@ -175,14 +207,14 @@ function ifc_ds_add_frontend_curso_grid_styles() {
         .ifc-ds-info-list {
             display: flex;
             flex-wrap: wrap;
-            gap: var(--ifc-space-4);
+            gap: var(--ifc-spacing-4);
             align-items: flex-start;
         }
 
         .ifc-ds-info-list > .ifc-ds-info-item {
             display: flex;
             flex-direction: column;
-            gap: var(--ifc-space-1);
+            gap: var(--ifc-spacing-1);
             min-width: max-content;
         }
 
@@ -236,8 +268,34 @@ function ifc_ds_add_frontend_curso_grid_styles() {
                 align-self: start;
             }
         }
+
+        .ifc-ds-curso-heading {
+            text-align: center;
+        }
+
+        .ifc-ds-curso-heading .wp-block-image img {
+            height: 80px;
+            width: auto;
+        }
+
+        .ifc-ds-text--update-date {
+            color: var(--ifc-color-neutral-500);
+        }
     ';
 
     echo '<style id="ifc-ds-curso-grid-inline">' . $frontend_css . '</style>';
 }
 add_action('wp_head', 'ifc_ds_add_frontend_curso_grid_styles');
+
+function ifc_ds_enqueue_design_tokens() {
+    wp_enqueue_style(
+        'ifc-ds-design-tokens',
+        get_stylesheet_directory_uri() . '/assets/css/design-tokens.css',
+        array(),
+        filemtime(get_stylesheet_directory() . '/assets/css/design-tokens.css')
+    );
+}
+
+add_action('wp_enqueue_scripts', 'ifc_ds_enqueue_design_tokens', 1);
+add_action('admin_enqueue_scripts', 'ifc_ds_enqueue_design_tokens', 1);
+add_action('enqueue_block_editor_assets', 'ifc_ds_enqueue_design_tokens', 1);

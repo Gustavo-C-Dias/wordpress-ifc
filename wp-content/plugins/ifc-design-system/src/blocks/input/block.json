@@ -51,11 +51,6 @@
             "type": "boolean",
             "default": false
         },
-        "size": {
-            "type": "string",
-            "default": "medium",
-            "enum": ["small", "medium", "large"]
-        },
         "variant": {
             "type": "string",
             "default": "default",

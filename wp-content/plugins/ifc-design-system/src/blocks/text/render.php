@@ -20,6 +20,7 @@ if (!function_exists('ifc_ds_render_text_block')) {
         $color = isset($attributes['color']) ? $attributes['color'] : 'primary';
         $alignment = isset($attributes['alignment']) ? $attributes['alignment'] : 'left';
         $text_content = isset($attributes['content']) ? $attributes['content'] : '';
+        $additional_class = isset($attributes['className']) ? $attributes['className'] : '';
 
         // Se não há conteúdo, não renderiza nada
         if (empty($text_content)) {
@@ -28,21 +29,30 @@ if (!function_exists('ifc_ds_render_text_block')) {
 
         // Usa funções centralizadas
         $html_tag = ifc_ds_get_html_tag_for_text_type($text_type);
-        $classes = ifc_ds_build_text_classes($text_type, $weight, $color, $alignment);
+        $classes = ifc_ds_build_text_classes($text_type, $weight, $color, $alignment, $additional_class);
 
         // Sanitizar e escapar conteúdo
         $escaped_content = wp_kses_post($text_content);
 
+        // Determinar estilo inline baseado em alinhamento
+        $style = '';
+        if ($alignment === 'center') {
+            $style = 'style="text-align: center;"';
+        } elseif ($alignment === 'right') {
+            $style = 'style="text-align: right;"';
+        }
+
         // Montar HTML
         return sprintf(
-            '<%s class="%s">%s</%s>',
+            '<%s class="%s" %s>%s</%s>',
             esc_attr($html_tag),
             esc_attr($classes),
+            $style,
             $escaped_content,
             esc_attr($html_tag)
         );
     }
 }
 
-// Registrar o callback de renderização
-return 'ifc_ds_render_text_block';
+// Executar a renderização
+echo ifc_ds_render_text_block($attributes, $content, $block);

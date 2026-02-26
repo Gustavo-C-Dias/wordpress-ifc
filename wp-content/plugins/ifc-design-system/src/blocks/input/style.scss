@@ -1,12 +1,14 @@
 // Estilos para o componente Input do IFC Design System
-@import '../../tokens/design-tokens.scss';
-@import '../../tokens/mixins.scss';
-@import './mixins.scss';
+@import '../../mixins-essentials.scss';
 
 // Wrapper principal
 .ifc-ds-input-wrapper {
-    @include ifc-flex(column, stretch, flex-start);
-    gap: var(--ifc-space-1);
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    gap: var(--ifc-spacing-1);
     width: 100%;
     
     &--disabled {
@@ -17,126 +19,95 @@
 
 // Label
 .ifc-ds-input__label {
-    @include ifc-text(sm, medium);
+    font-family: var(--ifc-font-family);
+    font-size: var(--ifc-font-size-2);
+    font-weight: var(--ifc-font-weight-semibold);
+    line-height: 1.5;
     display: block;
-    color: var(--ifc-color-text-primary);
-    margin-bottom: var(--ifc-space-1);
+    color: var(--ifc-color-neutral-700);
+    margin-bottom: var(--ifc-spacing-1);
     
     .ifc-ds-input__required {
         color: var(--ifc-color-error);
-        margin-left: var(--ifc-space-0-5);
+        margin-left: var(--ifc-spacing-0-5);
     }
 }
 
 // Wrapper do campo (input + ícone)
 .ifc-ds-input__field-wrapper {
     position: relative;
-    @include ifc-flex(row, center);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
 }
 
 // Ícone
 .ifc-ds-input__icon {
     position: absolute;
-    left: var(--ifc-space-3);
+    left: var(--ifc-spacing-3);
     top: 50%;
     transform: translateY(-50%);
-    color: var(--ifc-color-text-muted);
+    color: var(--ifc-color-neutral-500);
     pointer-events: none;
     z-index: 1;
     
     i {
         display: block;
-        font-size: var(--ifc-font-size-base);
-        line-height: var(--ifc-line-height-none);
+        font-size: var(--ifc-font-size-2);
+        line-height: 1;
     }
 }
 
 // Input principal
 .ifc-ds-input {
     @include ifc-input-base;
-    @include ifc-input-size(md);
-    @include ifc-rounded(base);
+    height: var(--ifc-spacing-4);
+    padding: 0 var(--ifc-spacing-2);
+    font-size: var(--ifc-font-size-2);
+    border-radius: var(--ifc-radius-0-5);
     
     // Input com ícone
     &--with-icon {
-        padding-left: calc(var(--ifc-space-3) * 2 + var(--ifc-font-size-base));
+        padding-left: calc(var(--ifc-spacing-3) * 2 + var(--ifc-font-size-2));
     }
 }
 
 // Caption
 .ifc-ds-input__caption {
-    @include ifc-text(xs, normal, tight);
-    color: var(--ifc-color-text-muted);
-    margin-top: var(--ifc-space-0-5);
-}
-
-// Variações de tamanho
-.ifc-ds-input-wrapper--small {
-    .ifc-ds-input {
-        @include ifc-input-size(sm);
-        
-        &--with-icon {
-            padding-left: calc(var(--ifc-space-2) * 2 + var(--ifc-font-size-sm));
-        }
-    }
-    
-    .ifc-ds-input__icon {
-        left: var(--ifc-space-2);
-        
-        i {
-            font-size: var(--ifc-font-size-sm);
-        }
-    }
-}
-
-.ifc-ds-input-wrapper--medium {
-    .ifc-ds-input {
-        @include ifc-input-size(md);
-    }
-}
-
-.ifc-ds-input-wrapper--large {
-    .ifc-ds-input {
-        @include ifc-input-size(lg);
-        
-        &--with-icon {
-            padding-left: calc(var(--ifc-space-4) * 2 + var(--ifc-font-size-lg));
-        }
-    }
-    
-    .ifc-ds-input__icon {
-        left: var(--ifc-space-4);
-        
-        i {
-            font-size: var(--ifc-font-size-lg);
-        }
-    }
+    font-family: var(--ifc-font-family);
+    font-size: var(--ifc-font-size-1-75);
+    font-weight: var(--ifc-font-weight-regular);
+    line-height: 1.25;
+    color: var(--ifc-color-neutral-500);
+    margin-top: var(--ifc-spacing-0-5);
 }
 
 // Variações de estilo
 .ifc-ds-input-wrapper--outlined {
     .ifc-ds-input {
         background-color: transparent;
-        border-width: var(--ifc-border-width-2);
+        border-width: var(--ifc-border-width-0-25);
         
         &:focus {
-            background-color: var(--ifc-color-bg-primary);
+            background-color: var(--ifc-color-neutral-100);
         }
     }
 }
 
 .ifc-ds-input-wrapper--filled {
     .ifc-ds-input {
-        background-color: var(--ifc-color-bg-secondary);
+        background-color: var(--ifc-color-neutral-200);
         border-color: transparent;
         
         &:hover:not(:disabled) {
-            background-color: var(--ifc-color-bg-tertiary);
+            background-color: var(--ifc-color-neutral-300);
         }
         
         &:focus {
-            background-color: var(--ifc-color-bg-primary);
-            border-color: var(--ifc-color-border-focus);
+            background-color: var(--ifc-color-neutral-100);
+            border-color: var(--ifc-color-primary-600);
         }
     }
 }
@@ -169,15 +140,6 @@
     
     .ifc-ds-input__caption {
         color: var(--ifc-color-success);
-    }
-}
-
-// Responsividade
-@include ifc-responsive(md) {
-    .ifc-ds-input-wrapper--large {
-        .ifc-ds-input {
-            @include ifc-input-size(md);
-        }
     }
 }
 

@@ -28,10 +28,10 @@ export const LinkComponent = ({
     const textColor = type === 'neutral' ? 'neutral' : 'primary';
 
     const linkStyle = {
-        paddingTop: `var(--ifc-space-${(padding?.top || '0').replace('spacing-', '')})`,
-        paddingRight: `var(--ifc-space-${(padding?.right || '0').replace('spacing-', '')})`,
-        paddingBottom: `var(--ifc-space-${(padding?.bottom || '0').replace('spacing-', '')})`,
-        paddingLeft: `var(--ifc-space-${(padding?.left || '0').replace('spacing-', '')})`
+        paddingTop: `var(--ifc-spacing-${(padding?.top || '0').replace('spacing-', '')})`,
+        paddingRight: `var(--ifc-spacing-${(padding?.right || '0').replace('spacing-', '')})`,
+        paddingBottom: `var(--ifc-spacing-${(padding?.bottom || '0').replace('spacing-', '')})`,
+        paddingLeft: `var(--ifc-spacing-${(padding?.left || '0').replace('spacing-', '')})`
     };
 
     const iconSize = getLinkIconSize(size);

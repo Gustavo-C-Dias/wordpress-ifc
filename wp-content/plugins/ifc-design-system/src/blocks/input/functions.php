@@ -4,21 +4,14 @@ if (!function_exists('ifc_ds_render_input_icon')) {
      * Renderiza o ícone do input
      *
      * @param string $icon Classe do ícone ou URL da imagem
-     * @param string $size Tamanho do input (small, medium, large)
      * @return string HTML do ícone
      */
-    function ifc_ds_render_input_icon($icon, $size = 'medium') {
+    function ifc_ds_render_input_icon($icon) {
         if (empty($icon)) {
             return '';
         }
 
-        $icon_sizes = [
-            'small' => '16',
-            'medium' => '20',
-            'large' => '24'
-        ];
-        
-        $icon_size = $icon_sizes[$size] ?? '20';
+        $icon_size = '20';
         $icon_style = sprintf('width: %spx; height: %spx;', $icon_size, $icon_size);
 
         if (filter_var($icon, FILTER_VALIDATE_URL)) {
@@ -58,7 +51,6 @@ if (!function_exists('ifc_ds_render_input')) {
             'required' => false,
             'disabled' => false,
             'readonly' => false,
-            'size' => 'medium',
             'variant' => 'default',
             'padding' => [
                 'top' => '0',
@@ -87,13 +79,11 @@ if (!function_exists('ifc_ds_render_input')) {
         $args['input_name'] = sanitize_text_field($args['input_name']);
         $args['input_id'] = sanitize_text_field($args['input_id']);
         $args['input_value'] = sanitize_text_field($args['input_value']);
-        $args['size'] = sanitize_text_field($args['size']);
         $args['variant'] = sanitize_text_field($args['variant']);
 
         // Classes CSS para o wrapper
         $wrapper_classes = [
             'ifc-ds-input-wrapper',
-            'ifc-ds-input-wrapper--' . $args['size'],
             'ifc-ds-input-wrapper--' . $args['variant']
         ];
 
@@ -112,7 +102,6 @@ if (!function_exists('ifc_ds_render_input')) {
         // Classes CSS para o input
         $input_classes = [
             'ifc-ds-input',
-            'ifc-ds-input--' . $args['size'],
             'ifc-ds-input--' . $args['variant']
         ];
 
@@ -132,7 +121,7 @@ if (!function_exists('ifc_ds_render_input')) {
             foreach (['top', 'right', 'bottom', 'left'] as $side) {
                 $value = $args['padding'][$side] ?? '0';
                 if ($value !== '0') {
-                    $padding_styles[] = "padding-{$side}: var(--ifc-space-{$value})";
+                    $padding_styles[] = "padding-{$side}: var(--ifc-spacing-{$value})";
                 }
             }
             
@@ -234,7 +223,7 @@ if (!function_exists('ifc_ds_render_input')) {
 
         // Ícone
         if (!empty($args['icon'])) {
-            $html .= ifc_ds_render_input_icon($args['icon'], $args['size']);
+            $html .= ifc_ds_render_input_icon($args['icon']);
         }
 
         // Input

@@ -1,0 +1,97 @@
+/**
+ * IFC Design System - SCSS Mixins Essenciais
+ */
+
+/* ==========================================
+ * TRANSIÇÕES
+ * ========================================== */
+
+@mixin ifc-transition($property: all, $duration: var(--ifc-transition-duration-2)) {
+  transition: $property $duration var(--ifc-transition-type-ease-in-out);
+  
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
+}
+
+/* ==========================================
+ * COMPONENTES RESET
+ * ========================================== */
+
+@mixin ifc-reset-button {
+  background: transparent;
+  border: none;
+  margin: 0;
+  padding: 0;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  cursor: pointer;
+  outline: none;
+  
+  &:focus {
+    outline: var(--ifc-border-width-0-25) solid var(--ifc-color-primary-600);
+    outline-offset: var(--ifc-border-width-0-1);
+  }
+}
+
+@mixin ifc-focus-ring($color: var(--ifc-color-primary-600)) {
+  outline: var(--ifc-border-width-0-25) solid $color;
+  outline-offset: var(--ifc-border-width-0-1);
+  box-shadow: none;
+}
+
+/* ==========================================
+ * COMPONENTES - INPUT
+ * ========================================== */
+
+/**
+ * Mixin base para inputs
+ * Agrupa comportamento comum (borders, hover, focus, disabled)
+ */
+@mixin ifc-input-base {
+  font-family: var(--ifc-font-family);
+  font-size: var(--ifc-font-size-2);
+  font-weight: var(--ifc-font-weight-regular);
+  @include ifc-transition(all);
+  
+  width: 100%;
+  border: var(--ifc-border-width-0-1) solid var(--ifc-color-neutral-300);
+  background-color: var(--ifc-color-neutral-100);
+  color: var(--ifc-color-neutral-700);
+  outline: none;
+  
+  &::placeholder {
+    color: var(--ifc-color-neutral-500);
+  }
+  
+  &:hover:not(:disabled) {
+    border-color: var(--ifc-color-neutral-400);
+  }
+  
+  &:focus {
+    border-color: var(--ifc-color-primary-600);
+    box-shadow: var(--ifc-shadow-focus);
+  }
+  
+  &:disabled {
+    background-color: var(--ifc-color-neutral-200);
+    border-color: var(--ifc-color-neutral-300);
+    color: var(--ifc-color-neutral-400);
+    cursor: not-allowed;
+    
+    &::placeholder {
+      color: var(--ifc-color-neutral-400);
+    }
+  }
+}
+
+/* ==========================================
+ * CLASSES UTILITÁRIAS
+ * ========================================== */
+
+.ifc-focus-ring {
+  &:focus-visible {
+    @include ifc-focus-ring;
+  }
+}

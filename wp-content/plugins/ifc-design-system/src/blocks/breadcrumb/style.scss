@@ -20,8 +20,8 @@
     &__separator {
         display: inline-flex;
         align-items: center;
-        margin: 0 var(--ifc-space-2);
-        color: var(--ifc-color-neutral-400);
+        margin: 0 var(--ifc-spacing-1);
+        color: var(--ifc-color-neutral-700);
         user-select: none;
 
         svg {

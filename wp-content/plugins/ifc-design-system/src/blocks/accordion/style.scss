@@ -1,22 +1,25 @@
-@import '../../tokens/design-tokens.scss';
-@import '../../tokens/mixins.scss';
+@import '../../mixins-essentials.scss';
 
 .ifc-ds-accordion {
-  margin: var(--ifc-space-4) 0;
-  border-top: 2px solid var(--ifc-color-primary-400);
-  border-bottom: 1px solid var(--ifc-color-primary-400);
+  margin: var(--ifc-spacing-4) 0;
+  border-top: 2px solid var(--ifc-color-primary-500);
+  border-bottom: 1px solid var(--ifc-color-primary-500);
   overflow: hidden;
-  background: var(--ifc-color-bg-primary);
+  background: var(--ifc-color-neutral-100);
   
   &__toggle {
     @include ifc-reset-button;
     @include ifc-transition(background-color);
-    @include ifc-flex(row, center, space-between);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: nowrap;
     
     width: 100%;
     padding: 8px;
-    background: var(--ifc-color-bg-primary);
-    color: var(--ifc-color-text-primary);
+    background: var(--ifc-color-neutral-100);
+    color: var(--ifc-color-neutral-700);
     text-align: left;
     
     &.is-open .ifc-ds-accordion__icon {
@@ -30,45 +33,58 @@
   
   &__icon {
     @include ifc-transition(transform);
-    @include ifc-text(sm);
-    color: var(--ifc-color-text-muted);
+    font-family: var(--ifc-font-family);
+    font-size: var(--ifc-font-size-2);
+    font-weight: var(--ifc-font-weight-regular);
+    line-height: 1.5;
+    color: var(--ifc-color-neutral-500);
   }
   
   &__content {
-    background: var(--ifc-color-bg-primary);
+    background: var(--ifc-color-neutral-100);
     overflow: hidden;
-    @include ifc-transition(all, var(--ifc-duration-300));
+    @include ifc-transition(all, var(--ifc-transition-duration-3));
     max-height: 0;
     padding: 0;
     
     &.is-open {
       max-height: 1000px;
-      border-top: 1px solid var(--ifc-color-primary-400);
+      border-top: 1px solid var(--ifc-color-primary-500);
     }
   }
 
   &__title-text {
-    @include ifc-text(base, bold);
+    font-family: var(--ifc-font-family);
+    font-size: var(--ifc-font-size-2);
+    font-weight: var(--ifc-font-weight-bold);
+    line-height: 1.5;
   }
   
   &__items {
-    @include ifc-flex(column, stretch);
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
     gap: 0;
     
     > * {
       padding: 8px;
       
       &:not(:last-child) {
-        border-bottom: 1px solid var(--ifc-color-primary-400);
+        border-bottom: 1px solid var(--ifc-color-primary-500);
       }
     }
   }
   
   &__text {
-    @include ifc-text(sm, normal, tight);
+    font-family: var(--ifc-font-family);
+    font-size: var(--ifc-font-size-2);
+    font-weight: var(--ifc-font-weight-regular);
+    line-height: 1.25;
     margin: 0;
-    background: var(--ifc-color-bg-secondary);
-    color: var(--ifc-color-text-secondary);
+    background: var(--ifc-color-neutral-200);
+    color: var(--ifc-color-neutral-600);
   }
   
   &__link {

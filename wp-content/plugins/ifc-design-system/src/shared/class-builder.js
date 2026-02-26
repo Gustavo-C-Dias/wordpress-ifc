@@ -181,7 +181,7 @@ export const getHtmlTagForTextType = (textType) => {
  * @returns {Object} Objeto de estilos
  */
 export const buildPaddingStyle = (padding = {}) => {
-    const getValue = (val) => `var(--ifc-space-${(val || '0').replace('spacing-', '').replace('space-', '')})`;
+    const getValue = (val) => `var(--ifc-spacing-${(val || '0').replace('spacing-', '').replace('space-', '')})`;
     
     return {
         paddingTop: getValue(padding?.top),
@@ -197,7 +197,7 @@ export const buildPaddingStyle = (padding = {}) => {
  * @returns {Object} Objeto de estilos
  */
 export const buildMarginStyle = (margin = {}) => {
-    const getValue = (val) => `var(--ifc-space-${(val || '0').replace('spacing-', '').replace('space-', '')})`;
+    const getValue = (val) => `var(--ifc-spacing-${(val || '0').replace('spacing-', '').replace('space-', '')})`;
     
     return {
         marginTop: getValue(margin?.top),

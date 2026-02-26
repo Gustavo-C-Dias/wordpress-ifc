@@ -1,22 +1,22 @@
 .ifc-ds-footer {
   width: 100%;
   background-color: var(--ifc-color-neutral-100);
-  padding: var(--ifc-space-8) var(--ifc-space-4);
+  padding: var(--ifc-spacing-8) var(--ifc-spacing-4);
   
   @media (min-width: 768px) {
-    padding: var(--ifc-space-12) var(--ifc-space-8);
+    padding: var(--ifc-spacing-10) var(--ifc-spacing-8);
   }
 
   &__sections {
     display: flex;
     flex-direction: column;
-    gap: var(--ifc-space-8);
-    margin-bottom: var(--ifc-space-12);
+    gap: var(--ifc-spacing-8);
+    margin-bottom: var(--ifc-spacing-10);
     
     @media (min-width: 768px) {
       flex-direction: row;
       justify-content: flex-start;
-      gap: var(--ifc-space-12);
+      gap: var(--ifc-spacing-10);
       flex-wrap: wrap;
     }
   }
@@ -24,23 +24,23 @@
   &__section {
     display: flex;
     flex-direction: column;
-    gap: var(--ifc-space-3);
+    gap: var(--ifc-spacing-3);
     flex: 1;
     min-width: 200px;
     
     @media (min-width: 768px) {
-      flex: 0 1 calc(33.333% - var(--ifc-space-12));
+      flex: 0 1 calc(33.333% - var(--ifc-spacing-10));
     }
   }
 
   &__section-title {
-    margin-bottom: var(--ifc-space-2);
+    margin-bottom: var(--ifc-spacing-2);
   }
 
   &__links {
     display: flex;
     flex-direction: column;
-    gap: var(--ifc-space-2);
+    gap: var(--ifc-spacing-2);
   }
 
   &__link {
@@ -50,8 +50,8 @@
 
   &__address {
     border-top: 1px solid var(--ifc-color-neutral-300);
-    padding-top: var(--ifc-space-4);
-    margin-top: var(--ifc-space-8);
+    padding-top: var(--ifc-spacing-4);
+    margin-top: var(--ifc-spacing-8);
   }
 
   &__address-text {
@@ -69,7 +69,7 @@
     border: 1px dashed var(--ifc-color-neutral-300);
     
     &__section {
-      padding: var(--ifc-space-3);
+      padding: var(--ifc-spacing-3);
       background-color: var(--ifc-color-neutral-200);
       border-radius: 4px;
     }

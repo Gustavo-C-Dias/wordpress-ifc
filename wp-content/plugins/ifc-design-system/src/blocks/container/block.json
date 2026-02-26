@@ -34,22 +34,6 @@
         "bottom": "20",
         "left": "0"
       }
-    },
-    "borderWidth": {
-      "type": "string",
-      "default": "1"
-    },
-    "borderColor": {
-      "type": "string",
-      "default": "neutral-300"
-    },
-    "shadowEnabled": {
-      "type": "boolean",
-      "default": true
-    },
-    "backgroundColor": {
-      "type": "string",
-      "default": "white"
     }
   },
   "providesContext": {

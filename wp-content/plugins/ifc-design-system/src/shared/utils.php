@@ -263,7 +263,7 @@ if (!function_exists('ifc_ds_build_padding_style')) {
         $padding = wp_parse_args($padding, $defaults);
         
         return sprintf(
-            'padding: var(--ifc-space-%s) var(--ifc-space-%s) var(--ifc-space-%s) var(--ifc-space-%s);',
+            'padding: var(--ifc-spacing-%s) var(--ifc-spacing-%s) var(--ifc-spacing-%s) var(--ifc-spacing-%s);',
             esc_attr(str_replace(array('spacing-', 'space-'), '', $padding['top'])),
             esc_attr(str_replace(array('spacing-', 'space-'), '', $padding['right'])),
             esc_attr(str_replace(array('spacing-', 'space-'), '', $padding['bottom'])),
@@ -284,7 +284,7 @@ if (!function_exists('ifc_ds_build_margin_style')) {
         $margin = wp_parse_args($margin, $defaults);
         
         return sprintf(
-            'margin: var(--ifc-space-%s) var(--ifc-space-%s) var(--ifc-space-%s) var(--ifc-space-%s);',
+            'margin: var(--ifc-spacing-%s) var(--ifc-spacing-%s) var(--ifc-spacing-%s) var(--ifc-spacing-%s);',
             esc_attr(str_replace(array('spacing-', 'space-'), '', $margin['top'])),
             esc_attr(str_replace(array('spacing-', 'space-'), '', $margin['right'])),
             esc_attr(str_replace(array('spacing-', 'space-'), '', $margin['bottom'])),
