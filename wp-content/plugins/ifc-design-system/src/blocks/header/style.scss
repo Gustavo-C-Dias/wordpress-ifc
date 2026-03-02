@@ -5,15 +5,13 @@
   // Primeira seção: Skip Navigation
   &__top-section {
     background: var(--ifc-color-primary-500);
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 0;
   }
   
   &__accessibility {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
     
     .ifc-ds-skip-navigation {
       position: relative;
@@ -65,18 +63,19 @@
   
   // Segunda seção: Logo + Busca + Redes Sociais
   &__main-section {
-    padding: 1.5rem 1rem;
+    padding: 1.5rem 0;
     background: var(--ifc-color-primary-500);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-    gap: 2rem;
     
-    @media (max-width: 768px) {
-      flex-direction: column;
-      gap: 1rem;
+    .ifc-ds-layout-container__content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 2rem;
+      
+      @media (max-width: 768px) {
+        flex-direction: column;
+        gap: 1rem;
+      }
     }
   }
   
@@ -177,16 +176,19 @@
   // Terceira seção: Links Úteis
   &__navigation {
     background: var(--ifc-color-primary-600);
-    padding: 0.75rem 1rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 0;
+    padding: 0.75rem 0;
     
-    @media (max-width: 768px) {
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      justify-content: space-around;
+    .ifc-ds-layout-container__content {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0;
+      
+      @media (max-width: 768px) {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        justify-content: space-around;
+      }
     }
   }
   

@@ -105,13 +105,3 @@
         }
     }
 }
-
-// Utilitários para espaçamento quando usado em sequência
-.ifc-ds-text + .ifc-ds-text {
-    margin-top: var(--ifc-spacing-5);
-    
-    &.ifc-ds-text--title,
-    &.ifc-ds-text--subtitle {
-        margin-top: var(--ifc-spacing-10);
-    }
-}

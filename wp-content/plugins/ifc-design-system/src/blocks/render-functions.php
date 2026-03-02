@@ -34,6 +34,7 @@ if (!function_exists('ifc_ds_render_breadcrumb_link')) {
             'icon_position' => 'left',
             'type' => $link_type,
             'size' => $link_size,
+            'weight' => 'semibold',
             'class' => 'ifc-ds-breadcrumb__link',
             'wrapper' => true
         ]);

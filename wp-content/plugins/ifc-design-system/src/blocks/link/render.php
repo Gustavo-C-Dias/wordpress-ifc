@@ -6,6 +6,7 @@ $link_args = [
     'icon_position' => $attributes['iconPosition'] ?? 'left',
     'type' => $attributes['type'] ?? 'neutral',
     'size' => $attributes['size'] ?? 'medium',
+    'weight' => $attributes['weight'] ?? 'regular',
     'padding' => $attributes['padding'] ?? [
         'top' => '0',
         'right' => '0',

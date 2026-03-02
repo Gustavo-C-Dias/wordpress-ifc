@@ -18,46 +18,50 @@ if (file_exists($render_functions_path)) {
 ?>
 
 <footer class="ifc-ds-footer">
-    <div class="ifc-ds-footer__sections">
-        <?php foreach ($link_sections as $section): ?>
-            <div class="ifc-ds-footer__section">
-                <?php
-                // Renderizar título da seção usando o componente Text
-                echo render_text_component([
-                    'content' => $section['titleSection'],
-                    'textType' => 'subtitle',
-                    'weight' => 'bold',
-                    'color' => 'primary',
-                    'className' => 'ifc-ds-footer__section-title'
-                ]);
-                ?>
-                <div class="ifc-ds-footer__links">
-                    <?php foreach ($section['links'] as $link): ?>
+    <div class="ifc-ds-layout-container ifc-ds-layout-container--fixed">
+        <div class="ifc-ds-layout-container__content">
+            <div class="ifc-ds-footer__sections">
+                <?php foreach ($link_sections as $section): ?>
+                    <div class="ifc-ds-footer__section">
                         <?php
-                        // Renderizar cada link usando o componente Link
-                        echo render_link_component([
-                            'url' => $link['url'],
-                            'label' => $link['label'],
-                            'type' => 'neutral',
-                            'size' => 'medium',
-                            'className' => 'ifc-ds-footer__link'
+                        // Renderizar título da seção usando o componente Text
+                        echo render_text_component([
+                            'content' => $section['titleSection'],
+                            'textType' => 'subtitle',
+                            'weight' => 'bold',
+                            'color' => 'primary',
+                            'className' => 'ifc-ds-footer__section-title'
                         ]);
                         ?>
-                    <?php endforeach; ?>
-                </div>
+                        <div class="ifc-ds-footer__links">
+                            <?php foreach ($section['links'] as $link): ?>
+                                <?php
+                                // Renderizar cada link usando o componente Link
+                                echo render_link_component([
+                                    'url' => $link['url'],
+                                    'label' => $link['label'],
+                                    'type' => 'neutral',
+                                    'size' => 'medium',
+                                    'className' => 'ifc-ds-footer__link'
+                                ]);
+                                ?>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
             </div>
-        <?php endforeach; ?>
-    </div>
-    <div class="ifc-ds-footer__address">
-        <?php
-        // Renderizar endereço usando o componente Text
-        echo render_text_component([
-            'content' => $address,
-            'textType' => 'body',
-            'weight' => 'regular',
-            'color' => 'primary',
-            'className' => 'ifc-ds-footer__address-text'
-        ]);
-        ?>
+            <div class="ifc-ds-footer__address">
+                <?php
+                // Renderizar endereço usando o componente Text
+                echo render_text_component([
+                    'content' => $address,
+                    'textType' => 'body',
+                    'weight' => 'regular',
+                    'color' => 'primary',
+                    'className' => 'ifc-ds-footer__address-text'
+                ]);
+                ?>
+            </div>
+        </div>
     </div>
 </footer>

@@ -44,7 +44,11 @@ registerBlockType('ifc-ds/accordion', {
               color="primary"
               className="ifc-ds-accordion__title-text"
             />
-            <span className="ifc-ds-accordion__icon">▼</span>
+            <span className="ifc-ds-accordion__icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" role="presentation" focusable="false">
+                <path d="M7 9.5L12 14.5L17 9.5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </span>
           </button>
           
           <div className={`ifc-ds-accordion__content ${isOpen ? 'is-open' : ''}`}>

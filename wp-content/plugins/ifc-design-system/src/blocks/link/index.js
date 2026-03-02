@@ -20,6 +20,7 @@ import {
     detailedSpacingOptions as spacingOptions,
     linkTypeOptions,
     linkSizeOptions,
+    weightOptions,
     iconPositionOptions
 } from '../../shared/options';
 import { useState } from '@wordpress/element';
@@ -101,6 +102,7 @@ registerBlockType('ifc-ds/link', {
             iconPosition,
             type,
             size,
+            weight,
             padding,
             openInNewTab
         } = attributes;
@@ -136,6 +138,13 @@ registerBlockType('ifc-ds/link', {
                             value={size}
                             options={linkSizeOptions}
                             onChange={(value) => setAttributes({ size: value })}
+                        />
+
+                        <SelectControl
+                            label={'Peso da Fonte'}
+                            value={weight || ''}
+                            options={[{ label: 'Padrão', value: '' }, ...weightOptions]}
+                            onChange={(value) => setAttributes({ weight: value || undefined })}
                         />
                     </PanelBody>
 
@@ -208,6 +217,7 @@ registerBlockType('ifc-ds/link', {
                         iconPosition={iconPosition}
                         type={type}
                         size={size}
+                        weight={weight}
                         padding={padding}
                         onClick={(e) => e.preventDefault()}
                     >

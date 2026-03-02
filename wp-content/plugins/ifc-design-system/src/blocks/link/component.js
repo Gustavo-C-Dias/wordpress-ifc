@@ -17,6 +17,7 @@ export const LinkComponent = ({
     iconPosition = 'left',
     type = 'neutral',
     size = 'medium',
+    weight,
     padding = {},
     className = '',
     onClick,
@@ -60,7 +61,7 @@ export const LinkComponent = ({
         children || createElement(TextComponent, { 
             content: label,
             textType: size === 'small' || size === 'detail' ? 'detail' : 'body',
-            weight: size === 'detail' ? 'regular' : 'semibold',
+            weight: weight || (size === 'detail' ? 'regular' : 'semibold'),
             color: textColor,
             className: 'ifc-ds-link__label'
         }),

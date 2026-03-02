@@ -55,6 +55,7 @@ registerBlockType('ifc-ds/breadcrumb', {
                     iconPosition="left"
                     type="neutral"
                     size={linkSize}
+                    weight="semibold"
                     className="ifc-ds-breadcrumb__link"
                     onClick={(e) => e.preventDefault()}
                 />

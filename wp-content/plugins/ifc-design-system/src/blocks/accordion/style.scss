@@ -1,9 +1,8 @@
 @import '../../mixins-essentials.scss';
 
 .ifc-ds-accordion {
-  margin: var(--ifc-spacing-4) 0;
+  margin-bottom: var(--ifc-spacing-1);
   border-top: 2px solid var(--ifc-color-primary-500);
-  border-bottom: 1px solid var(--ifc-color-primary-500);
   overflow: hidden;
   background: var(--ifc-color-neutral-100);
   
@@ -33,11 +32,19 @@
   
   &__icon {
     @include ifc-transition(transform);
-    font-family: var(--ifc-font-family);
-    font-size: var(--ifc-font-size-2);
-    font-weight: var(--ifc-font-weight-regular);
-    line-height: 1.5;
-    color: var(--ifc-color-neutral-500);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    flex: 0 0 24px;
+    color: var(--ifc-color-primary-500);
+
+    svg {
+      display: block;
+      width: 24px;
+      height: 24px;
+    }
   }
   
   &__content {
@@ -69,11 +76,7 @@
     gap: 0;
     
     > * {
-      padding: 8px;
-      
-      &:not(:last-child) {
-        border-bottom: 1px solid var(--ifc-color-primary-500);
-      }
+      border-bottom: 1px solid var(--ifc-color-neutral-200);
     }
   }
   

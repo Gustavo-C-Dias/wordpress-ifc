@@ -42,8 +42,8 @@ $govbr-grid-configs: (
   tv: (
     columns: 12,
     gutter: 40px,
-    margin: 40px,
-    max-width: none
+    margin: auto,
+    max-width: 1520px
   )
 );
 
@@ -76,6 +76,13 @@ $govbr-spacing: (
   margin-left: auto;
   margin-right: auto;
   position: relative;
+  box-sizing: border-box;
+  
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
   
   &__content {
     display: grid;
@@ -83,6 +90,7 @@ $govbr-spacing: (
     column-gap: var(--grid-gutter);
     width: 100%;
     min-height: 50px;
+    box-sizing: border-box;
   }
   
   // Container fluído (padrão)
@@ -107,7 +115,9 @@ $govbr-spacing: (
       }
 
       @include govbr-breakpoint(tv) {
-        padding: 0 map-get(map-get($govbr-grid-configs, tv), margin);
+        max-width: map-get(map-get($govbr-grid-configs, tv), max-width);
+        margin: 0 auto;
+        padding: 0;
       }
     }
   }
@@ -136,8 +146,9 @@ $govbr-spacing: (
       }
 
       @include govbr-breakpoint(tv) {
-        max-width: 1920px;
-        padding: 0 map-get(map-get($govbr-grid-configs, tv), margin);
+        max-width: map-get(map-get($govbr-grid-configs, tv), max-width);
+        margin: 0 auto;
+        padding: 0;
       }
     }
   }
@@ -280,7 +291,7 @@ $govbr-spacing: (
   }
   
   @include govbr-breakpoint(tv) {
-    --grid-margin: #{map-get(map-get($govbr-grid-configs, tv), margin)};
+    --grid-margin: 0;
     --grid-gutter: #{map-get(map-get($govbr-grid-configs, tv), gutter)};
     --grid-columns: #{map-get(map-get($govbr-grid-configs, tv), columns)};
   }

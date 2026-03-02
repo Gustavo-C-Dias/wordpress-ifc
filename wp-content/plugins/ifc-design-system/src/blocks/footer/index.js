@@ -151,39 +151,43 @@ registerBlockType('ifc-ds/footer', {
         </InspectorControls>
 
         <footer {...useBlockProps({ className: 'ifc-ds-footer' })}>
-          <div className="ifc-ds-footer__sections">
-            {linkSections.map((section, sectionIndex) => (
-              <div key={sectionIndex} className="ifc-ds-footer__section">
-                <TextComponent
-                  content={section.titleSection}
-                  textType="subtitle"
-                  weight="bold"
-                  color="primary"
-                  className="ifc-ds-footer__section-title"
-                />
-                <div className="ifc-ds-footer__links">
-                  {section.links.map((link, linkIndex) => (
-                    <LinkComponent
-                      key={linkIndex}
-                      url={link.url}
-                      label={link.label}
-                      type="neutral"
-                      size="medium"
-                      className="ifc-ds-footer__link"
+          <div className="ifc-ds-layout-container ifc-ds-layout-container--fixed">
+            <div className="ifc-ds-layout-container__content">
+              <div className="ifc-ds-footer__sections">
+                {linkSections.map((section, sectionIndex) => (
+                  <div key={sectionIndex} className="ifc-ds-footer__section">
+                    <TextComponent
+                      content={section.titleSection}
+                      textType="subtitle"
+                      weight="bold"
+                      color="primary"
+                      className="ifc-ds-footer__section-title"
                     />
-                  ))}
-                </div>
+                    <div className="ifc-ds-footer__links">
+                      {section.links.map((link, linkIndex) => (
+                        <LinkComponent
+                          key={linkIndex}
+                          url={link.url}
+                          label={link.label}
+                          type="neutral"
+                          size="medium"
+                          className="ifc-ds-footer__link"
+                        />
+                      ))}
+                    </div>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
-          <div className="ifc-ds-footer__address">
-            <TextComponent
-              content={address}
-              textType="body"
-              weight="regular"
-              color="primary"
-              className="ifc-ds-footer__address-text"
-            />
+              <div className="ifc-ds-footer__address">
+                <TextComponent
+                  content={address}
+                  textType="body"
+                  weight="regular"
+                  color="primary"
+                  className="ifc-ds-footer__address-text"
+                />
+              </div>
+            </div>
           </div>
         </footer>
       </>

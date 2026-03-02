@@ -43,6 +43,7 @@ if (!function_exists('ifc_ds_render_link')) {
             'icon_position' => 'left',
             'type' => 'neutral',
             'size' => 'medium',
+            'weight' => 'regular',
             'padding' => [
                 'top' => '0',
                 'right' => '0',
@@ -102,7 +103,9 @@ if (!function_exists('ifc_ds_render_link')) {
         
         // Label com classes do componente de texto
         $text_type = ($args['size'] === 'small' || $args['size'] === 'detail') ? 'detail' : 'body';
-        $text_weight = $args['size'] === 'detail' ? 'regular' : 'semibold';
+        $valid_weights = function_exists('ifc_ds_get_valid_weights') ? ifc_ds_get_valid_weights() : ['regular', 'semibold', 'bold'];
+        $fallback_weight = $args['size'] === 'detail' ? 'regular' : 'semibold';
+        $text_weight = in_array($args['weight'], $valid_weights, true) ? $args['weight'] : $fallback_weight;
         $text_color = $args['type'] === 'neutral' ? 'neutral' : 'primary';
         $link_content .= sprintf(
             '<span class="ifc-ds-text ifc-ds-text--' . $text_type . ' ifc-ds-text--' . $text_weight . ' ifc-ds-text--' . $text_color . ' ifc-ds-text--align-left ifc-ds-link__label">%s</span>', 

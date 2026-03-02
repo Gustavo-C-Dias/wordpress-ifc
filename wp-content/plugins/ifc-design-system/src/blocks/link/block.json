@@ -41,6 +41,10 @@
             "default": "medium",
             "enum": ["small", "medium", "large"]
         },
+        "weight": {
+            "type": "string",
+            "enum": ["regular", "semibold", "bold"]
+        },
         "padding": {
             "type": "object",
             "default": {
