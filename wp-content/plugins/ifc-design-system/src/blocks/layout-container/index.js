@@ -51,9 +51,7 @@ const LayoutContainerComponent = ({
             data-container-type={containerType}
             {...props}
         >
-            <div className="ifc-ds-layout-container__content">
-                {children}
-            </div>
+            {children}
         </div>
     );
 };

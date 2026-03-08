@@ -245,12 +245,8 @@ function ifc_ds_get_curso_pattern_content() {
 <!-- /wp:ifc-ds/layout-container -->';
 }
 
-function ifc_ds_add_frontend_curso_grid_styles() {
-    if (is_admin()) {
-        return;
-    }
-
-    $frontend_css = '
+function ifc_ds_get_curso_grid_css() {
+    return '
         .ifc-ds-info-list {
             display: flex;
             flex-wrap: wrap;
@@ -342,10 +338,18 @@ function ifc_ds_add_frontend_curso_grid_styles() {
             margin-top: 8px;
         }
     ';
-
-    echo '<style id="ifc-ds-curso-grid-inline">' . $frontend_css . '</style>';
 }
-add_action('wp_head', 'ifc_ds_add_frontend_curso_grid_styles');
+
+function ifc_ds_enqueue_curso_grid_styles() {
+    $css = ifc_ds_get_curso_grid_css();
+    if (!$css) {
+        return;
+    }
+
+    wp_add_inline_style('ifc-ds-design-tokens', $css);
+}
+add_action('wp_enqueue_scripts', 'ifc_ds_enqueue_curso_grid_styles', 20);
+add_action('enqueue_block_editor_assets', 'ifc_ds_enqueue_curso_grid_styles', 20);
 
 function ifc_ds_enqueue_design_tokens() {
     wp_enqueue_style(

@@ -2,7 +2,7 @@
  * IFC Design System
  * 
  * ATENÇÃO: Este arquivo é gerado em scripts/generate-options.js
- * Para modificar, edite o theme.json e execute:
+ *          Para modificar, edite o theme.json e execute:
  */
 
 export const spacingOptions = [
