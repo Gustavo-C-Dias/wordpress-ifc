@@ -7,7 +7,7 @@
     "category": "ifc-design-system",
     "icon": "admin-links",
     "description": "Componente de link customizável com variantes e tamanhos.",
-    "keywords": ["link", "button", "ifc", "design-system"],
+    "keywords": ["link", "ifc", "design-system"],
     "textdomain": "ifc-design-system",
     "editorScript": "file:./index.js",
     "editorStyle": "file:./index.css",

@@ -1,5 +1,5 @@
-import './blocks/header';
 import './blocks/footer';
+import './blocks/header';
 import './blocks/accordion';
 import './blocks/link';
 import './blocks/breadcrumb';

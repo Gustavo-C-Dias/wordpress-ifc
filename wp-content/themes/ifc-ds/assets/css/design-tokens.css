@@ -78,10 +78,10 @@
   --ifc-border-width-1: 8px;
 
   /* Border Radius */
-  --ifc-radius-0-5: 0.25rem;   /* 4px */
-  --ifc-radius-1: 0.5rem;      /* 8px */
-  --ifc-radius-2: 1rem;       /* 16px */
-  --ifc-radius-3: 1.5rem;     /* 24px */
+  --ifc-radius-0-5: 4px;
+  --ifc-radius-1: 8px;
+  --ifc-radius-2: 16px;
+  --ifc-radius-3: 24px;
 
   /* ==========================================
    * SOMBRAS
@@ -108,7 +108,7 @@
   --ifc-transition-type-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
 
   /* ==========================================
-   * Breakpoints
+   * BREAKPOINTS
    * ========================================== */
 
   --ifc-screen-sm: 640px;
@@ -116,37 +116,4 @@
   --ifc-screen-lg: 1024px;
   --ifc-screen-xl: 1280px;
   --ifc-screen-2xl: 1536px;
-
-  /* ==========================================
-   * ACESSIBILIDADE
-   * ========================================== */
-   
-  --ifc-focus-ring-width: 2px;
-  --ifc-focus-ring-offset: 2px;
-  --ifc-focus-ring-color: var(--ifc-color-primary);
-  --ifc-contrast-min: 4.5;
-  --ifc-contrast-enhanced: 7;
-}
-
-/* ==========================================
- * HIGH CONTRAST SUPPORT
- * ========================================== */
-
-@media (prefers-contrast: high) {
-  :root {
-    --ifc-contrast-min: 7;
-  }
-}
-
-/* ==========================================
- * REDUCED MOTION SUPPORT
- * ========================================== */
-
-@media (prefers-reduced-motion: reduce) {
-  :root {
-    --ifc-transition-duration-1: 0ms;
-    --ifc-transition-duration-2: 0ms;
-    --ifc-transition-duration-3: 0ms;
-    --ifc-transition-duration-4: 0ms;
-  }
 }

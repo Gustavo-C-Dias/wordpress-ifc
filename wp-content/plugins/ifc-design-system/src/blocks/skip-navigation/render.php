@@ -20,15 +20,13 @@ $links = $attributes['links'] ?? [
     ]
 ];
 
-// Função ifc_ds_render_skip_navigation_link está definida em render-functions.php
-
 ?>
 
 <div <?php echo get_block_wrapper_attributes(['class' => 'ifc-ds-skip-navigation']); ?>>
     <div class="ifc-ds-skip-navigation__container">
         <div class="ifc-ds-skip-navigation__links">
             <?php foreach ($links as $link): ?>
-                <?php echo ifc_ds_render_skip_navigation_link($link); ?>
+                <?php echo ifc_ds_render_navigation_skip_link($link); ?>
             <?php endforeach; ?>
         </div>
     </div>

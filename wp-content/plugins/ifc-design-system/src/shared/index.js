@@ -1,6 +1,5 @@
 /**
- * IFC Design System - Módulo Compartilhado
- * Exporta todos os utilitários compartilhados
+ * IFC Design System - Exportação utilitários
  */
 
 export * from './options';

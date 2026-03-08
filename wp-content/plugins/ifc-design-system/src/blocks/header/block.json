@@ -9,7 +9,8 @@
   "description": "Cabeçalho do Design System IFC",
   "example": {},
   "supports": {
-    "html": false
+    "html": false,
+    "inserter": false
   },
   "attributes": {
     "logoCampus": {

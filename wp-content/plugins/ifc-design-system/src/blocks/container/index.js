@@ -14,7 +14,6 @@ registerBlockType('ifc-ds/container', {
             margin
         } = attributes;
 
-        // Converter valores de spacing para BoxControl
         const paddingValue = {
             top: padding?.top || '30',
             right: padding?.right || '30',
@@ -29,7 +28,6 @@ registerBlockType('ifc-ds/container', {
             left: margin?.left || '0'
         };
 
-        // Função para converter valores de BoxControl
         const handlePaddingChange = (newPadding) => {
             setAttributes({
                 padding: {
@@ -52,10 +50,6 @@ registerBlockType('ifc-ds/container', {
             });
         };
 
-        // Classes CSS
-        const classes = 'ifc-ds-container';
-
-        // Estilos inline para o editor
         const containerStyle = {
             paddingTop: `var(--ifc-spacing-${padding?.top || '30'})`,
             paddingRight: `var(--ifc-spacing-${padding?.right || '30'})`,

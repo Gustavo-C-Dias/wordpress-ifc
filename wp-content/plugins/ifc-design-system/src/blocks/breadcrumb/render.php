@@ -17,8 +17,6 @@ $link_size = $attributes['linkSize'] ?? 'small';
 
 $separator_svg = '<svg viewBox="0 0 20 20" role="presentation" focusable="false" aria-hidden="true"><path d="M7 4l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>';
 
-// Função ifc_ds_render_breadcrumb_link está definida em render-functions.php
-
 // Gerar classes CSS
 $classes = ['ifc-ds-breadcrumb'];
 ?>
@@ -28,7 +26,17 @@ $classes = ['ifc-ds-breadcrumb'];
         <?php foreach ($items as $index => $item): ?>
             <li class="ifc-ds-breadcrumb__item">
                 <?php 
-                echo ifc_ds_render_breadcrumb_link($item, $link_type, $link_size); 
+                echo ifc_ds_render_link([
+                    'label' => $item['label'],
+                    'url' => $item['url'],
+                    'icon' => $item['icon'] ?? '',
+                    'icon_position' => 'left',
+                    'type' => $link_type,
+                    'size' => $link_size,
+                    'weight' => 'semibold',
+                    'class' => 'ifc-ds-breadcrumb__link',
+                    'wrapper' => true
+                ]); 
                 ?>
                 <?php if ($index < count($items)): ?>
                     <span class="ifc-ds-breadcrumb__separator" aria-hidden="true">

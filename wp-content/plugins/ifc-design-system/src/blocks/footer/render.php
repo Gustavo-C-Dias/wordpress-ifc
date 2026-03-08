@@ -10,11 +10,6 @@
 $link_sections = isset($attributes['linkSections']) ? $attributes['linkSections'] : [];
 $address = isset($attributes['address']) ? $attributes['address'] : '';
 $campus = isset($attributes['campus']) ? $attributes['campus'] : '';
-
-$render_functions_path = dirname(__FILE__, 2) . '/render-functions.php';
-if (file_exists($render_functions_path)) {
-    require_once $render_functions_path;
-}
 ?>
 
 <footer class="ifc-ds-footer">

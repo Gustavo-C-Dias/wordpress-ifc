@@ -1,15 +1,11 @@
 import { 
     useBlockProps, 
-    InspectorControls,
-    URLInput,
-    MediaUpload,
-    MediaUploadCheck
+    InspectorControls
 } from '@wordpress/block-editor';
 import {
     PanelBody,
     SelectControl,
     RangeControl,
-    ToggleControl,
     TextControl,
     Button,
     __experimentalUnitControl as UnitControl
