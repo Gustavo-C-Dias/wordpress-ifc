@@ -34,20 +34,17 @@ registerBlockType('ifc-ds/footer', {
       setAttributes({ linkSections: newSections });
     };
 
-    // Função para remover uma seção
     const removeSection = (sectionIndex) => {
       const newSections = linkSections.filter((_, index) => index !== sectionIndex);
       setAttributes({ linkSections: newSections });
     };
 
-    // Função para atualizar título da seção
     const updateSectionTitle = (sectionIndex, newTitle) => {
       const newSections = [...linkSections];
       newSections[sectionIndex].titleSection = newTitle;
       setAttributes({ linkSections: newSections });
     };
 
-    // Função para adicionar link em uma seção
     const addLink = (sectionIndex) => {
       const newSections = [...linkSections];
       newSections[sectionIndex].links.push({
@@ -57,7 +54,6 @@ registerBlockType('ifc-ds/footer', {
       setAttributes({ linkSections: newSections });
     };
 
-    // Função para remover link
     const removeLink = (sectionIndex, linkIndex) => {
       const newSections = [...linkSections];
       newSections[sectionIndex].links = newSections[sectionIndex].links.filter(
@@ -66,7 +62,6 @@ registerBlockType('ifc-ds/footer', {
       setAttributes({ linkSections: newSections });
     };
 
-    // Função para atualizar link
     const updateLink = (sectionIndex, linkIndex, field, value) => {
       const newSections = [...linkSections];
       newSections[sectionIndex].links[linkIndex][field] = value;
@@ -76,37 +71,37 @@ registerBlockType('ifc-ds/footer', {
     return (
       <>
         <InspectorControls>
-          <PanelBody title={__('Configurações do Footer', 'ifc-design-system')}>
+          <PanelBody title={'Configurações do Footer'}>
             <TextareaControl
-              label={__('Endereço', 'ifc-design-system')}
+              label={'Endereço'}
               value={address}
               onChange={(value) => setAttributes({ address: value })}
-              help={__('Texto que aparecerá na parte inferior do footer', 'ifc-design-system')}
+              help={'Texto que aparecerá na parte inferior do footer'}
             />
           </PanelBody>
 
           {linkSections.map((section, sectionIndex) => (
             <PanelBody
               key={sectionIndex}
-              title={`${__('Seção', 'ifc-design-system')} ${sectionIndex + 1}: ${section.titleSection}`}
+              title={`Seção ${sectionIndex + 1}: ${section.titleSection}`}
               initialOpen={false}
             >
               <TextControl
-                label={__('Título da Seção', 'ifc-design-system')}
+                label={'Título da Seção'}
                 value={section.titleSection}
                 onChange={(value) => updateSectionTitle(sectionIndex, value)}
               />
 
-              <h4>{__('Links', 'ifc-design-system')}</h4>
+              <h4>{'Links'}</h4>
               {section.links.map((link, linkIndex) => (
                 <div key={linkIndex} style={{ marginBottom: '15px', padding: '10px', border: '1px solid #ddd' }}>
                   <TextControl
-                    label={__('Label do Link', 'ifc-design-system')}
+                    label={'Label do Link'}
                     value={link.label}
                     onChange={(value) => updateLink(sectionIndex, linkIndex, 'label', value)}
                   />
                   <TextControl
-                    label={__('URL', 'ifc-design-system')}
+                    label={'URL'}
                     value={link.url}
                     onChange={(value) => updateLink(sectionIndex, linkIndex, 'url', value)}
                   />
@@ -115,7 +110,7 @@ registerBlockType('ifc-ds/footer', {
                     isSmall
                     onClick={() => removeLink(sectionIndex, linkIndex)}
                   >
-                    {__('Remover Link', 'ifc-design-system')}
+                    {'Remover Link'}
                   </Button>
                 </div>
               ))}
@@ -126,7 +121,7 @@ registerBlockType('ifc-ds/footer', {
                 onClick={() => addLink(sectionIndex)}
                 style={{ marginBottom: '10px' }}
               >
-                {__('Adicionar Link', 'ifc-design-system')}
+                {'Adicionar Link'}
               </Button>
 
               <br />
@@ -135,17 +130,17 @@ registerBlockType('ifc-ds/footer', {
                 isDestructive
                 onClick={() => removeSection(sectionIndex)}
               >
-                {__('Remover Seção', 'ifc-design-system')}
+                {'Remover Seção'}
               </Button>
             </PanelBody>
           ))}
 
-          <PanelBody title={__('Gerenciar Seções', 'ifc-design-system')}>
+          <PanelBody title={'Gerenciar Seções'}>
             <Button
               isPrimary
               onClick={addSection}
             >
-              {__('Adicionar Nova Seção', 'ifc-design-system')}
+              {'Adicionar Nova Seção'}
             </Button>
           </PanelBody>
         </InspectorControls>
@@ -195,6 +190,6 @@ registerBlockType('ifc-ds/footer', {
   },
 
   save: () => {
-    return null; // Renderização dinâmica via PHP
+    return null;
   }
 });

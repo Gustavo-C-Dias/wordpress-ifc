@@ -29,6 +29,10 @@
         }
     },
     "attributes": {
+        "campus": {
+            "type": "string",
+            "default": "camboriu"
+        },
         "orientation": {
             "type": "string",
             "default": "horizontal",
@@ -62,6 +66,7 @@
     },
     "example": {
         "attributes": {
+            "campus": "camboriu",
             "orientation": "horizontal",
             "variant": "default",
             "width": 200,

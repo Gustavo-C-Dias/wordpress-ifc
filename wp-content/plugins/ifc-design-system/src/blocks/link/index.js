@@ -7,91 +7,19 @@ import {
     PanelBody,
     SelectControl,
     ToggleControl,
-    TextControl,
-    Button,
-    ButtonGroup,
-    __experimentalInputControl as InputControl
+    TextControl
 } from '@wordpress/components';
 import { registerBlockType } from '@wordpress/blocks';
 import { LinkComponent } from './component';
 import { 
-    iconLibrary, 
-    iconCategories, 
     detailedSpacingOptions as spacingOptions,
     linkTypeOptions,
     linkSizeOptions,
     weightOptions,
     iconPositionOptions
 } from '../../shared/options';
-import { useState } from '@wordpress/element';
-import { __ } from '@wordpress/i18n';
 
 import './style.scss';
-
-// Componente para seleção visual de ícones
-const IconSelector = ({ selectedIcon, onIconSelect }) => {
-    const [selectedCategory, setSelectedCategory] = useState('all');
-    const [searchTerm, setSearchTerm] = useState('');
-
-    // Filtrar ícones por categoria e termo de busca
-    const filteredIcons = iconLibrary.filter(icon => {
-        const matchesCategory = selectedCategory === 'all' || icon.category === selectedCategory;
-        const matchesSearch = !searchTerm || 
-            icon.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            icon.value.toLowerCase().includes(searchTerm.toLowerCase());
-        return matchesCategory && matchesSearch;
-    });
-
-    return (
-        <div className="icon-selector">
-            <div className="icon-selector__controls">
-                <TextControl
-                    label={__('Buscar Ícone', 'ifc-design-system')}
-                    value={searchTerm}
-                    onChange={setSearchTerm}
-                    placeholder={__('Digite para buscar...', 'ifc-design-system')}
-                />
-                
-                <SelectControl
-                    label={__('Categoria', 'ifc-design-system')}
-                    value={selectedCategory}
-                    options={iconCategories}
-                    onChange={setSelectedCategory}
-                />
-            </div>
-
-            <div className="icon-selector__grid">
-                {/* Opção para remover ícone */}
-                <Button
-                    className={`icon-selector__icon ${!selectedIcon ? 'is-selected' : ''}`}
-                    onClick={() => onIconSelect('')}
-                    title={__('Sem ícone', 'ifc-design-system')}
-                >
-                    <span className="icon-selector__no-icon">✕</span>
-                </Button>
-
-                {filteredIcons.map((icon) => (
-                    <Button
-                        key={icon.value}
-                        className={`icon-selector__icon ${selectedIcon === icon.value ? 'is-selected' : ''}`}
-                        onClick={() => onIconSelect(icon.value)}
-                        title={icon.name}
-                    >
-                        <span className={`dashicons dashicons-${icon.value}`} />
-                    </Button>
-                ))}
-            </div>
-
-            {selectedIcon && (
-                <div className="icon-selector__preview">
-                    <strong>{__('Selecionado:', 'ifc-design-system')} </strong>
-                    <span className={`dashicons dashicons-${selectedIcon}`} />
-                    <code>{selectedIcon}</code>
-                </div>
-            )}
-        </div>
-    );
-};
 
 registerBlockType('ifc-ds/link', {
     edit: ({ attributes, setAttributes }) => {
@@ -149,24 +77,26 @@ registerBlockType('ifc-ds/link', {
                     </PanelBody>
 
                     <PanelBody title={'Ícone'} initialOpen={false}>
-                        <IconSelector
-                            selectedIcon={icon}
-                            onIconSelect={(iconValue) => setAttributes({ icon: iconValue })}
+                        <TextControl
+                            label={'Dashicon'}
+                            value={icon || ''}
+                            onChange={(value) => setAttributes({ icon: value })}
+                            placeholder="admin-home"
+                            help={'Use o slug do Dashicon (ex: admin-home, arrow-right-alt2).'}
                         />
+
+                        {icon && (
+                            <div className="icon-selector__preview">
+                                <span className={`dashicons dashicons-${icon}`} />
+                                <code>{icon}</code>
+                            </div>
+                        )}
 
                         <SelectControl
                             label={'Posição do Ícone'}
                             value={iconPosition}
                             options={iconPositionOptions}
                             onChange={(value) => setAttributes({ iconPosition: value })}
-                        />
-
-                        <InputControl
-                            label={'Ícone Personalizado'}
-                            value={icon && !iconLibrary.find(i => i.value === icon) ? icon : ''}
-                            onChange={(value) => setAttributes({ icon: value })}
-                            placeholder="dashicons-custom ou URL da imagem"
-                            help={'Digite o nome de um dashicon personalizado ou URL de uma imagem'}
                         />
                     </PanelBody>
 

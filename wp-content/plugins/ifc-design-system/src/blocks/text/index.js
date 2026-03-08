@@ -1,4 +1,3 @@
-import { __ } from '@wordpress/i18n';
 import { useBlockProps, InspectorControls, RichText } from '@wordpress/block-editor';
 import { PanelBody, SelectControl, ToggleControl } from '@wordpress/components';
 import { registerBlockType } from '@wordpress/blocks';
@@ -41,30 +40,30 @@ registerBlockType('ifc-ds/text', {
         return (
             <>
                 <InspectorControls>
-                    <PanelBody title={__('Configurações do Texto', 'ifc-design-system')}>
+                    <PanelBody title={'Configurações do Texto'}>
                         <SelectControl
-                            label={__('Tipo de Texto', 'ifc-design-system')}
+                            label={'Tipo de Texto'}
                             value={textType}
                             options={textTypeOptions}
                             onChange={handleTypeChange}
                         />
                         
                         <SelectControl
-                            label={__('Peso da Fonte', 'ifc-design-system')}
+                            label={'Peso da Fonte'}
                             value={weight}
                             options={getWeightOptionsByType(textType)}
                             onChange={(value) => setAttributes({ weight: value })}
                         />
                         
                         <SelectControl
-                            label={__('Cor', 'ifc-design-system')}
+                            label={'Cor'}
                             value={color}
                             options={textColorOptions}
                             onChange={(value) => setAttributes({ color: value })}
                         />
                         
                         <SelectControl
-                            label={__('Alinhamento', 'ifc-design-system')}
+                            label={'Alinhamento'}
                             value={alignment}
                             options={alignmentOptions}
                             onChange={(value) => setAttributes({ alignment: value })}
@@ -77,7 +76,7 @@ registerBlockType('ifc-ds/text', {
                     tagName={getHtmlTagForTextType(textType)}
                     value={content}
                     onChange={(value) => setAttributes({ content: value })}
-                    placeholder={__('Digite seu texto...', 'ifc-design-system')}
+                    placeholder={'Digite seu texto...'}
                     allowedFormats={[]} // Desabilitar formatação Rich Text para manter consistência
                 />
             </>

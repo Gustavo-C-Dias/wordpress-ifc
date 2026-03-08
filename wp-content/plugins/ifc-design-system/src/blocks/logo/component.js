@@ -1,17 +1,28 @@
 // Componente Logo reutilizável para uso em outros blocos
 import { createElement } from '@wordpress/element';
 
-// URL base para as imagens (será definida através do WordPress)
-const LOGO_BASE_URL = '/wp-content/plugins/ifc-design-system/src/blocks/logo/assets';
+/**
+ * Obtém a URL base de imagens baseada na localização do arquivo
+ * Retorna a URL correta dependendo do contexto (editor ou frontend)
+ */
+const getPluginUrl = () => {
+    if (typeof wpAssets !== 'undefined' && wpAssets.pluginUrl) {
+        return wpAssets.pluginUrl;
+    }
+    // Fallback para URLs relativas se disponível
+    return '/wp-content/plugins/ifc-design-system';
+};
 
 /**
- * Gera a URL da imagem do logo baseada na orientação e variante
+ * Gera a URL da imagem do logo baseada no campus, orientação e variante
+ * @param {string} campus - Campus ('camboriu', etc)
  * @param {string} orientation - 'horizontal' ou 'vertical'
  * @param {string} variant - 'default' ou 'white'
  * @returns {string} URL da imagem
  */
-export const getLogoUrl = (orientation = 'horizontal', variant = 'default') => {
-    return `${LOGO_BASE_URL}/${orientation}/logo-${variant}.svg`;
+export const getLogoUrl = (campus = 'camboriu', orientation = 'horizontal', variant = 'default') => {
+    const pluginUrl = getPluginUrl();
+    return `${pluginUrl}/src/blocks/logo/assets/${campus}/${orientation}/${variant}.png`;
 };
 
 /**
@@ -31,6 +42,7 @@ export const getLogoUrl = (orientation = 'horizontal', variant = 'default') => {
  * @returns {JSX.Element} Elemento JSX do logo
  */
 export const LogoComponent = ({
+    campus = 'camboriu',
     orientation = 'horizontal',
     variant = 'default',
     width = 200,
@@ -53,7 +65,7 @@ export const LogoComponent = ({
     ].filter(Boolean).join(' ');
 
     // URL da imagem
-    const logoUrl = getLogoUrl(orientation, variant);
+    const logoUrl = getLogoUrl(campus, orientation, variant);
 
     // Estilos da imagem
     const imageStyle = {
@@ -119,12 +131,14 @@ export const VerticalLogo = (props) => {
 export const LogoPresets = {
     // Logos horizontais
     horizontalDefault: { 
+        campus: 'camboriu',
         orientation: 'horizontal', 
         variant: 'default', 
         width: 200, 
         height: 60 
     },
     horizontalWhite: { 
+        campus: 'camboriu',
         orientation: 'horizontal', 
         variant: 'white', 
         width: 200, 
@@ -133,12 +147,14 @@ export const LogoPresets = {
     
     // Logos verticais
     verticalDefault: { 
+        campus: 'camboriu',
         orientation: 'vertical', 
         variant: 'default', 
         width: 80, 
         height: 120 
     },
     verticalWhite: { 
+        campus: 'camboriu',
         orientation: 'vertical', 
         variant: 'white', 
         width: 80, 
@@ -152,6 +168,7 @@ export const LogoPresets = {
     
     // Para header
     headerLogo: { 
+        campus: 'camboriu',
         orientation: 'horizontal', 
         variant: 'default', 
         width: 180, 
@@ -162,6 +179,7 @@ export const LogoPresets = {
     
     // Para footer
     footerLogo: { 
+        campus: 'camboriu',
         orientation: 'horizontal', 
         variant: 'white', 
         width: 160, 

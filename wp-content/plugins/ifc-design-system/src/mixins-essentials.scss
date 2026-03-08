@@ -1,5 +1,5 @@
 /**
- * IFC Design System - SCSS Mixins Essenciais
+ * IFC Design System - SCSS Mixins
  */
 
 /* ==========================================
@@ -15,25 +15,8 @@
 }
 
 /* ==========================================
- * COMPONENTES RESET
+ * FOCUS
  * ========================================== */
-
-@mixin ifc-reset-button {
-  background: transparent;
-  border: none;
-  margin: 0;
-  padding: 0;
-  font-family: inherit;
-  font-size: inherit;
-  line-height: inherit;
-  cursor: pointer;
-  outline: none;
-  
-  &:focus {
-    outline: var(--ifc-border-width-0-25) solid var(--ifc-color-primary-600);
-    outline-offset: var(--ifc-border-width-0-1);
-  }
-}
 
 @mixin ifc-focus-ring($color: var(--ifc-color-primary-600)) {
   outline: var(--ifc-border-width-0-25) solid $color;
@@ -45,10 +28,7 @@
  * COMPONENTES - INPUT
  * ========================================== */
 
-/**
- * Mixin base para inputs
- * Agrupa comportamento comum (borders, hover, focus, disabled)
- */
+
 @mixin ifc-input-base {
   font-family: var(--ifc-font-family);
   font-size: var(--ifc-font-size-2);

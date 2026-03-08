@@ -12,6 +12,10 @@
     "html": false
   },
   "attributes": {
+    "logoCampus": {
+      "type": "string",
+      "default": "camboriu"
+    },
     "logoOrientation": {
       "type": "string",
       "default": "horizontal"

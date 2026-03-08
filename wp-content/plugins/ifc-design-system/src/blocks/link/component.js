@@ -2,10 +2,10 @@
 import { createElement } from '@wordpress/element';
 import { TextComponent } from '../text/component';
 import { buildLinkClasses, getLinkIconSize } from '../../shared/class-builder';
-import { iconLibrary, iconCategories, detailedSpacingOptions as spacingOptions } from '../../shared/options';
+import { detailedSpacingOptions as spacingOptions } from '../../shared/options';
 
 // Re-exporta opções para uso por outros componentes
-export { iconLibrary, iconCategories, spacingOptions };
+export { spacingOptions };
 
 /**
  * Renderiza um componente Link reutilizável
@@ -43,17 +43,14 @@ export const LinkComponent = ({
 
     const renderIcon = () => {
         if (!icon) return null;
-        
+
         return createElement('span', {
             className: `ifc-ds-link__icon ifc-ds-link__icon--${iconPosition}`,
             style: iconStyle
-        }, icon.startsWith('http') ? 
-            createElement('img', { src: icon, alt: '', style: iconStyle }) :
-            createElement('span', { 
-                className: `dashicon dashicons-${icon}`, 
-                style: iconStyle 
-            })
-        );
+        }, createElement('span', { 
+            className: `dashicons dashicons-${icon}`, 
+            style: iconStyle 
+        }));
     };
 
     const linkContent = [

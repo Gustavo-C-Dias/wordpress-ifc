@@ -1,36 +1,23 @@
 .ifc-ds-footer {
   width: 100%;
   background-color: var(--ifc-color-neutral-100);
-  padding: var(--ifc-spacing-8) 0;
+  padding-top: var(--ifc-spacing-6);
   
-  @media (min-width: 768px) {
-    padding: var(--ifc-spacing-10) 0;
-  }
-
-  &__sections {
-    display: flex;
-    flex-direction: column;
-    gap: var(--ifc-spacing-8);
-    margin-bottom: var(--ifc-spacing-10);
+  &__section-links {
+    background-color: var(--ifc-color-primary-500);
+    padding: var(--ifc-spacing-3) 0;
     
-    @media (min-width: 768px) {
-      flex-direction: row;
-      justify-content: flex-start;
-      gap: var(--ifc-spacing-10);
-      flex-wrap: wrap;
+    .ifc-ds-layout-container__content {
+      display: grid !important;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)) !important;
+      gap: var(--grid-gutter, var(--ifc-spacing-5)) !important;
     }
   }
 
   &__section {
     display: flex;
     flex-direction: column;
-    gap: var(--ifc-spacing-3);
-    flex: 1;
-    min-width: 200px;
-    
-    @media (min-width: 768px) {
-      flex: 0 1 calc(33.333% - var(--ifc-spacing-10));
-    }
+    gap: var(--ifc-spacing-1);
   }
 
   &__section-title {
@@ -40,7 +27,7 @@
   &__links {
     display: flex;
     flex-direction: column;
-    gap: var(--ifc-spacing-2);
+    gap: var(--ifc-spacing-0-5);
   }
 
   &__link {
@@ -49,30 +36,11 @@
   }
 
   &__address {
-    border-top: 1px solid var(--ifc-color-neutral-300);
-    padding-top: var(--ifc-spacing-4);
-    margin-top: var(--ifc-spacing-8);
+    padding: var(--ifc-spacing-2) 0 var(--ifc-spacing-3) 0;
+    background-color: var(--ifc-color-primary-700);
   }
 
-  &__address-text {
-    text-align: center;
-    
-    @media (min-width: 768px) {
-      text-align: left;
-    }
+  &__address-content {
+    grid-column: 1 / -1;
   }
 }
-
-// Estilos para o editor
-.editor-styles-wrapper {
-  .ifc-ds-footer {
-    border: 1px dashed var(--ifc-color-neutral-300);
-    
-    &__section {
-      padding: var(--ifc-spacing-3);
-      background-color: var(--ifc-color-neutral-200);
-      border-radius: 4px;
-    }
-  }
-}
-

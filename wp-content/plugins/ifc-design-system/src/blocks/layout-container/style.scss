@@ -89,11 +89,10 @@ $govbr-spacing: (
     grid-template-columns: repeat(var(--grid-columns), minmax(0, 1fr));
     column-gap: var(--grid-gutter);
     width: 100%;
-    min-height: 50px;
     box-sizing: border-box;
   }
   
-  // Container fluído (padrão)
+
   &--fluid {
     max-width: 100%;
     
@@ -122,7 +121,6 @@ $govbr-spacing: (
     }
   }
   
-  // Container fixo
   &--fixed {
     .ifc-ds-layout-container__content {
       display: grid;
@@ -153,7 +151,6 @@ $govbr-spacing: (
     }
   }
   
-  // Espaçamentos verticais
   @each $name, $value in $govbr-spacing {
     &--spacing-#{$name} {
       padding-top: $value;
@@ -161,7 +158,6 @@ $govbr-spacing: (
     }
   }
   
-  // Alinhamentos horizontais
   &--align-left {
     .ifc-ds-layout-container__content {
       margin-left: 0;
@@ -183,7 +179,6 @@ $govbr-spacing: (
     }
   }
   
-  // Sangria (Bleed) - permite elementos quebrarem as margens
   &--bleed {
     overflow: visible;
     
@@ -191,7 +186,6 @@ $govbr-spacing: (
       position: relative;
     }
     
-    // Elementos filhos podem usar classes de sangria
     .ifc-ds-bleed-full {
       margin-left: calc(-1 * var(--grid-margin, 40px));
       margin-right: calc(-1 * var(--grid-margin, 40px));
@@ -205,69 +199,9 @@ $govbr-spacing: (
       margin-right: calc(-1 * var(--grid-margin, 40px));
     }
   }
-  
-  // Label de preview no editor
-  &__preview-label {
-    position: absolute;
-    top: -24px;
-    left: 0;
-    font-size: 11px;
-    color: #666;
-    background: rgba(255, 255, 255, 0.9);
-    padding: 2px 6px;
-    border-radius: 3px;
-    border: 1px solid #ddd;
-    z-index: 1;
-    pointer-events: none;
-    
-    @media (max-width: 782px) {
-      position: static;
-      margin-bottom: 8px;
-      display: inline-block;
-    }
-  }
 }
 
-// Estilos específicos para o editor
-.editor-styles-wrapper {
-  .ifc-ds-layout-container {
-    border: 2px dashed #e0e0e0;
-    border-radius: 4px;
-    transition: border-color 0.2s ease;
-    
-    &:hover {
-      border-color: #007cba;
-    }
-    
-    &.is-selected {
-      border-color: #007cba;
-      border-style: solid;
-    }
-    
-    &__content {
-      display: block;
-      grid-template-columns: none;
-      column-gap: 0;
-      position: relative;
-      min-height: 100px;
-      
-      &:empty::before {
-        content: "Adicione blocos dentro do container de layout";
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 100px;
-        color: #999;
-        font-style: italic;
-        text-align: center;
-      }
-    }
-  }
-}
-
-// Variáveis CSS para uso dinâmico
 .ifc-ds-layout-container {
-  // Mobile Portrait
   --grid-margin: #{map-get(map-get($govbr-grid-configs, mobile-portrait), margin)};
   --grid-gutter: #{map-get(map-get($govbr-grid-configs, mobile-portrait), gutter)};
   --grid-columns: #{map-get(map-get($govbr-grid-configs, mobile-portrait), columns)};

@@ -1,4 +1,3 @@
-import { __ } from '@wordpress/i18n';
 import { 
     useBlockProps, 
     InspectorControls,
@@ -30,6 +29,7 @@ import './style.scss';
 registerBlockType('ifc-ds/logo', {
     edit: ({ attributes, setAttributes }) => {
         const { 
+            campus,
             orientation, 
             variant, 
             width, 
@@ -58,26 +58,36 @@ registerBlockType('ifc-ds/logo', {
             });
         };
 
-        const logoUrl = getLogoUrl(orientation, variant);
+        const logoUrl = getLogoUrl(campus, orientation, variant);
 
         return (
             <>
                 <InspectorControls>
-                    <PanelBody title={__('Configurações do Logo', 'ifc-design-system')}>
+                    <PanelBody title={'Configurações do Logo'}>
                         <SelectControl
-                            label={__('Orientação', 'ifc-design-system')}
-                            value={orientation}
-                            options={orientationOptions}
-                            onChange={handleOrientationChange}
-                            help={__('Escolha entre logo horizontal ou vertical', 'ifc-design-system')}
+                            label={'Campus'}
+                            value={campus}
+                            options={[
+                                { label: 'Camboriú', value: 'camboriu' }
+                            ]}
+                            onChange={(value) => setAttributes({ campus: value })}
+                            help={'Escolha o campus do logo'}
                         />
 
                         <SelectControl
-                            label={__('Variante', 'ifc-design-system')}
+                            label={'Orientação'}
+                            value={orientation}
+                            options={orientationOptions}
+                            onChange={handleOrientationChange}
+                            help={'Escolha entre logo horizontal ou vertical'}
+                        />
+
+                        <SelectControl
+                            label={'Variante'}
                             value={variant}
                             options={variantOptions}
                             onChange={(value) => setAttributes({ variant: value })}
-                            help={__('Escolha a versão de cor do logo', 'ifc-design-system')}
+                            help={'Escolha a versão de cor do logo'}
                         />
 
                         <div className="logo-preview" style={{ 
@@ -87,7 +97,7 @@ registerBlockType('ifc-ds/logo', {
                             borderRadius: '4px',
                             backgroundColor: variant === 'white' ? '#333' : '#fff'
                         }}>
-                            <p><strong>{__('Preview:', 'ifc-design-system')}</strong></p>
+                            <p><strong>{'Preview:'}</strong></p>
                             <img 
                                 src={logoUrl} 
                                 alt={altText}
@@ -100,9 +110,9 @@ registerBlockType('ifc-ds/logo', {
                         </div>
                     </PanelBody>
 
-                    <PanelBody title={__('Dimensões', 'ifc-design-system')} initialOpen={false}>
+                    <PanelBody title={'Dimensões'} initialOpen={false}>
                         <RangeControl
-                            label={__('Largura (px)', 'ifc-design-system')}
+                            label={'Largura (px)'}
                             value={width}
                             onChange={(value) => setAttributes({ width: value })}
                             min={50}
@@ -111,7 +121,7 @@ registerBlockType('ifc-ds/logo', {
                         />
 
                         <RangeControl
-                            label={__('Altura (px)', 'ifc-design-system')}
+                            label={'Altura (px)'}
                             value={height}
                             onChange={(value) => setAttributes({ height: value })}
                             min={30}
@@ -129,22 +139,22 @@ registerBlockType('ifc-ds/logo', {
                                 });
                             }}
                         >
-                            {__('Restaurar dimensões padrão', 'ifc-design-system')}
+                            {'Restaurar dimensões padrão'}
                         </Button>
                     </PanelBody>
 
-                    <PanelBody title={__('Link e Acessibilidade', 'ifc-design-system')} initialOpen={false}>
+                    <PanelBody title={'Link e Acessibilidade'} initialOpen={false}>
                         <TextControl
-                            label={__('URL do Link', 'ifc-design-system')}
+                            label={'URL do Link'}
                             value={linkUrl}
                             onChange={(value) => setAttributes({ linkUrl: value })}
                             placeholder="https://ifc.edu.br"
-                            help={__('URL para onde o logo deve redirecionar quando clicado', 'ifc-design-system')}
+                            help={'URL para onde o logo deve redirecionar quando clicado'}
                         />
 
                         {linkUrl && (
                             <SelectControl
-                                label={__('Abrir link', 'ifc-design-system')}
+                                label={'Abrir link'}
                                 value={linkTarget}
                                 options={linkTargetOptions}
                                 onChange={(value) => setAttributes({ linkTarget: value })}
@@ -152,16 +162,17 @@ registerBlockType('ifc-ds/logo', {
                         )}
 
                         <TextControl
-                            label={__('Texto Alternativo', 'ifc-design-system')}
+                            label={'Texto Alternativo'}
                             value={altText}
                             onChange={(value) => setAttributes({ altText: value })}
-                            help={__('Descrição da imagem para acessibilidade', 'ifc-design-system')}
+                            help={'Descrição da imagem para acessibilidade'}
                         />
                     </PanelBody>
                 </InspectorControls>
 
                 <div {...useBlockProps()}>
                     <LogoComponent
+                        campus={campus}
                         orientation={orientation}
                         variant={variant}
                         width={width}

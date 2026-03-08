@@ -407,7 +407,7 @@ if (!function_exists('ifc_ds_get_valid_weights')) {
  */
 if (!function_exists('ifc_ds_get_valid_colors')) {
     function ifc_ds_get_valid_colors() {
-        return array('primary', 'secondary', 'neutral', 'success', 'warning', 'error');
+        return array('primary', 'secondary', 'neutral');
     }
 }
 

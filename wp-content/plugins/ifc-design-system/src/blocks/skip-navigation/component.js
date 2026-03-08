@@ -1,4 +1,3 @@
-import { __ } from '@wordpress/i18n';
 import { LinkComponent } from '../link/component';
 
 export const SkipNavigationComponent = ({ 

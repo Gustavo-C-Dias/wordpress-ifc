@@ -1,6 +1,6 @@
 /**
- * IFC Design System - Accordion Frontend Script
- * Script para funcionalidade do accordion no frontend
+ * IFC Design System
+ * Script para funcionalidade do accordion
  */
 
 (function() {
@@ -18,12 +18,10 @@
         
         focusableElements.forEach(function(element) {
             if (isOpen) {
-                // Remove tabindex negativo para permitir foco
                 if (element.getAttribute('tabindex') === '-1') {
                     element.removeAttribute('tabindex');
                 }
             } else {
-                // Define tabindex -1 para remover do fluxo de foco
                 element.setAttribute('tabindex', '-1');
             }
         });
@@ -128,12 +126,4 @@
             subtree: true
         });
     }
-
-    // Expõe API pública para uso externo
-    window.IFCAccordion = {
-        init: initAllAccordions,
-        initSingle: initAccordion,
-        toggle: toggleAccordion
-    };
-
 })();

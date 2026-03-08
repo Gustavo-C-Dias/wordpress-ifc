@@ -5,7 +5,6 @@ import {
 import {
     PanelBody,
     SelectControl,
-    ToggleControl,
     TextControl,
     Button,
     __experimentalInputControl as InputControl
@@ -22,6 +21,20 @@ registerBlockType('ifc-ds/breadcrumb', {
             currentPageTitle,
             linkSize
         } = attributes;
+
+        const normalizedItems = items.map((item, index) => {
+            if (!item.id || typeof item.id !== 'number') {
+                return { ...item, id: index + 1 };
+            }
+            return item;
+        });
+
+        const itemsHaveChanged = normalizedItems.some((item, index) => 
+            item.id !== items[index]?.id
+        );
+        if (itemsHaveChanged) {
+            setAttributes({ items: normalizedItems });
+        }
 
         const renderSeparator = () => (
             <span className="ifc-ds-breadcrumb__separator" aria-hidden="true">
@@ -62,10 +75,10 @@ registerBlockType('ifc-ds/breadcrumb', {
             );
         };
 
-        // Função para adicionar novo item
         const addItem = () => {
+            const maxId = items.length > 0 ? Math.max(...items.map(item => item.id || 0)) : 0;
             const newItem = {
-                id: Math.max(...items.map(item => item.id), 0) + 1,
+                id: maxId + 1,
                 label: 'Novo Link',
                 url: '',
                 icon: ''
@@ -73,14 +86,12 @@ registerBlockType('ifc-ds/breadcrumb', {
             setAttributes({ items: [...items, newItem] });
         };
 
-        // Função para remover item
         const removeItem = (itemId) => {
             setAttributes({ 
                 items: items.filter(item => item.id !== itemId)
             });
         };
 
-        // Função para atualizar item
         const updateItem = (itemId, field, value) => {
             setAttributes({
                 items: items.map(item => 

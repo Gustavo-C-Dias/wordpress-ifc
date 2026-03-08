@@ -22,36 +22,134 @@
       "type": "array",
       "default": [
         {
-          "titleSection": "Seção 1",
+          "titleSection": "Comunidade",
           "links": [
             {
-              "label": "Link 1",
+              "label": "Acesso à informação",
               "url": "#"
             },
             {
-              "label": "Link 2",
+              "label": "CEPSH",
+              "url": "#"
+            },
+            {
+              "label": "Conselho superior",
+              "url": "#"
+            },
+            {
+              "label": "Consultas públicas",
+              "url": "#"
+            },
+            {
+              "label": "Projeto cães-guia",
+              "url": "#"
+            },
+            {
+              "label": "Editais IFC",
+              "url": "#"
+            },
+            {
+              "label": "Trabalhe no IFC",
+              "url": "#"
+            },
+            {
+              "label": "Visite o campus",
               "url": "#"
             }
           ]
         },
         {
-          "titleSection": "Seção 2",
+          "titleSection": "Alunos",
           "links": [
             {
-              "label": "Link 1",
+              "label": "Calendário acadêmico",
               "url": "#"
             },
             {
-              "label": "Link 2",
+              "label": "Horário das aulas",
+              "url": "#"
+            },
+            {
+              "label": "Organização didática do IFC",
+              "url": "#"
+            },
+            {
+              "label": "Políticas e programas estudantis",
+              "url": "#"
+            },
+            {
+              "label": "Portal de ingresso IFC",
+              "url": "#"
+            },
+            {
+              "label": "SIGAA",
+              "url": "#"
+            }
+          ]
+        },
+        {
+          "titleSection": "Servidores",
+          "links": [
+            {
+              "label": "Desenvolvimento do servidor",
+              "url": "#"
+            },
+            {
+              "label": "Portal SIAPENET",
+              "url": "#"
+            },
+            {
+              "label": "Sistema integrado de gestão (SIG)",
+              "url": "#"
+            },
+            {
+              "label": "Calendário administrativo",
+              "url": "#"
+            },
+            {
+              "label": "Quadro docente",
+              "url": "#"
+            },
+            {
+              "label": "Manual do servidor",
+              "url": "#"
+            },
+            {
+              "label": "Reservas de ambientes",
+              "url": "#"
+            }
+          ]
+        },
+        {
+          "titleSection": "Sites de Interesse",
+          "links": [
+            {
+              "label": "Concurso IFC",
+              "url": "#"
+            },
+            {
+              "label": "Informativo IFC",
+              "url": "#"
+            },
+            {
+              "label": "MEC",
+              "url": "#"
+            },
+            {
+              "label": "Portal do ingresso IFC",
               "url": "#"
             }
           ]
         }
       ]
     },
+    "campus": {
+      "type": "string",
+      "default": "Instituto Federal de Educação, Ciência e Tecnologia Catarinense - Campus Camboriú"
+    },
     "address": {
       "type": "string",
-      "default": "Digite o endereço aqui"
+      "default": "Rua: Joaquim Garcia, s/c - CEP 88340-055 - Camboriú - SC - Fone: (47) 2104-0800 - E-mail: gabinete.camboriu@ifc.edu.br"
     }
   }
 }

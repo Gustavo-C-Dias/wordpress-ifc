@@ -14,6 +14,7 @@ if (!defined('ABSPATH')) {
 if (!function_exists('ifc_ds_render_logo_block')) {
     function ifc_ds_render_logo_block($attributes, $content, $block) {
         // Valores padrão
+        $campus = isset($attributes['campus']) ? $attributes['campus'] : 'camboriu';
         $orientation = isset($attributes['orientation']) ? $attributes['orientation'] : 'horizontal';
         $variant = isset($attributes['variant']) ? $attributes['variant'] : 'default';
         $width = isset($attributes['width']) ? intval($attributes['width']) : 200;
@@ -23,6 +24,7 @@ if (!function_exists('ifc_ds_render_logo_block')) {
         $alt_text = isset($attributes['altText']) ? $attributes['altText'] : 'Logo IFC';
 
         // Validar valores
+        $campus = esc_attr($campus);
         $orientation = in_array($orientation, ['horizontal', 'vertical']) ? $orientation : 'horizontal';
         $variant = in_array($variant, ['default', 'white']) ? $variant : 'default';
         $width = max(50, min(400, $width));
@@ -30,8 +32,10 @@ if (!function_exists('ifc_ds_render_logo_block')) {
         $link_target = in_array($link_target, ['_self', '_blank']) ? $link_target : '_self';
 
         // Gerar URL da imagem
-        $plugin_url = plugin_dir_url(__FILE__);
-        $logo_url = $plugin_url . 'assets/' . $orientation . '/logo-' . $variant . '.svg';
+        $plugin_url = defined('IFC_DS_PLUGIN_URL')
+            ? IFC_DS_PLUGIN_URL
+            : plugin_dir_url(dirname(dirname(dirname(dirname(__FILE__)))));
+        $logo_url = $plugin_url . 'src/blocks/logo/assets/' . $campus . '/' . $orientation . '/' . $variant . '.png';
 
         // Montar classes CSS
         $classes = array(
@@ -99,9 +103,11 @@ if (!function_exists('ifc_ds_render_logo_block')) {
  * Função auxiliar para obter URL do logo
  */
 if (!function_exists('ifc_ds_get_logo_url')) {
-    function ifc_ds_get_logo_url($orientation = 'horizontal', $variant = 'default') {
-        $plugin_url = plugin_dir_url(__FILE__);
-        return $plugin_url . 'assets/' . $orientation . '/logo-' . $variant . '.svg';
+    function ifc_ds_get_logo_url($campus = 'camboriu', $orientation = 'horizontal', $variant = 'default') {
+        $plugin_url = defined('IFC_DS_PLUGIN_URL')
+            ? IFC_DS_PLUGIN_URL
+            : plugin_dir_url(dirname(dirname(dirname(dirname(__FILE__)))));
+        return $plugin_url . 'src/blocks/logo/assets/' . $campus . '/' . $orientation . '/' . $variant . '.png';
     }
 }
 
@@ -111,6 +117,7 @@ if (!function_exists('ifc_ds_get_logo_url')) {
 if (!function_exists('ifc_ds_render_logo')) {
     function ifc_ds_render_logo($args = array()) {
         $defaults = array(
+            'campus' => 'camboriu',
             'orientation' => 'horizontal',
             'variant' => 'default',
             'width' => 200,
@@ -125,6 +132,7 @@ if (!function_exists('ifc_ds_render_logo')) {
 
         // Simular atributos do bloco
         $attributes = array(
+            'campus' => $args['campus'],
             'orientation' => $args['orientation'],
             'variant' => $args['variant'],
             'width' => $args['width'],

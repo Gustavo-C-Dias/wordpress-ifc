@@ -1,18 +1,17 @@
-import { __ } from '@wordpress/i18n';
 import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
-import { PanelBody, TextControl, SelectControl } from '@wordpress/components';
+import { PanelBody, SelectControl } from '@wordpress/components';
 import { registerBlockType } from '@wordpress/blocks';
 import { SkipNavigationComponent } from '../skip-navigation/component';
 import { LogoComponent } from '../logo/component';
 import { LinkComponent } from '../link/component';
 import { DividerComponent } from '../divider/component';
-import { TextComponent } from '../text/component';
 
 import './style.scss';
 
 registerBlockType('ifc-ds/header', {
   edit: ({ attributes, setAttributes }) => {
     const { 
+      logoCampus,
       logoOrientation, 
       logoVariant,
       accessibilityLinks,
@@ -23,22 +22,30 @@ registerBlockType('ifc-ds/header', {
     return (
       <>
         <InspectorControls>
-          <PanelBody title={__('Configurações do Header', 'ifc-design-system')}>
+          <PanelBody title={'Configurações do Header'}>
             <SelectControl
-              label={__('Orientação do Logo', 'ifc-design-system')}
+              label={'Campus do Logo'}
+              value={logoCampus}
+              options={[
+                { label: 'Camboriú', value: 'camboriu' }
+              ]}
+              onChange={(value) => setAttributes({ logoCampus: value })}
+            />
+            <SelectControl
+              label={'Orientação do Logo'}
               value={logoOrientation}
               options={[
-                { label: __('Horizontal', 'ifc-design-system'), value: 'horizontal' },
-                { label: __('Vertical', 'ifc-design-system'), value: 'vertical' }
+                { label: 'Horizontal', value: 'horizontal' },
+                { label: 'Vertical', value: 'vertical' }
               ]}
               onChange={(value) => setAttributes({ logoOrientation: value })}
             />
             <SelectControl
-              label={__('Variante do Logo', 'ifc-design-system')}
+              label={'Variante do Logo'}
               value={logoVariant}
               options={[
-                { label: __('Padrão', 'ifc-design-system'), value: 'default' },
-                { label: __('Branco', 'ifc-design-system'), value: 'white' }
+                { label: 'Padrão', value: 'default' },
+                { label: 'Branco', value: 'white' }
               ]}
               onChange={(value) => setAttributes({ logoVariant: value })}
             />
@@ -77,6 +84,7 @@ registerBlockType('ifc-ds/header', {
               <div className="ifc-ds-layout-container__content">
                 <div className="ifc-ds-header__brand">
                   <LogoComponent 
+                    campus={logoCampus}
                     orientation={logoOrientation}
                     variant={logoVariant}
                     className="ifc-ds-header__logo"
@@ -87,7 +95,7 @@ registerBlockType('ifc-ds/header', {
                   <div className="ifc-ds-header__search">
                     <input 
                       type="search" 
-                      placeholder={__('Buscar...', 'ifc-design-system')}
+                      placeholder={'Buscar no portal'}
                       className="ifc-ds-header__search-input"
                     />
                   </div>

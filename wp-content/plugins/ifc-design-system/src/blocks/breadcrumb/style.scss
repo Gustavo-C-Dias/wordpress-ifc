@@ -1,7 +1,6 @@
 // Importar estilos do Link para reutilização
 @import '../link/style.scss';
 
-// Breadcrumb Component Styles
 .ifc-ds-breadcrumb {
     &__list {
         display: flex;
@@ -29,16 +28,7 @@
             height: 14px;
         }
     }
-    
-    // Estados de acessibilidade
-    &__link {
-        &:focus-visible {
-            outline: 2px solid var(--ifc-color-primary-500);
-            outline-offset: 2px;
-            border-radius: 4px;
-        }
-    }
-    
+
     // Responsividade
     @media (max-width: 768px) {
         &__list {

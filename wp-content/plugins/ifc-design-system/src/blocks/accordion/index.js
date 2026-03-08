@@ -1,4 +1,3 @@
-import { __ } from '@wordpress/i18n';
 import { useBlockProps, InspectorControls, InnerBlocks } from '@wordpress/block-editor';
 import { 
     PanelBody, 
@@ -17,14 +16,14 @@ registerBlockType('ifc-ds/accordion', {
     return (
       <>
         <InspectorControls>
-          <PanelBody title={__('Configurações Gerais', 'ifc-design-system')}>
+          <PanelBody title={'Configurações Gerais'}>
             <TextControl
-              label={__('Título', 'ifc-design-system')}
+              label={'Título'}
               value={title}
               onChange={(value) => setAttributes({ title: value })}
             />
             <ToggleControl
-              label={__('Aberto por padrão', 'ifc-design-system')}
+              label={'Aberto por padrão'}
               checked={isOpen}
               onChange={(value) => setAttributes({ isOpen: value })}
             />

@@ -1,6 +1,6 @@
 /**
  * IFC Design System - Class Builder
- * Utilitários para construção de classes CSS de forma consistente
+ * Utilitários para construção de classes CSS
  */
 
 /**

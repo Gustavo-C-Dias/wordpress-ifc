@@ -1,5 +1,6 @@
 <?php
 // Atributos do bloco
+$logoCampus = $attributes['logoCampus'] ?? 'camboriu';
 $logoOrientation = $attributes['logoOrientation'] ?? 'horizontal';
 $logoVariant = $attributes['logoVariant'] ?? 'default';
 $accessibilityLinks = $attributes['accessibilityLinks'] ?? [
@@ -43,9 +44,11 @@ $skip_links = [
 
 // Função para gerar URL do logo (com verificação de existência)
 if (!function_exists('get_logo_url')) {
-    function get_logo_url($orientation, $variant) {
-        $plugin_url = plugin_dir_url(__FILE__);
-        return $plugin_url . "assets/{$orientation}/logo-{$orientation}-{$variant}.svg";
+    function get_logo_url($campus, $orientation, $variant) {
+        $plugin_url = defined('IFC_DS_PLUGIN_URL')
+            ? IFC_DS_PLUGIN_URL
+            : plugin_dir_url(dirname(dirname(dirname(dirname(__FILE__)))));
+        return $plugin_url . "src/blocks/logo/assets/{$campus}/{$orientation}/{$variant}.png";
     }
 }
 
@@ -63,22 +66,24 @@ if (!function_exists('get_social_icon')) {
 ?>
 
 <header <?php echo get_block_wrapper_attributes(['class' => 'ifc-ds-header']); ?>>
-    <div class="ifc-ds-layout-container ifc-ds-layout-container--fixed">
-        <div class="ifc-ds-layout-container__content">
-            <!-- Primeira seção: Skip Navigation + Links de Acessibilidade -->
-            <div class="ifc-ds-header__top-section">
+    <!-- Primeira seção: Skip Navigation + Links de Acessibilidade -->
+    <div class="ifc-ds-header__top-section">
+        <div class="ifc-ds-layout-container ifc-ds-layout-container--fixed">
+            <div class="ifc-ds-layout-container__content">
                 <div class="ifc-ds-header__accessibility">
                     <div class="ifc-ds-skip-navigation">
                         <div class="ifc-ds-skip-navigation__container">
                             <div class="ifc-ds-skip-navigation__links">
                                 <?php foreach ($skip_links as $link): ?>
-                                    <a
-                                        href="<?php echo esc_attr($link['target']); ?>"
-                                        class="ifc-ds-skip-navigation__link"
-                                        title="<?php echo esc_attr($link['description']); ?>"
-                                    >
-                                        <?php echo esc_html($link['label']); ?>
-                                    </a>
+                                    <?php
+                                        echo ifc_ds_render_link([
+                                            'label' => $link['label'],
+                                            'url' => $link['target'],
+                                            'type' => 'white',
+                                            'size' => 'detail',
+                                            'weight' => 'regular',
+                                        ]);
+                                    ?>
                                 <?php endforeach; ?>
                             </div>
                         </div>
@@ -86,71 +91,87 @@ if (!function_exists('get_social_icon')) {
 
                     <div class="ifc-ds-header__accessibility-links">
                         <?php foreach ($accessibilityLinks as $link): ?>
-                            <a
-                                href="<?php echo esc_url($link['url']); ?>"
-                                class="ifc-ds-link ifc-ds-link--small ifc-ds-link--regular"
-                            >
-                                <?php echo esc_html($link['label']); ?>
-                            </a>
+                            <?php
+                                echo ifc_ds_render_link([
+                                    'label' => $link['label'],
+                                    'url' => $link['url'],
+                                    'type' => 'white',
+                                    'size' => 'detail',
+                                    'weight' => 'regular',
+                                ]);
+                            ?>
                         <?php endforeach; ?>
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
 
-            <!-- Segunda seção: Logo + Busca + Redes Sociais -->
-            <div class="ifc-ds-header__main-section">
-                <div class="ifc-ds-header__brand">
-                    <div class="ifc-ds-logo ifc-ds-header__logo">
-                        <img
-                            src="<?php echo esc_url(get_logo_url($logoOrientation, $logoVariant)); ?>"
-                            alt="Instituto Federal Catarinense"
-                            class="ifc-ds-logo__image ifc-ds-logo__image--<?php echo esc_attr($logoOrientation); ?> ifc-ds-logo__image--<?php echo esc_attr($logoVariant); ?>"
-                        />
-                    </div>
-                </div>
-
-                <div class="ifc-ds-header__actions">
-                    <div class="ifc-ds-header__search">
-                        <input
-                            type="search"
-                            placeholder="<?php echo esc_attr(__('Buscar...', 'ifc-design-system')); ?>"
-                            class="ifc-ds-header__search-input"
-                        />
+    <!-- Segunda seção: Logo + Busca + Redes Sociais -->
+    <div class="ifc-ds-header__main-section">
+        <div class="ifc-ds-layout-container ifc-ds-layout-container--fixed">
+            <div class="ifc-ds-layout-container__content">
+                <div class="ifc-ds-header__main-content">
+                    <div class="ifc-ds-header__brand">
+                        <div class="ifc-ds-logo ifc-ds-header__logo">
+                            <img
+                                src="<?php echo esc_url(get_logo_url($logoCampus, $logoOrientation, $logoVariant)); ?>"
+                                alt="Instituto Federal Catarinense"
+                                class="ifc-ds-logo__image ifc-ds-logo__image--<?php echo esc_attr($logoOrientation); ?> ifc-ds-logo__image--<?php echo esc_attr($logoVariant); ?>"
+                            />
+                        </div>
                     </div>
 
-                    <div class="ifc-ds-header__social">
-                        <?php foreach ($socialMedia as $social): ?>
-                            <a
-                                href="<?php echo esc_url($social['url']); ?>"
-                                class="ifc-ds-link ifc-ds-link--medium ifc-ds-link--icon-only"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                title="<?php echo esc_attr(ucfirst($social['platform'])); ?>"
-                            >
-                                <span class="dashicons <?php echo esc_attr(get_social_icon($social['platform'])); ?>"></span>
-                                <span class="screen-reader-text"><?php echo esc_html(ucfirst($social['platform'])); ?></span>
-                            </a>
-                        <?php endforeach; ?>
+                    <div class="ifc-ds-header__actions">
+                        <div class="ifc-ds-header__search">
+                            <input
+                                type="search"
+                                placeholder="<?php echo esc_attr(__('Buscar no portal', 'ifc-design-system')); ?>"
+                                class="ifc-ds-header__search-input"
+                            />
+                        </div>
+
+                        <div class="ifc-ds-header__social">
+                            <?php foreach ($socialMedia as $social): ?>
+                                <a
+                                    href="<?php echo esc_url($social['url']); ?>"
+                                    class="ifc-ds-link ifc-ds-link--medium ifc-ds-link--icon-only"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    title="<?php echo esc_attr(ucfirst($social['platform'])); ?>"
+                                >
+                                    <span class="dashicons <?php echo esc_attr(get_social_icon($social['platform'])); ?>"></span>
+                                    <span class="screen-reader-text"><?php echo esc_html(ucfirst($social['platform'])); ?></span>
+                                </a>
+                            <?php endforeach; ?>
+                        </div>
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
 
-            <!-- Terceira seção: Links de Navegação com Dividers -->
-            <div class="ifc-ds-header__navigation">
-                <?php foreach ($navigationLinks as $index => $link): ?>
-                    <div class="ifc-ds-header__nav-item">
-                        <a
-                            href="<?php echo esc_url($link['url']); ?>"
-                            class="ifc-ds-link ifc-ds-link--medium ifc-ds-link--medium-weight"
-                        >
-                            <?php echo esc_html($link['label']); ?>
-                        </a>
-
-                        <?php if ($index < count($navigationLinks) - 1): ?>
-                            <div class="ifc-ds-divider ifc-ds-divider--vertical ifc-ds-divider--gray"></div>
-                        <?php endif; ?>
-                    </div>
-                <?php endforeach; ?>
+    <!-- Terceira seção: Links de Navegação com Dividers -->
+    <div class="ifc-ds-header__navigation">
+        <div class="ifc-ds-layout-container ifc-ds-layout-container--fixed">
+            <div class="ifc-ds-layout-container__content">
+                <div class="ifc-ds-header__nav-items">
+                    <?php foreach ($navigationLinks as $index => $link): ?>
+                        <div class="ifc-ds-header__nav-item">
+                            <?php
+                                echo ifc_ds_render_link([
+                                    'label' => $link['label'],
+                                    'url' => $link['url'],
+                                    'type' => 'white',
+                                    'size' => 'small'
+                                ]);
+                            ?>
+                            <?php if ($index < count($navigationLinks) - 1): ?>
+                                <div class="ifc-ds-divider ifc-ds-divider--vertical ifc-ds-divider--gray"></div>
+                            <?php endif; ?>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
             </div>
         </div>
     </div>

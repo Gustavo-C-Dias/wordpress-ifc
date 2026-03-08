@@ -1,4 +1,3 @@
-import { __ } from '@wordpress/i18n';
 import { useBlockProps, InspectorControls, InnerBlocks } from '@wordpress/block-editor';
 import { 
     PanelBody, 
@@ -76,9 +75,9 @@ registerBlockType('ifc-ds/container', {
         return (
             <>
                 <InspectorControls>
-                    <PanelBody title={__('Espaçamento', 'ifc-design-system')}>
+                    <PanelBody title={'Espaçamento'}>
                         <BoxControl
-                            label={__('Padding Interno', 'ifc-design-system')}
+                            label={'Padding Interno'}
                             values={paddingValue}
                             onChange={handlePaddingChange}
                             units={[]}
@@ -86,7 +85,7 @@ registerBlockType('ifc-ds/container', {
                         />
                         
                         <BoxControl
-                            label={__('Margem Externa', 'ifc-design-system')}
+                            label={'Margem Externa'}
                             values={marginValue}
                             onChange={handleMarginChange}
                             units={[]}
@@ -99,7 +98,7 @@ registerBlockType('ifc-ds/container', {
                     <InnerBlocks 
                         template={[
                             ['core/paragraph', { 
-                                placeholder: __('Adicione conteúdo ao container...', 'ifc-design-system') 
+                                placeholder: 'Adicione conteúdo ao container...'
                             }]
                         ]}
                         templateLock={false}

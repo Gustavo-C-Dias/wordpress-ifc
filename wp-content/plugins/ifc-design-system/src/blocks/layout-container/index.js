@@ -1,4 +1,3 @@
-import { __ } from '@wordpress/i18n';
 import { 
     useBlockProps, 
     InspectorControls,
@@ -78,7 +77,7 @@ registerBlockType('ifc-ds/layout-container', {
             allowedBlocks: true,
             template: [
                 ['core/paragraph', {
-                    placeholder: __('Adicione qualquer conteúdo dentro do container de layout...', 'ifc-design-system')
+                    placeholder: 'Adicione qualquer conteúdo dentro do container de layout...'
                 }]
             ],
             templateLock: false
@@ -87,78 +86,78 @@ registerBlockType('ifc-ds/layout-container', {
         return (
             <>
                 <InspectorControls>
-                    <PanelBody title={__('Configurações do Container', 'ifc-design-system')}>
+                    <PanelBody title={'Configurações do Container'}>
                         <SelectControl
-                            label={__('Tipo de Container', 'ifc-design-system')}
+                            label={'Tipo de Container'}
                             value={containerType}
                             options={[
-                                { label: __('Fluído (100% da largura)', 'ifc-design-system'), value: 'fluid' },
-                                { label: __('Fixo (largura máxima definida)', 'ifc-design-system'), value: 'fixed' }
+                                { label: 'Fluído (100% da largura)', value: 'fluid' },
+                                { label: 'Fixo (largura máxima definida)', value: 'fixed' }
                             ]}
                             onChange={(value) => setAttributes({ containerType: value })}
                             help={containerType === 'fluid' ? 
-                                __('Container ocupa toda largura disponível', 'ifc-design-system') : 
-                                __('Container tem largura máxima com margens automáticas', 'ifc-design-system')
+                                'Container ocupa toda largura disponível' : 
+                                'Container tem largura máxima com margens automáticas'
                             }
                         />
 
                         <RangeControl
-                            label={__('Colunas Máximas', 'ifc-design-system')}
+                            label={'Colunas Máximas'}
                             value={maxColumns}
                             onChange={(value) => setAttributes({ maxColumns: value })}
                             min={1}
                             max={12}
                             step={1}
-                            help={__('Define o sistema de grid (4, 8 ou 12 colunas são recomendados)', 'ifc-design-system')}
+                            help={'Define o sistema de grid (4, 8 ou 12 colunas são recomendados)'}
                         />
 
                         {containerType === 'fixed' && (
                             <TextControl
-                                label={__('Largura Máxima Personalizada', 'ifc-design-system')}
+                                label={'Largura Máxima Personalizada'}
                                 value={customMaxWidth}
                                 onChange={(value) => setAttributes({ customMaxWidth: value })}
                                 placeholder="1200px"
-                                help={__('Deixe vazio para usar os breakpoints padrão do Gov.br', 'ifc-design-system')}
+                                help={'Deixe vazio para usar os breakpoints padrão do Gov.br'}
                             />
                         )}
                     </PanelBody>
 
-                    <PanelBody title={__('Layout e Espaçamento', 'ifc-design-system')}>
+                    <PanelBody title={'Layout e Espaçamento'}>
                         <SelectControl
-                            label={__('Espaçamento Vertical', 'ifc-design-system')}
+                            label={'Espaçamento Vertical'}
                             value={verticalSpacing}
                             options={[
-                                { label: __('Nenhum', 'ifc-design-system'), value: 'none' },
-                                { label: __('Pequeno', 'ifc-design-system'), value: 'small' },
-                                { label: __('Médio', 'ifc-design-system'), value: 'medium' },
-                                { label: __('Grande', 'ifc-design-system'), value: 'large' },
-                                { label: __('Extra Grande', 'ifc-design-system'), value: 'extra-large' }
+                                { label: 'Nenhum', value: 'none' },
+                                { label: 'Pequeno', value: 'small' },
+                                { label: 'Médio', value: 'medium' },
+                                { label: 'Grande', value: 'large' },
+                                { label: 'Extra Grande', value: 'extra-large' }
                             ]}
                             onChange={(value) => setAttributes({ verticalSpacing: value })}
                         />
 
                         <SelectControl
-                            label={__('Alinhamento Horizontal', 'ifc-design-system')}
+                            label={'Alinhamento Horizontal'}
                             value={horizontalAlignment}
                             options={[
-                                { label: __('Esquerda', 'ifc-design-system'), value: 'left' },
-                                { label: __('Centro', 'ifc-design-system'), value: 'center' },
-                                { label: __('Direita', 'ifc-design-system'), value: 'right' }
+                                { label: 'Esquerda', value: 'left' },
+                                { label: 'Centro', value: 'center' },
+                                { label: 'Direita', value: 'right' }
                             ]}
                             onChange={(value) => setAttributes({ horizontalAlignment: value })}
                         />
 
                         <ToggleControl
-                            label={__('Permitir Sangria (Bleed)', 'ifc-design-system')}
+                            label={'Permitir Sangria (Bleed)'}
                             checked={allowBleed}
                             onChange={(value) => setAttributes({ allowBleed: value })}
-                            help={__('Permite que elementos filhos quebrem as margens da grid', 'ifc-design-system')}
+                            help={'Permite que elementos filhos quebrem as margens da grid'}
                         />
                     </PanelBody>
 
-                    <PanelBody title={__('Informações do Grid Gov.br', 'ifc-design-system')} initialOpen={false}>
+                    <PanelBody title={'Informações do Grid Gov.br'} initialOpen={false}>
                         <div className="ifc-ds-grid-info">
-                            <Heading level={4}>{__('Breakpoints Oficiais:', 'ifc-design-system')}</Heading>
+                            <Heading level={4}>{'Breakpoints Oficiais:'}</Heading>
                             <ul style={{ fontSize: '12px', color: '#666' }}>
                                 <li><strong>Mobile Portrait:</strong> 0-575px (4 colunas, gutter 16px)</li>
                                 <li><strong>Mobile Landscape/Tablet:</strong> 576-991px (8 colunas, gutter 24px)</li>
@@ -171,9 +170,6 @@ registerBlockType('ifc-ds/layout-container', {
                 </InspectorControls>
 
                 <div {...blockProps}>
-                    <div className="ifc-ds-layout-container__preview-label">
-                        {__('Layout Container', 'ifc-design-system')} ({containerType === 'fluid' ? __('Fluído', 'ifc-design-system') : __('Fixo', 'ifc-design-system')}) - {maxColumns} {__('colunas', 'ifc-design-system')}
-                    </div>
                     <LayoutContainerComponent
                         containerType={containerType}
                         allowBleed={allowBleed}

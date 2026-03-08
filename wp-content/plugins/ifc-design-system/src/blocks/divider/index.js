@@ -1,4 +1,3 @@
-import { __ } from '@wordpress/i18n';
 import { 
     useBlockProps, 
     InspectorControls 
@@ -34,50 +33,50 @@ registerBlockType('ifc-ds/divider', {
         return (
             <>
                 <InspectorControls>
-                    <PanelBody title={__('Configurações do Divider', 'ifc-design-system')}>
+                    <PanelBody title={'Configurações do Divider'}>
                         <SelectControl
-                            label={__('Orientação', 'ifc-design-system')}
+                            label={'Orientação'}
                             value={orientation}
                             options={orientationOptions}
                             onChange={(value) => setAttributes({ orientation: value })}
-                            help={__('Escolha se o divisor será horizontal ou vertical', 'ifc-design-system')}
+                            help={'Escolha se o divisor será horizontal ou vertical'}
                         />
 
                         <SelectControl
-                            label={__('Cor', 'ifc-design-system')}
+                            label={'Cor'}
                             value={color}
                             options={colorOptions}
                             onChange={(value) => setAttributes({ color: value })}
-                            help={__('Cor do divisor baseada nos tokens de design', 'ifc-design-system')}
+                            help={'Cor do divisor baseada nos tokens de design'}
                         />
 
                         <SelectControl
-                            label={__('Espessura', 'ifc-design-system')}
+                            label={'Espessura'}
                             value={thickness}
                             options={thicknessOptions}
                             onChange={(value) => setAttributes({ thickness: value })}
-                            help={__('Espessura da linha do divisor', 'ifc-design-system')}
+                            help={'Espessura da linha do divisor'}
                         />
 
                         <RangeControl
-                            label={__('Comprimento (%)', 'ifc-design-system')}
+                            label={'Comprimento (%)'}
                             value={parseInt(length)}
                             onChange={(value) => setAttributes({ length: value.toString() })}
                             min={10}
                             max={100}
                             step={5}
-                            help={__('Comprimento do divisor em relação ao container', 'ifc-design-system')}
+                            help={'Comprimento do divisor em relação ao container'}
                         />
 
                         {orientation === 'vertical' && (
                             <RangeControl
-                                label={__('Altura (px)', 'ifc-design-system')}
+                                label={'Altura (px)'}
                                 value={customHeight}
                                 onChange={(value) => setAttributes({ customHeight: value })}
                                 min={20}
                                 max={200}
                                 step={5}
-                                help={__('Altura do divisor vertical em pixels', 'ifc-design-system')}
+                                help={'Altura do divisor vertical em pixels'}
                             />
                         )}
                     </PanelBody>

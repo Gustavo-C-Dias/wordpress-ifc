@@ -70,6 +70,11 @@
                 outline-color: var(--ifc-color-neutral-100);
             }
         }
+
+        .ifc-ds-link__label,
+        .ifc-ds-text.ifc-ds-link__label {
+            color: var(--ifc-color-neutral-100) !important;
+        }
     }
 
     &--small {

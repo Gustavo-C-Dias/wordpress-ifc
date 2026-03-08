@@ -95,11 +95,18 @@ class IFC_Design_System {
     }
     
     public function enqueue_editor_assets() {
-        // Os assets são carregados individualmente por cada bloco via register_block_type
-        // Não precisamos de um arquivo principal index.js
+        // Expor URL do plugin globalmente para JavaScript
+        wp_localize_script('wp-blocks', 'wpAssets', array(
+            'pluginUrl' => IFC_DS_PLUGIN_URL
+        ));
     }
     
     public function enqueue_frontend_assets() {
+        // Expor URL do plugin globalmente para JavaScript/CSS
+        wp_localize_script('wp-dom-ready', 'wpAssets', array(
+            'pluginUrl' => IFC_DS_PLUGIN_URL
+        ));
+
         // Carregar CSS de cada bloco individualmente no frontend
         $blocks = [
             'header',

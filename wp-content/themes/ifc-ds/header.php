@@ -19,4 +19,4 @@
     </ul>
 </div>
 
-<?php echo do_blocks('<!-- wp:ifc-ds/header /-->'); ?>
+<?php echo do_blocks('<!-- wp:ifc-ds/header {"logoVariant":"white"} /-->'); ?>
