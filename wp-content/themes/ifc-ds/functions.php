@@ -85,7 +85,7 @@ function ifc_ds_get_curso_pattern_content() {
     <!-- /wp:group -->
 
     <!-- wp:group -->
-    <div class="wp-block-group ifc-ds-curso-sidebar">
+    <div class="wp-block-group ifc-ds-curso-sidebar" id="nav">
         <!-- wp:ifc-ds/accordion {"title":"Aluno","isOpen":false} -->
             <!-- wp:ifc-ds/link {"label":"Portal do ingresso","url":"#","type":"neutral","size":"small","weight":"regular","padding":{"top":"1","right":"0","bottom":"1","left":"3"}} /-->
             <!-- wp:ifc-ds/link {"label":"SIGAA","url":"#","type":"neutral","size":"small","weight":"regular","padding":{"top":"1","right":"0","bottom":"1","left":"3"}} /-->
@@ -116,7 +116,7 @@ function ifc_ds_get_curso_pattern_content() {
 
 
     <!-- wp:group -->
-    <div class="wp-block-group ifc-ds-curso-main">
+    <div class="wp-block-group ifc-ds-curso-main" id="main">
         <!-- wp:group -->
         <div class="wp-block-group ifc-ds-curso-heading">
             <!-- wp:image {"sizeSlug":"full","linkDestination":"none"} -->

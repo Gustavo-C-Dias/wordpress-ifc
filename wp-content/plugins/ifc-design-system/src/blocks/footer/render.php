@@ -10,7 +10,7 @@ $address = isset($attributes['address']) ? $attributes['address'] : '';
 $campus = isset($attributes['campus']) ? $attributes['campus'] : '';
 ?>
 
-<footer class="ifc-ds-footer">
+<footer id="footer" class="ifc-ds-footer">
     <div class="ifc-ds-footer__section-links">
         <div class="ifc-ds-layout-container ifc-ds-layout-container--fixed">
             <div class="ifc-ds-layout-container__content">
