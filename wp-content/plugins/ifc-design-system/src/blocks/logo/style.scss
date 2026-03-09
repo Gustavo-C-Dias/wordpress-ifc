@@ -22,19 +22,6 @@
             outline-offset: 2px;
             border-radius: 2px;
         }
-        
-        &:hover {
-            .ifc-ds-logo__image {
-                opacity: 0.85;
-                transform: scale(1.02);
-            }
-        }
-        
-        &:active {
-            .ifc-ds-logo__image {
-                transform: scale(0.98);
-            }
-        }
     }
 
     &--horizontal {
