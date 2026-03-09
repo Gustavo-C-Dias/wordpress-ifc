@@ -3,6 +3,8 @@
  * Mixins específicos para componentes de input
  */
 
+@import '../../mixins-essentials.scss';
+
 /**
  * Mixin base para inputs
  */
@@ -25,8 +27,7 @@
   }
   
   &:focus {
-    border-color: var(--ifc-color-primary-600);
-    box-shadow: var(--ifc-shadow-focus);
+    @include ifc-focus-ring;
   }
   
   &:disabled {

@@ -18,8 +18,8 @@
  * FOCUS
  * ========================================== */
 
-@mixin ifc-focus-ring($color: var(--ifc-color-primary-600)) {
-  outline: var(--ifc-border-width-0-25) solid $color;
+@mixin ifc-focus-ring {
+  outline: var(--ifc-border-width-0-25) solid var(--ifc-color-neutral-700);
   outline-offset: var(--ifc-border-width-0-1);
   box-shadow: none;
 }
@@ -50,8 +50,7 @@
   }
   
   &:focus {
-    border-color: var(--ifc-color-primary-600);
-    box-shadow: var(--ifc-shadow-focus);
+    @include ifc-focus-ring;
   }
   
   &:disabled {

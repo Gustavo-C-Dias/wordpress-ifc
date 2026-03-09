@@ -16,6 +16,7 @@ import {
     detailedSpacingOptions as spacingOptions,
     inputTypeOptions
 } from '../../shared/options';
+import { TextComponent } from '../text/component';
 
 import './style.scss';
 
@@ -33,38 +34,59 @@ const InputComponent = ({
     padding = {},
     className = '',
     value = '',
-    onChange,
+    onChange = () => {},
     ...props
 }) => {
-    const wrapperClasses = [
-        'ifc-ds-input-wrapper',
-        `ifc-ds-input-wrapper--${variant}`,
-        icon ? 'ifc-ds-input-wrapper--with-icon' : '',
-        disabled ? 'ifc-ds-input-wrapper--disabled' : '',
-        className
-    ].filter(Boolean).join(' ');
+    const baseClasses = {
+        wrapper: ['ifc-ds-input-wrapper', `ifc-ds-input-wrapper--${variant}`],
+        input: ['ifc-ds-input', `ifc-ds-input--${variant}`]
+    };
 
-    const inputClasses = [
-        'ifc-ds-input',
-        `ifc-ds-input--${variant}`,
-        icon ? 'ifc-ds-input--with-icon' : ''
-    ].filter(Boolean).join(' ');
+    if (icon) {
+        baseClasses.wrapper.push('ifc-ds-input-wrapper--with-icon');
+        baseClasses.input.push('ifc-ds-input--with-icon');
+    }
 
-    const wrapperStyle = {
-        paddingTop: `var(--ifc-spacing-${(padding?.top || '0').replace('spacing-', '')})`,
-        paddingRight: `var(--ifc-spacing-${(padding?.right || '0').replace('spacing-', '')})`,
-        paddingBottom: `var(--ifc-spacing-${(padding?.bottom || '0').replace('spacing-', '')})`,
-        paddingLeft: `var(--ifc-spacing-${(padding?.left || '0').replace('spacing-', '')})`
+    if (disabled) {
+        baseClasses.wrapper.push('ifc-ds-input-wrapper--disabled');
+    }
+
+    if (className) {
+        baseClasses.wrapper.push(className);
+    }
+
+    const buildPaddingStyle = () => {
+        if (!padding || Object.keys(padding).length === 0) return {};
+        
+        const style = {};
+        const sides = ['top', 'right', 'bottom', 'left'];
+        
+        sides.forEach(side => {
+            const value = padding[side] || '0';
+            if (value !== '0') {
+                const spacingValue = value.replace('spacing-', '');
+                style[`padding${side.charAt(0).toUpperCase() + side.slice(1)}`] = 
+                    `var(--ifc-spacing-${spacingValue})`;
+            }
+        });
+        
+        return style;
     };
 
     const uniqueId = inputId || `ifc-input-${Math.random().toString(36).substr(2, 9)}`;
     const captionId = caption ? `${uniqueId}-caption` : undefined;
 
     return (
-        <div className={wrapperClasses} style={wrapperStyle} {...props}>
+        <div className={baseClasses.wrapper.join(' ')} style={buildPaddingStyle()} {...props}>
             {label && (
                 <label htmlFor={uniqueId} className="ifc-ds-input__label">
-                    {label}
+                    <TextComponent
+                        content={label}
+                        textType="detail"
+                        weight="semibold"
+                        color="neutral"
+                        className="ifc-ds-input__label-text"
+                    />
                     {required && <span className="ifc-ds-input__required" aria-label="Campo obrigatório">*</span>}
                 </label>
             )}
@@ -80,7 +102,7 @@ const InputComponent = ({
                     id={uniqueId}
                     name={inputName || uniqueId}
                     type={inputType}
-                    className={inputClasses}
+                    className={baseClasses.input.join(' ')}
                     placeholder={placeholder}
                     required={required}
                     disabled={disabled}
@@ -92,7 +114,12 @@ const InputComponent = ({
             
             {caption && (
                 <div id={captionId} className="ifc-ds-input__caption">
-                    {caption}
+                    <TextComponent
+                        content={caption}
+                        textType="caption"
+                        weight="regular"
+                        color="neutral"
+                    />
                 </div>
             )}
         </div>
@@ -197,41 +224,17 @@ registerBlockType('ifc-ds/input', {
                     </PanelBody>
 
                     <PanelBody title="Espaçamento" initialOpen={false}>
-                        <SelectControl
-                            label="Padding Superior"
-                            value={padding?.top || '0'}
-                            options={spacingOptions}
-                            onChange={(value) => setAttributes({ 
-                                padding: { ...padding, top: value }
-                            })}
-                        />
-                        
-                        <SelectControl
-                            label="Padding Direito"
-                            value={padding?.right || '0'}
-                            options={spacingOptions}
-                            onChange={(value) => setAttributes({ 
-                                padding: { ...padding, right: value }
-                            })}
-                        />
-                        
-                        <SelectControl
-                            label="Padding Inferior"
-                            value={padding?.bottom || '0'}
-                            options={spacingOptions}
-                            onChange={(value) => setAttributes({ 
-                                padding: { ...padding, bottom: value }
-                            })}
-                        />
-                        
-                        <SelectControl
-                            label="Padding Esquerdo"
-                            value={padding?.left || '0'}
-                            options={spacingOptions}
-                            onChange={(value) => setAttributes({ 
-                                padding: { ...padding, left: value }
-                            })}
-                        />
+                        {['top', 'right', 'bottom', 'left'].map(side => (
+                            <SelectControl
+                                key={side}
+                                label={`Padding ${side.charAt(0).toUpperCase() + side.slice(1)}`}
+                                value={padding?.[side] || '0'}
+                                options={spacingOptions}
+                                onChange={(value) => setAttributes({ 
+                                    padding: { ...padding, [side]: value }
+                                })}
+                            />
+                        ))}
                     </PanelBody>
                 </InspectorControls>
 
@@ -248,8 +251,6 @@ registerBlockType('ifc-ds/input', {
                         disabled={disabled}
                         variant={variant}
                         padding={padding}
-                        value=""
-                        onChange={() => {}}
                     />
                 </div>
             </>

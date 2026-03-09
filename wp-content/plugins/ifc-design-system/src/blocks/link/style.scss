@@ -1,3 +1,5 @@
+@import '../../mixins-essentials.scss';
+
 .ifc-ds-link {
     display: inline-block;
     
@@ -13,8 +15,7 @@
         font-weight: 600;
         
         &:focus {
-            outline: 2px solid var(--ifc-color-primary-500);
-            outline-offset: 2px;
+            @include ifc-focus-ring;
         }
     }
     
@@ -66,7 +67,7 @@
             }
             
             &:focus {
-                outline-color: var(--ifc-color-neutral-100);
+                @include ifc-focus-ring;
             }
         }
 

@@ -1,3 +1,5 @@
+@import '../../mixins-essentials.scss';
+
 .ifc-ds-header {
   background: var(--ifc-color-primary-500);
   position: relative;
@@ -100,27 +102,7 @@
     width: 100%;
     max-width: 300px;
   }
-  
-  &__search-input {
-    width: 100%;
-    padding: var(--ifc-spacing-2) var(--ifc-spacing-3);
-    border: 2px solid var(--ifc-color-neutral-100);
-    border-radius: var(--ifc-radius-1);
-    font-size: var(--ifc-font-size-1-75);
-    background: var(--ifc-color-neutral-100);
-    color: var(--ifc-color-neutral-700);
-    
-    &:focus {
-      outline: none;
-      border-color: var(--ifc-color-neutral-100);
-      box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
-    }
-    
-    &::placeholder {
-      color: var(--ifc-color-neutral-500);
-    }
-  }
-  
+
   &__social {
     display: flex;
     gap: var(--ifc-spacing-2);
@@ -137,11 +119,14 @@
       text-decoration: none;
       transition: all 0.2s ease;
       
-      &:hover,
-      &:focus {
+      &:hover {
         background: var(--ifc-color-primary-600);
         color: var(--ifc-color-neutral-100);
         transform: translateY(-2px);
+      }
+      
+      &:focus {
+        @include ifc-focus-ring;
       }
       
       .dashicons {

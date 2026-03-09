@@ -119,11 +119,13 @@ if (!function_exists('get_social_icon')) {
 
                     <div class="ifc-ds-header__actions">
                         <div class="ifc-ds-header__search">
-                            <input
-                                type="search"
-                                placeholder="<?php echo esc_attr(__('Buscar no portal', 'ifc-design-system')); ?>"
-                                class="ifc-ds-header__search-input"
-                            />
+                            <?php
+                                echo ifc_ds_render_input([
+                                    'input_type' => 'search',
+                                    'placeholder' => __('Buscar no portal', 'ifc-design-system'),
+                                    'wrapper' => false
+                                ]);
+                            ?>
                         </div>
 
                         <div class="ifc-ds-header__social">

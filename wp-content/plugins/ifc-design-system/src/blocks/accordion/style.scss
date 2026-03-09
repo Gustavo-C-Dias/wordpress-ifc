@@ -93,7 +93,7 @@
   }
   
   &:focus-within {
-    box-shadow: 0 0 0 2px var(--ifc-color-primary-200, #bfdbfe);
+    @include ifc-focus-ring;
   }
 
   @media (max-width: 768px) {

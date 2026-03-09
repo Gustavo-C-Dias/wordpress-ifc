@@ -19,63 +19,22 @@ if (!function_exists('ifc_ds_render_input_icon')) {
                 esc_url($icon),
                 esc_attr($icon_style)
             );
-        } else {
-            return sprintf(
-                '<span class="ifc-ds-input__icon" aria-hidden="true"><i class="%s" style="%s"></i></span>',
-                esc_attr($icon),
-                esc_attr($icon_style)
-            );
         }
+
+        return sprintf(
+            '<span class="ifc-ds-input__icon" aria-hidden="true"><i class="%s" style="%s"></i></span>',
+            esc_attr($icon),
+            esc_attr($icon_style)
+        );
     }
 }
 
-if (!function_exists('ifc_ds_render_input')) {
+if (!function_exists('ifc_ds_build_input_classes')) {
     /**
      * @param array $args
-     * @return string
+     * @return array
      */
-    function ifc_ds_render_input($args = []) {
-        $defaults = [
-            'label' => '',
-            'placeholder' => '',
-            'caption' => '',
-            'icon' => '',
-            'input_type' => 'text',
-            'input_name' => '',
-            'input_id' => '',
-            'input_value' => '',
-            'required' => false,
-            'disabled' => false,
-            'readonly' => false,
-            'variant' => 'default',
-            'padding' => [
-                'top' => '0',
-                'right' => '0',
-                'bottom' => '0',
-                'left' => '0'
-            ],
-            'wrapper' => true,
-            'wrapper_class' => '',
-            'input_class' => '',
-            'autocomplete' => '',
-            'maxlength' => '',
-            'pattern' => '',
-            'min' => '',
-            'max' => '',
-            'step' => ''
-        ];
-
-        $args = wp_parse_args($args, $defaults);
-        
-        $args['label'] = sanitize_text_field($args['label']);
-        $args['placeholder'] = sanitize_text_field($args['placeholder']);
-        $args['caption'] = sanitize_text_field($args['caption']);
-        $args['input_type'] = sanitize_text_field($args['input_type']);
-        $args['input_name'] = sanitize_text_field($args['input_name']);
-        $args['input_id'] = sanitize_text_field($args['input_id']);
-        $args['input_value'] = sanitize_text_field($args['input_value']);
-        $args['variant'] = sanitize_text_field($args['variant']);
-
+    function ifc_ds_build_input_classes($args) {
         $wrapper_classes = [
             'ifc-ds-input-wrapper',
             'ifc-ds-input-wrapper--' . $args['variant']
@@ -106,97 +65,147 @@ if (!function_exists('ifc_ds_render_input')) {
             $input_classes[] = $args['input_class'];
         }
 
-        $padding_style = '';
-        if (!empty($args['padding']) && is_array($args['padding'])) {
-            $padding_styles = [];
-            
-            foreach (['top', 'right', 'bottom', 'left'] as $side) {
-                $value = $args['padding'][$side] ?? '0';
-                if ($value !== '0') {
-                    $padding_styles[] = "padding-{$side}: var(--ifc-spacing-{$value})";
-                }
-            }
-            
-            if (!empty($padding_styles)) {
-                $padding_style = 'style="' . implode('; ', $padding_styles) . '"';
-            }
+        return [
+            'wrapper' => $wrapper_classes,
+            'input' => $input_classes
+        ];
+    }
+}
+
+if (!function_exists('ifc_ds_build_padding_style')) {
+    /**
+     * @param array $padding
+     * @return string
+     */
+    function ifc_ds_build_padding_style($padding) {
+        if (empty($padding) || !is_array($padding)) {
+            return '';
         }
 
-        $unique_id = !empty($args['input_id']) 
-            ? $args['input_id'] 
-            : 'ifc-input-' . uniqid();
+        $padding_styles = [];
+        
+        foreach (['top', 'right', 'bottom', 'left'] as $side) {
+            $value = $padding[$side] ?? '0';
+            if ($value !== '0') {
+                $padding_styles[] = "padding-{$side}: var(--ifc-spacing-{$value})";
+            }
+        }
+        
+        return !empty($padding_styles) 
+            ? 'style="' . implode('; ', $padding_styles) . '"' 
+            : '';
+    }
+}
 
-        $input_name = !empty($args['input_name']) 
-            ? $args['input_name'] 
-            : $unique_id;
-
-        $caption_id = !empty($args['caption']) ? $unique_id . '-caption' : '';
-        $described_by = !empty($caption_id) ? 'aria-describedby="' . $caption_id . '"' : '';
-
-        $input_attributes = [
+if (!function_exists('ifc_ds_build_input_attributes')) {
+    /**
+     * @param array $args
+     * @param string $unique_id
+     * @param string $input_name
+     * @param string $caption_id
+     * @param array $input_classes
+     * @return array
+     */
+    function ifc_ds_build_input_attributes($args, $unique_id, $input_name, $caption_id, $input_classes) {
+        $attributes = [
             'id="' . esc_attr($unique_id) . '"',
             'name="' . esc_attr($input_name) . '"',
             'type="' . esc_attr($args['input_type']) . '"',
             'class="' . esc_attr(implode(' ', $input_classes)) . '"'
         ];
 
-        if (!empty($args['input_value'])) {
-            $input_attributes[] = 'value="' . esc_attr($args['input_value']) . '"';
+        $optional_attrs = [
+            'input_value' => 'value',
+            'placeholder' => 'placeholder',
+            'autocomplete' => 'autocomplete',
+            'maxlength' => 'maxlength',
+            'pattern' => 'pattern',
+            'min' => 'min',
+            'max' => 'max',
+            'step' => 'step'
+        ];
+
+        foreach ($optional_attrs as $key => $attr) {
+            if (!empty($args[$key])) {
+                $attributes[] = $attr . '="' . esc_attr($args[$key]) . '"';
+            }
         }
 
-        if (!empty($args['placeholder'])) {
-            $input_attributes[] = 'placeholder="' . esc_attr($args['placeholder']) . '"';
+        $boolean_attrs = ['required', 'disabled', 'readonly'];
+        foreach ($boolean_attrs as $attr) {
+            if ($args[$attr]) {
+                $attributes[] = $attr;
+            }
         }
 
-        if ($args['required']) {
-            $input_attributes[] = 'required';
+        if (!empty($caption_id)) {
+            $attributes[] = 'aria-describedby="' . esc_attr($caption_id) . '"';
         }
 
-        if ($args['disabled']) {
-            $input_attributes[] = 'disabled';
+        return $attributes;
+    }
+}
+
+if (!function_exists('ifc_ds_render_input')) {
+    /**
+     * @param array $args
+     * @return string
+     */
+    function ifc_ds_render_input($args = []) {
+        $defaults = [
+            'label' => '',
+            'placeholder' => '',
+            'caption' => '',
+            'icon' => '',
+            'input_type' => 'text',
+            'input_name' => '',
+            'input_id' => '',
+            'input_value' => '',
+            'required' => false,
+            'disabled' => false,
+            'readonly' => false,
+            'variant' => 'default',
+            'padding' => ['top' => '0', 'right' => '0', 'bottom' => '0', 'left' => '0'],
+            'wrapper' => true,
+            'wrapper_class' => '',
+            'input_class' => '',
+            'autocomplete' => '',
+            'maxlength' => '',
+            'pattern' => '',
+            'min' => '',
+            'max' => '',
+            'step' => ''
+        ];
+
+        $args = wp_parse_args($args, $defaults);
+        
+        foreach (['label', 'placeholder', 'caption', 'input_type', 'input_name', 'input_id', 'input_value', 'variant'] as $field) {
+            $args[$field] = sanitize_text_field($args[$field]);
         }
 
-        if ($args['readonly']) {
-            $input_attributes[] = 'readonly';
-        }
-
-        if (!empty($described_by)) {
-            $input_attributes[] = $described_by;
-        }
-
-        if (!empty($args['autocomplete'])) {
-            $input_attributes[] = 'autocomplete="' . esc_attr($args['autocomplete']) . '"';
-        }
-
-        if (!empty($args['maxlength'])) {
-            $input_attributes[] = 'maxlength="' . esc_attr($args['maxlength']) . '"';
-        }
-
-        if (!empty($args['pattern'])) {
-            $input_attributes[] = 'pattern="' . esc_attr($args['pattern']) . '"';
-        }
-
-        if (!empty($args['min'])) {
-            $input_attributes[] = 'min="' . esc_attr($args['min']) . '"';
-        }
-
-        if (!empty($args['max'])) {
-            $input_attributes[] = 'max="' . esc_attr($args['max']) . '"';
-        }
-
-        if (!empty($args['step'])) {
-            $input_attributes[] = 'step="' . esc_attr($args['step']) . '"';
-        }
-
+        $classes = ifc_ds_build_input_classes($args);
+        $unique_id = !empty($args['input_id']) ? $args['input_id'] : 'ifc-input-' . uniqid();
+        $input_name = !empty($args['input_name']) ? $args['input_name'] : $unique_id;
+        $caption_id = !empty($args['caption']) ? $unique_id . '-caption' : '';
+        $input_attributes = ifc_ds_build_input_attributes($args, $unique_id, $input_name, $caption_id, $classes['input']);
+        $padding_style = ifc_ds_build_padding_style($args['padding']);
         $html = '';
 
         if ($args['wrapper']) {
-            $html .= '<div class="' . esc_attr(implode(' ', $wrapper_classes)) . '" ' . $padding_style . '>';
+            $html .= sprintf(
+                '<div class="%s" %s>',
+                esc_attr(implode(' ', $classes['wrapper'])),
+                $padding_style
+            );
         }
 
         if (!empty($args['label'])) {
-            $html .= '<label for="' . esc_attr($unique_id) . '" class="ifc-ds-input__label">';
-            $html .= esc_html($args['label']);
+            $html .= sprintf('<label for="%s" class="ifc-ds-input__label">', esc_attr($unique_id));
+            $html .= sprintf(
+                '<span class="%s">%s</span>',
+                esc_attr(ifc_ds_build_text_classes('detail', 'semibold', 'neutral', 'left', 'ifc-ds-input__label-text')),
+                esc_html($args['label'])
+            );
             if ($args['required']) {
                 $html .= '<span class="ifc-ds-input__required" aria-label="Campo obrigatório">*</span>';
             }
@@ -204,18 +213,21 @@ if (!function_exists('ifc_ds_render_input')) {
         }
 
         $html .= '<div class="ifc-ds-input__field-wrapper">';
-
+        
         if (!empty($args['icon'])) {
             $html .= ifc_ds_render_input_icon($args['icon']);
         }
-
+        
         $html .= '<input ' . implode(' ', $input_attributes) . ' />';
-
         $html .= '</div>';
 
         if (!empty($args['caption'])) {
-            $html .= '<div id="' . esc_attr($caption_id) . '" class="ifc-ds-input__caption">';
-            $html .= esc_html($args['caption']);
+            $html .= sprintf('<div id="%s" class="ifc-ds-input__caption">', esc_attr($caption_id));
+            $html .= sprintf(
+                '<span class="%s">%s</span>',
+                esc_attr(ifc_ds_build_text_classes('caption', 'regular', 'neutral', 'left')),
+                esc_html($args['caption'])
+            );
             $html .= '</div>';
         }
 

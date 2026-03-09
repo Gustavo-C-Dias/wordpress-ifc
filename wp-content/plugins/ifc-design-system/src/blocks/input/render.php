@@ -1,4 +1,16 @@
 <?php
+$wrapper_classes = [
+    'ifc-ds-input-wrapper--' . ($attributes['variant'] ?? 'default'),
+];
+
+if (!empty($attributes['icon'])) {
+    $wrapper_classes[] = 'ifc-ds-input-wrapper--with-icon';
+}
+
+if ($attributes['disabled'] ?? false) {
+    $wrapper_classes[] = 'ifc-ds-input-wrapper--disabled';
+}
+
 $input_args = [
     'label' => $attributes['label'] ?? '',
     'placeholder' => $attributes['placeholder'] ?? '',
@@ -16,25 +28,12 @@ $input_args = [
         'bottom' => '0',
         'left' => '0'
     ],
-    'wrapper' => false
+    'wrapper_class' => implode(' ', array_filter($wrapper_classes))
 ];
 
 $input_html = ifc_ds_render_input($input_args);
-
-$wrapper_classes = [
-    'ifc-ds-input-wrapper',
-    'ifc-ds-input-wrapper--' . $input_args['variant']
-];
-
-if (!empty($input_args['icon'])) {
-    $wrapper_classes[] = 'ifc-ds-input-wrapper--with-icon';
-}
-
-if ($input_args['disabled']) {
-    $wrapper_classes[] = 'ifc-ds-input-wrapper--disabled';
-}
 ?>
 
-<div <?php echo get_block_wrapper_attributes(['class' => implode(' ', $wrapper_classes)]); ?>>
+<div <?php echo get_block_wrapper_attributes(['class' => 'ifc-ds-input']); ?>>
     <?php echo $input_html; ?>
 </div>
