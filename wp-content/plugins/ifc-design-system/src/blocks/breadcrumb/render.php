@@ -1,10 +1,10 @@
 <?php
 /**
- * Breadcrumb Component
+ * Breadcrumb
  * 
- * @param array $attributes Os atributos do bloco
- * @param string $content O conteúdo do bloco
- * @param WP_Block $block A instância do bloco
+ * @param array $attributes
+ * @param string $content
+ * @param WP_Block $block
  * @return string
  */
 
@@ -16,12 +16,9 @@ $link_type = 'neutral';
 $link_size = $attributes['linkSize'] ?? 'small';
 
 $separator_svg = '<svg viewBox="0 0 20 20" role="presentation" focusable="false" aria-hidden="true"><path d="M7 4l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>';
-
-// Gerar classes CSS
-$classes = ['ifc-ds-breadcrumb'];
 ?>
 
-<nav <?php echo get_block_wrapper_attributes(['class' => implode(' ', $classes)]); ?>>
+<nav <?php echo get_block_wrapper_attributes(['class' => implode(' ', ['ifc-ds-breadcrumb'])]); ?>>
     <ol class="ifc-ds-breadcrumb__list">
         <?php foreach ($items as $index => $item): ?>
             <li class="ifc-ds-breadcrumb__item">
@@ -48,7 +45,6 @@ $classes = ['ifc-ds-breadcrumb'];
         
         <li class="ifc-ds-breadcrumb__item ifc-ds-breadcrumb__item--current">
             <?php 
-            // Usa função centralizada para construir classes
             $current_classes = ifc_ds_build_text_classes('detail', 'regular', 'neutral', 'left', 'ifc-ds-breadcrumb__current');
             ?>
             <span class="<?php echo esc_attr($current_classes); ?>" aria-current="page">

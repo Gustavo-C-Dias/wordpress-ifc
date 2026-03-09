@@ -1,7 +1,5 @@
-// Estilos para o componente Input do IFC Design System
 @import '../../mixins-essentials.scss';
 
-// Wrapper principal
 .ifc-ds-input-wrapper {
     display: flex;
     flex-direction: column;
@@ -17,7 +15,6 @@
     }
 }
 
-// Label
 .ifc-ds-input__label {
     font-family: var(--ifc-font-family);
     font-size: var(--ifc-font-size-2);
@@ -33,7 +30,6 @@
     }
 }
 
-// Wrapper do campo (input + ícone)
 .ifc-ds-input__field-wrapper {
     position: relative;
     display: flex;
@@ -43,7 +39,6 @@
     flex-wrap: nowrap;
 }
 
-// Ícone
 .ifc-ds-input__icon {
     position: absolute;
     left: var(--ifc-spacing-3);
@@ -60,7 +55,6 @@
     }
 }
 
-// Input principal
 .ifc-ds-input {
     @include ifc-input-base;
     height: var(--ifc-spacing-4);
@@ -68,13 +62,11 @@
     font-size: var(--ifc-font-size-2);
     border-radius: var(--ifc-radius-0-5);
     
-    // Input com ícone
     &--with-icon {
         padding-left: calc(var(--ifc-spacing-3) * 2 + var(--ifc-font-size-2));
     }
 }
 
-// Caption
 .ifc-ds-input__caption {
     font-family: var(--ifc-font-family);
     font-size: var(--ifc-font-size-1-75);
@@ -84,7 +76,6 @@
     margin-top: var(--ifc-spacing-0-5);
 }
 
-// Variações de estilo
 .ifc-ds-input-wrapper--outlined {
     .ifc-ds-input {
         background-color: transparent;
@@ -112,7 +103,6 @@
     }
 }
 
-// Estados de validação
 .ifc-ds-input-wrapper--error {
     .ifc-ds-input {
         border-color: var(--ifc-color-error);
@@ -143,18 +133,16 @@
     }
 }
 
-// Integração com WordPress
 .wp-block-ifc-ds-input {
     .ifc-ds-input-wrapper {
         margin: 0;
     }
 }
 
-// Estilos específicos para o editor do WordPress
 .block-editor-block-list__layout {
     .wp-block-ifc-ds-input {
         .ifc-ds-input {
-            pointer-events: none; // Desabilita interação no editor
+            pointer-events: none;
         }
     }
 }

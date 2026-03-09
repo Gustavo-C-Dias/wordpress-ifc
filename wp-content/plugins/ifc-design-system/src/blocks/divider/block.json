@@ -5,7 +5,7 @@
     "title": "Divider",
     "category": "ifc-design-system",
     "icon": "minus",
-    "description": "Um divisor visual horizontal ou vertical com diferentes cores disponíveis.",
+    "description": "Um divisor visual horizontal ou vertical",
     "keywords": [
         "divider",
         "separator",

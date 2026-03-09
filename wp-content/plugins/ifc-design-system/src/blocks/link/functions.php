@@ -29,12 +29,6 @@ if (!function_exists('ifc_ds_render_link_icon')) {
 }
 
 if (!function_exists('ifc_ds_render_link')) {
-    /**
-     * Renderiza um link completo do IFC Design System
-     *
-     * @param array $args Argumentos do link
-     * @return string HTML do link
-     */
     function ifc_ds_render_link($args = []) {
         $defaults = [
             'label' => 'Clique aqui',
@@ -96,12 +90,10 @@ if (!function_exists('ifc_ds_render_link')) {
 
         $link_content = '';
         
-        // Ícone à esquerda
         if ($args['icon_position'] === 'left' && $icon_html) {
             $link_content .= $icon_html;
         }
         
-        // Label com classes do componente de texto
         $text_type = ($args['size'] === 'small' || $args['size'] === 'detail') ? 'detail' : 'body';
         $valid_weights = function_exists('ifc_ds_get_valid_weights') ? ifc_ds_get_valid_weights() : ['regular', 'semibold', 'bold'];
         $fallback_weight = $args['size'] === 'detail' ? 'regular' : 'semibold';
@@ -112,24 +104,20 @@ if (!function_exists('ifc_ds_render_link')) {
             esc_html($args['label'])
         );
         
-        // Ícone à direita
         if ($args['icon_position'] === 'right' && $icon_html) {
             $link_content .= $icon_html;
         }
 
-        // Gerar atributos do link
         $attributes_string = implode(' ', array_map(function($key, $value) {
             return sprintf('%s="%s"', $key, esc_attr($value));
         }, array_keys($link_attributes), $link_attributes));
 
         $link_html = sprintf('<a %s>%s</a>', $attributes_string, $link_content);
 
-        // Se wrapper for false, retorna apenas o link
         if (!$args['wrapper']) {
             return $link_html;
         }
 
-        // Retorna com wrapper
         return sprintf(
             '<span class="%s">%s</span>',
             esc_attr(implode(' ', $classes)),

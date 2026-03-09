@@ -14,7 +14,7 @@ $link_args = [
         'left' => '0'
     ],
     'open_in_new_tab' => $attributes['openInNewTab'] ?? false,
-    'wrapper' => false // Usar get_block_wrapper_attributes no lugar do wrapper
+    'wrapper' => false
 ];
 
 $link_html = ifc_ds_render_link($link_args);

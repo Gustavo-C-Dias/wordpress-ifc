@@ -1,10 +1,8 @@
 <?php
 if (!function_exists('ifc_ds_render_input_icon')) {
     /**
-     * Renderiza o ícone do input
-     *
-     * @param string $icon Classe do ícone ou URL da imagem
-     * @return string HTML do ícone
+     * @param string $icon 
+     * @return string
      */
     function ifc_ds_render_input_icon($icon) {
         if (empty($icon)) {
@@ -33,10 +31,8 @@ if (!function_exists('ifc_ds_render_input_icon')) {
 
 if (!function_exists('ifc_ds_render_input')) {
     /**
-     * Renderiza um input completo do IFC Design System
-     *
-     * @param array $args Argumentos do input
-     * @return string HTML do input
+     * @param array $args
+     * @return string
      */
     function ifc_ds_render_input($args = []) {
         $defaults = [
@@ -71,7 +67,6 @@ if (!function_exists('ifc_ds_render_input')) {
 
         $args = wp_parse_args($args, $defaults);
         
-        // Sanitização dos argumentos
         $args['label'] = sanitize_text_field($args['label']);
         $args['placeholder'] = sanitize_text_field($args['placeholder']);
         $args['caption'] = sanitize_text_field($args['caption']);
@@ -81,7 +76,6 @@ if (!function_exists('ifc_ds_render_input')) {
         $args['input_value'] = sanitize_text_field($args['input_value']);
         $args['variant'] = sanitize_text_field($args['variant']);
 
-        // Classes CSS para o wrapper
         $wrapper_classes = [
             'ifc-ds-input-wrapper',
             'ifc-ds-input-wrapper--' . $args['variant']
@@ -99,7 +93,6 @@ if (!function_exists('ifc_ds_render_input')) {
             $wrapper_classes[] = $args['wrapper_class'];
         }
 
-        // Classes CSS para o input
         $input_classes = [
             'ifc-ds-input',
             'ifc-ds-input--' . $args['variant']
@@ -113,7 +106,6 @@ if (!function_exists('ifc_ds_render_input')) {
             $input_classes[] = $args['input_class'];
         }
 
-        // Estilos inline para padding
         $padding_style = '';
         if (!empty($args['padding']) && is_array($args['padding'])) {
             $padding_styles = [];
@@ -130,21 +122,17 @@ if (!function_exists('ifc_ds_render_input')) {
             }
         }
 
-        // ID único se não fornecido
         $unique_id = !empty($args['input_id']) 
             ? $args['input_id'] 
             : 'ifc-input-' . uniqid();
 
-        // Nome do campo
         $input_name = !empty($args['input_name']) 
             ? $args['input_name'] 
             : $unique_id;
 
-        // IDs para acessibilidade
         $caption_id = !empty($args['caption']) ? $unique_id . '-caption' : '';
         $described_by = !empty($caption_id) ? 'aria-describedby="' . $caption_id . '"' : '';
 
-        // Atributos do input
         $input_attributes = [
             'id="' . esc_attr($unique_id) . '"',
             'name="' . esc_attr($input_name) . '"',
@@ -176,7 +164,6 @@ if (!function_exists('ifc_ds_render_input')) {
             $input_attributes[] = $described_by;
         }
 
-        // Atributos adicionais
         if (!empty($args['autocomplete'])) {
             $input_attributes[] = 'autocomplete="' . esc_attr($args['autocomplete']) . '"';
         }
@@ -201,14 +188,12 @@ if (!function_exists('ifc_ds_render_input')) {
             $input_attributes[] = 'step="' . esc_attr($args['step']) . '"';
         }
 
-        // Montagem do HTML
         $html = '';
 
         if ($args['wrapper']) {
             $html .= '<div class="' . esc_attr(implode(' ', $wrapper_classes)) . '" ' . $padding_style . '>';
         }
 
-        // Label
         if (!empty($args['label'])) {
             $html .= '<label for="' . esc_attr($unique_id) . '" class="ifc-ds-input__label">';
             $html .= esc_html($args['label']);
@@ -218,20 +203,16 @@ if (!function_exists('ifc_ds_render_input')) {
             $html .= '</label>';
         }
 
-        // Field wrapper
         $html .= '<div class="ifc-ds-input__field-wrapper">';
 
-        // Ícone
         if (!empty($args['icon'])) {
             $html .= ifc_ds_render_input_icon($args['icon']);
         }
 
-        // Input
         $html .= '<input ' . implode(' ', $input_attributes) . ' />';
 
-        $html .= '</div>'; // fim field-wrapper
+        $html .= '</div>';
 
-        // Caption
         if (!empty($args['caption'])) {
             $html .= '<div id="' . esc_attr($caption_id) . '" class="ifc-ds-input__caption">';
             $html .= esc_html($args['caption']);
@@ -239,7 +220,7 @@ if (!function_exists('ifc_ds_render_input')) {
         }
 
         if ($args['wrapper']) {
-            $html .= '</div>'; // fim wrapper
+            $html .= '</div>';
         }
 
         return $html;

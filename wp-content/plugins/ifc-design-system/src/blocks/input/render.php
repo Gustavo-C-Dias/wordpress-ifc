@@ -1,5 +1,4 @@
 <?php
-// Usa a função helper para renderizar o input
 $input_args = [
     'label' => $attributes['label'] ?? '',
     'placeholder' => $attributes['placeholder'] ?? '',
@@ -17,12 +16,11 @@ $input_args = [
         'bottom' => '0',
         'left' => '0'
     ],
-    'wrapper' => false // Usar get_block_wrapper_attributes no lugar do wrapper
+    'wrapper' => false
 ];
 
 $input_html = ifc_ds_render_input($input_args);
 
-// Classes CSS para o wrapper do bloco
 $wrapper_classes = [
     'ifc-ds-input-wrapper',
     'ifc-ds-input-wrapper--' . $input_args['variant']

@@ -1,15 +1,7 @@
-// Componente Link reutilizável para uso em outros blocos
 import { createElement } from '@wordpress/element';
 import { TextComponent } from '../text/component';
 import { buildLinkClasses, getLinkIconSize } from '../../shared/class-builder';
-import { detailedSpacingOptions as spacingOptions } from '../../shared/options';
 
-// Re-exporta opções para uso por outros componentes
-export { spacingOptions };
-
-/**
- * Renderiza um componente Link reutilizável
- */
 export const LinkComponent = ({
     label,
     url = '#',

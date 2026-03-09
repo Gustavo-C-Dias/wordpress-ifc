@@ -1,10 +1,8 @@
 <?php
 /**
- * Render do bloco Footer
- *
- * @param array    $attributes Block attributes.
- * @param string   $content    Block default content.
- * @param WP_Block $block      Block instance.
+ * @param array $attributes 
+ * @param string $content    
+ * @param WP_Block $block      
  */
 
 $link_sections = isset($attributes['linkSections']) ? $attributes['linkSections'] : [];

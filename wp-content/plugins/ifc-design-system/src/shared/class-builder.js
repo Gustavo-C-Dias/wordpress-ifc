@@ -4,13 +4,12 @@
  */
 
 /**
- * Constrói classes CSS para o componente Text
- * @param {string} textType - Tipo do texto (title, subtitle, body, detail, caption)
- * @param {string} weight - Peso da fonte (regular, semibold, bold)
- * @param {string} color - Cor (primary, secondary, neutral, etc)
- * @param {string} alignment - Alinhamento (left, center, right)
- * @param {string} additionalClass - Classes adicionais
- * @returns {string} String de classes CSS
+ * @param {string} textType
+ * @param {string} weight
+ * @param {string} color
+ * @param {string} alignment
+ * @param {string} additionalClass
+ * @returns {string}
  */
 export const buildTextClasses = (textType = 'body', weight = 'regular', color = 'primary', alignment = 'left', additionalClass = '') => {
     return [
@@ -24,11 +23,10 @@ export const buildTextClasses = (textType = 'body', weight = 'regular', color = 
 };
 
 /**
- * Constrói classes CSS para o componente Link
- * @param {string} type - Tipo do link (neutral, primary, white)
- * @param {string} size - Tamanho (small, medium, large, detail)
- * @param {string} additionalClass - Classes adicionais
- * @returns {string} String de classes CSS
+ * @param {string} type
+ * @param {string} size
+ * @param {string} additionalClass
+ * @returns {string}
  */
 export const buildLinkClasses = (type = 'neutral', size = 'medium', additionalClass = '') => {
     return [
@@ -40,9 +38,8 @@ export const buildLinkClasses = (type = 'neutral', size = 'medium', additionalCl
 };
 
 /**
- * Retorna o tamanho do ícone para links baseado no tamanho do link
- * @param {string} size - Tamanho do link (small, medium, large, detail)
- * @returns {string} Tamanho do ícone em pixels
+ * @param {string} size
+ * @returns {string}
  */
 export const getLinkIconSize = (size) => {
     switch (size) {
@@ -58,9 +55,8 @@ export const getLinkIconSize = (size) => {
 };
 
 /**
- * Retorna a tag HTML apropriada para um tipo de texto
- * @param {string} textType - Tipo de texto
- * @returns {string} Tag HTML
+ * @param {string} textType
+ * @returns {string}
  */
 export const getHtmlTagForTextType = (textType) => {
     const tagMap = {

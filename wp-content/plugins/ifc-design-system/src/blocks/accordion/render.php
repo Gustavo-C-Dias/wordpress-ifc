@@ -1,17 +1,15 @@
 <?php
 /**
- * Accordion Block Render
+ * Accordion
  * 
- * @param array $attributes Block attributes
- * @param string $content Block content
- * @param WP_Block $block Block instance
+ * @param array $attributes
+ * @param string $content
+ * @param WP_Block $block
  */
 
 $title = $attributes['title'] ?? 'Título do Accordion';
 $is_open = $attributes['isOpen'] ?? false;
 $unique_id = 'accordion-' . wp_unique_id();
-
-// Usa função centralizada para construir classes do título
 $title_classes = ifc_ds_build_text_classes('body', 'bold', 'primary', 'left', 'ifc-ds-accordion__title-text');
 ?>
 

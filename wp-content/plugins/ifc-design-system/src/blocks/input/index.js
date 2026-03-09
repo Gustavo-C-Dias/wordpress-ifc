@@ -11,7 +11,6 @@ import {
 } from '@wordpress/components';
 import { registerBlockType } from '@wordpress/blocks';
 
-// Importa opções centralizadas
 import { 
     inputVariantOptions as variantOptions, 
     detailedSpacingOptions as spacingOptions,
@@ -20,9 +19,6 @@ import {
 
 import './style.scss';
 
-/**
- * Componente Input para renderização no editor
- */
 const InputComponent = ({
     label = '',
     placeholder = '',
@@ -252,9 +248,8 @@ registerBlockType('ifc-ds/input', {
                         disabled={disabled}
                         variant={variant}
                         padding={padding}
-                        // Para visualização no editor
                         value=""
-                        onChange={() => {}} // No editor, não precisamos de funcionalidade real
+                        onChange={() => {}}
                     />
                 </div>
             </>

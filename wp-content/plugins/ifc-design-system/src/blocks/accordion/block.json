@@ -7,6 +7,13 @@
   "category": "ifc-design-system",
   "icon": "menu-alt3",
   "description": "Componente accordion do Design System IFC",
+  "keywords": ["accordion", "ifc", "design-system"],
+  "textdomain": "ifc-design-system",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "viewScript": "file:./frontend.js",
+  "render": "file:./render.php",
   "example": {},
   "supports": {
     "html": false
@@ -20,11 +27,5 @@
       "type": "boolean",
       "default": false
     }
-  },
-  "textdomain": "ifc-design-system",
-  "editorScript": "file:./index.js",
-  "editorStyle": "file:./index.css",
-  "style": "file:./style-index.css",
-  "viewScript": "file:./frontend.js",
-  "render": "file:./render.php"
+  }
 }

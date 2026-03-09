@@ -58,18 +58,18 @@ class IFC_Design_System {
     
     private function register_blocks() {
         $blocks = [
-            'header',
             'accordion', 
             'breadcrumb',
             'container',
             'divider',
+            'footer',
+            'header',
             'input',
             'layout-container',
             'link',
             'logo',
             'skip-navigation',
-            'text',
-            'footer'
+            'text'
         ];
         
         foreach ($blocks as $block) {
@@ -90,32 +90,29 @@ class IFC_Design_System {
     }
     
     public function enqueue_editor_assets() {
-        // Expor URL do plugin globalmente para JavaScript
         wp_localize_script('wp-blocks', 'wpAssets', array(
             'pluginUrl' => IFC_DS_PLUGIN_URL
         ));
     }
     
     public function enqueue_frontend_assets() {
-        // Expor URL do plugin globalmente para JavaScript/CSS
         wp_localize_script('wp-dom-ready', 'wpAssets', array(
             'pluginUrl' => IFC_DS_PLUGIN_URL
         ));
 
-        // Carregar CSS de cada bloco individualmente no frontend
         $blocks = [
-            'header',
-            'footer',
             'accordion', 
             'breadcrumb',
+            'container',
             'divider',
+            'footer',
+            'header',
             'input',
             'layout-container',
-            'container',         
             'link',
             'logo',
             'skip-navigation',
-            'text'               
+            'text'              
         ];
         
         foreach ($blocks as $block) {

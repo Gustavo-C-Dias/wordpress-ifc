@@ -6,12 +6,10 @@ import {
     PanelBody,
     SelectControl,
     RangeControl,
-    __experimentalUnitControl as UnitControl
 } from '@wordpress/components';
 import { registerBlockType } from '@wordpress/blocks';
 import { DividerComponent } from './component';
 
-// Importa opções centralizadas
 import { 
     orientationOptions, 
     dividerColorOptions as colorOptions, 

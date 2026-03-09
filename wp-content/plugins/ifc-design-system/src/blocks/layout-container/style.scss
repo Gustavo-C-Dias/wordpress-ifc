@@ -1,19 +1,11 @@
-/**
- * Layout Container - Sistema de Grid Gov.br
- * Baseado nas especificações oficiais do Design System do Governo Federal
- * https://www.gov.br/ds/fundamentos-visuais/grid
- */
-
-// Breakpoints oficiais do Design System Gov.br
 $govbr-breakpoints: (
-  mobile-portrait: 0,        // 0-575px (4 colunas)
-  mobile-landscape: 576px,   // 576-991px (8 colunas)  
-  tablet-landscape: 992px,   // 992-1279px (8 colunas)
-  desktop: 1280px,          // 1280-1599px (12 colunas)
-  tv: 1600px                // 1600px+ (12 colunas)
+  mobile-portrait: 0,
+  mobile-landscape: 576px,
+  tablet-landscape: 992px,
+  desktop: 1280px,
+  tv: 1600px
 );
 
-// Configurações de grid por breakpoint
 $govbr-grid-configs: (
   mobile-portrait: (
     columns: 4,
@@ -47,16 +39,14 @@ $govbr-grid-configs: (
   )
 );
 
-// Espaçamentos verticais baseados em múltiplos de 8px
 $govbr-spacing: (
   none: 0,
-  small: 16px,    // 2 * 8px
-  medium: 32px,   // 4 * 8px
-  large: 48px,    // 6 * 8px
-  extra-large: 64px // 8 * 8px
+  small: 16px,
+  medium: 32px,
+  large: 48px,
+  extra-large: 64px
 );
 
-// Mixins para responsividade
 @mixin govbr-breakpoint($name) {
   @if map-has-key($govbr-breakpoints, $name) {
     $breakpoint: map-get($govbr-breakpoints, $name);
@@ -70,7 +60,6 @@ $govbr-spacing: (
   }
 }
 
-// Componente principal
 .ifc-ds-layout-container {
   width: 100%;
   margin-left: auto;

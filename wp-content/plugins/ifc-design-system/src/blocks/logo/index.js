@@ -8,12 +8,10 @@ import {
     RangeControl,
     TextControl,
     Button,
-    __experimentalUnitControl as UnitControl
 } from '@wordpress/components';
 import { registerBlockType } from '@wordpress/blocks';
 import { LogoComponent, getLogoUrl } from './component';
 
-// Importa opções centralizadas
 import { 
     orientationOptions, 
     logoVariantOptions as variantOptions, 
@@ -35,7 +33,6 @@ registerBlockType('ifc-ds/logo', {
             altText
         } = attributes;
 
-        // Calcular dimensões automáticas baseadas na orientação
         const getDefaultDimensions = (orientation) => {
             if (orientation === 'horizontal') {
                 return { width: 200, height: 60 };
@@ -44,7 +41,6 @@ registerBlockType('ifc-ds/logo', {
             }
         };
 
-        // Atualizar dimensões quando orientação mudar
         const handleOrientationChange = (newOrientation) => {
             const defaultDimensions = getDefaultDimensions(newOrientation);
             setAttributes({ 

@@ -3,19 +3,13 @@
  * IFC Design System - Utilitários PHP Compartilhados
  */
 
-if (!defined('ABSPATH')) {
-    exit;
-}
-
 /**
- * Constrói classes CSS para o componente Text
- * 
- * @param string $text_type Tipo do texto (title, subtitle, body, detail, caption)
- * @param string $weight Peso da fonte (regular, semibold, bold)
- * @param string $color Cor (primary, secondary, neutral, etc)
- * @param string $alignment Alinhamento (left, center, right)
- * @param string $additional_class Classes adicionais
- * @return string String de classes CSS
+ * @param string $text_type
+ * @param string $weight
+ * @param string $color
+ * @param string $alignment
+ * @param string $additional_class
+ * @return string
  */
 if (!function_exists('ifc_ds_build_text_classes')) {
     function ifc_ds_build_text_classes($text_type = 'body', $weight = 'regular', $color = 'primary', $alignment = 'left', $additional_class = '') {
@@ -36,10 +30,8 @@ if (!function_exists('ifc_ds_build_text_classes')) {
 }
 
 /**
- * Retorna a tag HTML apropriada para um tipo de texto
- * 
- * @param string $text_type Tipo de texto
- * @return string Tag HTML
+ * @param string $text_type
+ * @return string
  */
 if (!function_exists('ifc_ds_get_html_tag_for_text_type')) {
     function ifc_ds_get_html_tag_for_text_type($text_type) {
@@ -56,10 +48,8 @@ if (!function_exists('ifc_ds_get_html_tag_for_text_type')) {
 }
 
 /**
- * Renderiza um componente de texto usando as funções centralizadas
- * 
- * @param array $args Argumentos do componente
- * @return string HTML renderizado
+ * @param array $args
+ * @return string
  */
 if (!function_exists('ifc_ds_render_text')) {
     function ifc_ds_render_text($args = array()) {
@@ -98,17 +88,13 @@ if (!function_exists('ifc_ds_render_text')) {
 }
 
 /**
- * Renderiza link de navegação de skip (unificada)
- * Usada tanto para Skip Navigation quanto para Header Skip Links
- * 
- * @param array $link Dados do link
- * @return string HTML renderizado
+ * @param array $link
+ * @return string
  */
 if (!function_exists('ifc_ds_render_navigation_skip_link')) {
     function ifc_ds_render_navigation_skip_link($link) {
         $target = $link['target'];
         
-        // Adiciona # se necessário
         if (!str_starts_with($target, '#') && !in_array($target, array('nav', 'main', 'footer', 'header'))) {
             $target = '#' . $target;
         }
@@ -127,9 +113,7 @@ if (!function_exists('ifc_ds_render_navigation_skip_link')) {
     }
 }
 
-/**
- * Pesos de fonte para validação
- */
+
 if (!function_exists('ifc_ds_get_valid_weights')) {
     function ifc_ds_get_valid_weights() {
         return array('regular', 'semibold', 'bold');

@@ -10,15 +10,11 @@ import {
     ToggleControl,
     RangeControl,
     TextControl,
-    __experimentalHStack as HStack,
     __experimentalHeading as Heading
 } from '@wordpress/components';
 import { registerBlockType } from '@wordpress/blocks';
 import './style.scss';
 
-/**
- * Componente Layout Container para renderização no editor
- */
 const LayoutContainerComponent = ({ 
     children,
     containerType = 'fluid',

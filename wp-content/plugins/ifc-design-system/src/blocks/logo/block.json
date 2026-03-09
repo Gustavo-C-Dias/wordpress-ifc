@@ -16,6 +16,9 @@
     ],
     "version": "1.0.0",
     "textdomain": "ifc-design-system",
+    "editorScript": "file:./index.js",
+    "editorStyle": "file:./index.css",
+    "style": "file:./style-index.css",
     "supports": {
         "html": false,
         "align": ["left", "center", "right", "wide", "full"],
@@ -64,16 +67,5 @@
             "default": "Logo IFC"
         }
     },
-    "example": {
-        "attributes": {
-            "campus": "camboriu",
-            "orientation": "horizontal",
-            "variant": "default",
-            "width": 200,
-            "height": 60
-        }
-    },
-    "editorScript": "file:./index.js",
-    "editorStyle": "file:./index.css",
-    "style": "file:./style-index.css"
+    "example": {}
 }

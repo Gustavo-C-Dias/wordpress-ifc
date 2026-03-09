@@ -6,8 +6,8 @@
     "title": "IFC Breadcrumb",
     "category": "ifc-design-system",
     "icon": "admin-home",
-    "description": "Componente de navegação breadcrumb reutilizando o design do componente link.",
-    "keywords": ["breadcrumb", "navigation", "ifc", "design-system", "links"],
+    "description": "Componente de navegação breadcrumb do Design System IFC",
+    "keywords": ["breadcrumb", "navigation", "ifc", "design-system"],
     "textdomain": "ifc-design-system",
     "editorScript": "file:./index.js",
     "editorStyle": "file:./index.css",
@@ -54,23 +54,5 @@
             "padding": true
         }
     },
-    "example": {
-        "attributes": {
-            "items": [
-                {
-                    "label": "Início",
-                    "url": "/",
-                    "id": 1
-                },
-                {
-                    "label": "Cursos",
-                    "url": "/cursos",
-                    "id": 2
-                }
-            ],
-            "currentPageTitle": "Curso de Informática",
-            "linkType": "neutral",
-            "linkSize": "small"
-        }
-    }
+    "example": {}
 }

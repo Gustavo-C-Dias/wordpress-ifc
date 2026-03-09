@@ -67,11 +67,5 @@
             "padding": true
         }
     },
-    "example": {
-        "attributes": {
-            "label": "Link exemplo",
-            "type": "primary",
-            "size": "medium"
-        }
-    }
+    "example": {}
 }

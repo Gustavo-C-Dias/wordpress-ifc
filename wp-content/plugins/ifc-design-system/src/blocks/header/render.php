@@ -1,5 +1,5 @@
 <?php
-// Atributos do bloco
+
 $logoCampus = $attributes['logoCampus'] ?? 'camboriu';
 $logoOrientation = $attributes['logoOrientation'] ?? 'horizontal';
 $logoVariant = $attributes['logoVariant'] ?? 'default';
@@ -20,7 +20,6 @@ $socialMedia = $attributes['socialMedia'] ?? [
     ['platform' => 'instagram', 'url' => '#instagram']
 ];
 
-// Links padrão do Skip Navigation
 $skip_links = [
     [
         'id' => 1,
@@ -42,7 +41,6 @@ $skip_links = [
     ]
 ];
 
-// Função para gerar URL do logo (com verificação de existência)
 if (!function_exists('get_logo_url')) {
     function get_logo_url($campus, $orientation, $variant) {
         $plugin_url = defined('IFC_DS_PLUGIN_URL')
@@ -52,7 +50,6 @@ if (!function_exists('get_logo_url')) {
     }
 }
 
-// Função para renderizar ícone de rede social (com verificação de existência)
 if (!function_exists('get_social_icon')) {
     function get_social_icon($platform) {
         $icons = [
@@ -66,7 +63,6 @@ if (!function_exists('get_social_icon')) {
 ?>
 
 <header <?php echo get_block_wrapper_attributes(['class' => 'ifc-ds-header']); ?>>
-    <!-- Primeira seção: Skip Navigation + Links de Acessibilidade -->
     <div class="ifc-ds-header__top-section">
         <div class="ifc-ds-layout-container ifc-ds-layout-container--fixed">
             <div class="ifc-ds-layout-container__content">
@@ -107,7 +103,6 @@ if (!function_exists('get_social_icon')) {
         </div>
     </div>
 
-    <!-- Segunda seção: Logo + Busca + Redes Sociais -->
     <div class="ifc-ds-header__main-section">
         <div class="ifc-ds-layout-container ifc-ds-layout-container--fixed">
             <div class="ifc-ds-layout-container__content">
@@ -151,7 +146,6 @@ if (!function_exists('get_social_icon')) {
         </div>
     </div>
 
-    <!-- Terceira seção: Links de Navegação com Dividers -->
     <div class="ifc-ds-header__navigation">
         <div class="ifc-ds-layout-container ifc-ds-layout-container--fixed">
             <div class="ifc-ds-layout-container__content">

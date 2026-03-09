@@ -68,13 +68,6 @@
       border-top: 1px solid var(--ifc-color-primary-500);
     }
   }
-
-  &__title-text {
-    font-family: var(--ifc-font-family);
-    font-size: var(--ifc-font-size-2);
-    font-weight: var(--ifc-font-weight-bold);
-    line-height: 1.5;
-  }
   
   &__items {
     display: flex;
@@ -89,20 +82,7 @@
     }
   }
   
-  &__text {
-    font-family: var(--ifc-font-family);
-    font-size: var(--ifc-font-size-2);
-    font-weight: var(--ifc-font-weight-regular);
-    line-height: 1.25;
-    margin: 0;
-    background: var(--ifc-color-neutral-200);
-    color: var(--ifc-color-neutral-600);
-  }
-  
-  &__link {
-    // Os estilos do link são herdados do componente Link
-    // Apenas customizações específicas para o contexto do accordion
-    
+  &__link {    
     .ifc-ds-link__element {
       transition: all 0.2s ease;
       
@@ -112,12 +92,10 @@
     }
   }
   
-  // Estados de acessibilidade
   &:focus-within {
     box-shadow: 0 0 0 2px var(--ifc-color-primary-200, #bfdbfe);
   }
-  
-  // Responsividade
+
   @media (max-width: 768px) {
     margin: 0.5rem 0;
     
@@ -127,11 +105,6 @@
     
     &__content.is-open {
       padding: 8px;
-    }
-    
-    &__text {
-      padding: 0.5rem;
-      font-size: 13px;
     }
   }
 }

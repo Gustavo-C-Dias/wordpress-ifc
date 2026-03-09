@@ -2,7 +2,6 @@ import { useBlockProps, InspectorControls, RichText } from '@wordpress/block-edi
 import { PanelBody, SelectControl, ToggleControl } from '@wordpress/components';
 import { registerBlockType } from '@wordpress/blocks';
 
-// Importa opções e utilitários centralizados
 import { 
     textTypeOptions, 
     textColorOptions, 
@@ -17,7 +16,6 @@ registerBlockType('ifc-ds/text', {
     edit: ({ attributes, setAttributes }) => {
         const { content, textType, weight, color, alignment } = attributes;
 
-        // Atualizar peso quando tipo mudar
         const handleTypeChange = (newType) => {
             const weightOptions = getWeightOptionsByType(newType);
             const newWeight = weightOptions.find(option => option.value === weight) 
@@ -30,7 +28,6 @@ registerBlockType('ifc-ds/text', {
             });
         };
 
-        // Classes CSS usando builder centralizado
         const classes = buildTextClasses(textType, weight, color, alignment);
 
         const blockProps = useBlockProps({
@@ -77,7 +74,7 @@ registerBlockType('ifc-ds/text', {
                     value={content}
                     onChange={(value) => setAttributes({ content: value })}
                     placeholder={'Digite seu texto...'}
-                    allowedFormats={[]} // Desabilitar formatação Rich Text para manter consistência
+                    allowedFormats={[]}
                 />
             </>
         );
