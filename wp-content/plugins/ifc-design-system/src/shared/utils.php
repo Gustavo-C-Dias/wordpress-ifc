@@ -95,7 +95,7 @@ if (!function_exists('ifc_ds_render_navigation_skip_link')) {
     function ifc_ds_render_navigation_skip_link($link) {
         $target = $link['target'];
         
-        if (!str_starts_with($target, '#') && !in_array($target, array('nav', 'main', 'footer', 'header'))) {
+        if (!ifc_ds_starts_with($target, '#') && !in_array($target, array('nav', 'main', 'footer', 'header'))) {
             $target = '#' . $target;
         }
         
@@ -117,5 +117,22 @@ if (!function_exists('ifc_ds_render_navigation_skip_link')) {
 if (!function_exists('ifc_ds_get_valid_weights')) {
     function ifc_ds_get_valid_weights() {
         return array('regular', 'semibold', 'bold');
+    }
+}
+
+if (!function_exists('ifc_ds_starts_with')) {
+    /**
+     * Compatibilidade com ambientes PHP < 8.0.
+     *
+     * @param string $haystack
+     * @param string $needle
+     * @return bool
+     */
+    function ifc_ds_starts_with($haystack, $needle) {
+        if (function_exists('str_starts_with')) {
+            return str_starts_with($haystack, $needle);
+        }
+
+        return substr((string) $haystack, 0, strlen((string) $needle)) === (string) $needle;
     }
 }

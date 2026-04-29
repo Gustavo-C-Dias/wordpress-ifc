@@ -18,9 +18,31 @@ define('IFC_DS_VERSION', '1.0.0');
 define('IFC_DS_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('IFC_DS_PLUGIN_PATH', plugin_dir_path(__FILE__));
 
-require_once IFC_DS_PLUGIN_PATH . 'src/shared/utils.php';
-require_once IFC_DS_PLUGIN_PATH . 'src/blocks/link/functions.php';
-require_once IFC_DS_PLUGIN_PATH . 'src/blocks/input/functions.php';
+$ifc_ds_required_files = array(
+    IFC_DS_PLUGIN_PATH . 'src/shared/utils.php',
+    IFC_DS_PLUGIN_PATH . 'src/blocks/link/functions.php',
+    IFC_DS_PLUGIN_PATH . 'src/blocks/input/functions.php',
+);
+
+foreach ($ifc_ds_required_files as $ifc_ds_file) {
+    if (file_exists($ifc_ds_file)) {
+        require_once $ifc_ds_file;
+        continue;
+    }
+
+    if (defined('WP_DEBUG') && WP_DEBUG) {
+        error_log('IFC DS: Required file not found: ' . $ifc_ds_file);
+    }
+
+    add_action('admin_notices', static function () use ($ifc_ds_file) {
+        printf(
+            '<div class="notice notice-error"><p>%s</p></div>',
+            esc_html(sprintf('IFC Design System: arquivo obrigatório ausente (%s).', basename($ifc_ds_file)))
+        );
+    });
+
+    return;
+}
 
 class IFC_Design_System {
     
