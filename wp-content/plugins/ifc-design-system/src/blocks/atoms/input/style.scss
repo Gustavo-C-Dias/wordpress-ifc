@@ -1,0 +1,87 @@
+@import '../../../mixins-essentials.scss';
+
+.ifc-ds-input-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: var(--ifc-spacing-1);
+    width: 100%;
+    
+    &--disabled {
+        opacity: 0.6;
+        pointer-events: none;
+    }
+}
+
+.ifc-ds-input__label {
+    display: block;
+    margin-bottom: var(--ifc-spacing-1);
+    
+    .ifc-ds-input__required {
+        color: var(--ifc-color-error);
+        margin-left: var(--ifc-spacing-0-5);
+    }
+}
+
+.ifc-ds-input__field-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.ifc-ds-input__icon {
+    position: absolute;
+    left: var(--ifc-spacing-3);
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--ifc-color-neutral-500);
+    pointer-events: none;
+    z-index: 1;
+    
+    i {
+        display: block;
+        font-size: var(--ifc-font-size-2);
+        line-height: 1;
+    }
+}
+
+.ifc-ds-input {
+    @include ifc-input-base;
+    padding: var(--ifc-spacing-2) var(--ifc-spacing-3);
+    border-radius: var(--ifc-radius-1);
+    
+    &--with-icon {
+        padding-left: calc(24px + var(--ifc-spacing-4));
+    }
+}
+
+.ifc-ds-input__caption {
+    margin-top: var(--ifc-spacing-0-5);
+}
+
+.ifc-ds-input-wrapper--outlined {
+    .ifc-ds-input {
+        background-color: transparent;
+        border-width: var(--ifc-border-width-0-25);
+        
+        &:focus {
+            @include ifc-focus-ring;
+            background-color: var(--ifc-color-neutral-100);
+        }
+    }
+}
+
+.ifc-ds-input-wrapper--filled {
+    .ifc-ds-input {
+        background-color: var(--ifc-color-neutral-200);
+        border-color: transparent;
+        
+        &:hover:not(:disabled) {
+            background-color: var(--ifc-color-neutral-300);
+        }
+        
+        &:focus {
+            @include ifc-focus-ring;
+            background-color: var(--ifc-color-neutral-100);
+        }
+    }
+}

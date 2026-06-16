@@ -1,0 +1,124 @@
+/**
+ * IFC DS — estilos específicos do block pattern "Página de Curso".
+ *
+ * Carregado em duas frentes:
+ *   1) frontend, via ifc_ds_enqueue_pattern_curso_assets() (condicional ao
+ *      pattern aparecer no post — ver functions.php #6);
+ *   2) iframe do block editor, via add_editor_style() em ifc_ds_theme_setup()
+ *      — necessário para que a edição do pattern reflita o frontend.
+ *
+ * IMPORTANTE: a definição de grid-template-columns vem de
+ * layout-container/style.scss (12 cols em desktop, 8 em tablet, 4 em mobile).
+ * Este arquivo apenas define como cada filho do pattern (breadcrumb / sidebar /
+ * main) ocupa esse grid. Não duplicar grid-template-columns aqui.
+ */
+
+/* ---------------------------------------------------------------
+ * 1. Itens da info-list (Duração, Modalidade, etc.)
+ * --------------------------------------------------------------- */
+
+.ifc-ds-info-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--ifc-spacing-4);
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.ifc-ds-info-list > .ifc-ds-info-item {
+    display: flex;
+    flex-direction: column;
+    min-width: max-content;
+}
+
+.ifc-ds-info-list > .ifc-ds-info-item p {
+    margin: 0;
+}
+
+/* ---------------------------------------------------------------
+ * 2. Layout do pattern dentro do layout-container 12-cols.
+ *
+ * Mobile/tablet: empilhados (1 col cada)
+ * Desktop (>= 1280px): breadcrumb full | sidebar 3 cols | main 9 cols
+ *
+ * O seletor parte sempre de .ifc-ds-layout-container__content para
+ * impedir colisão com outros usos de .ifc-ds-curso-* fora do pattern.
+ * --------------------------------------------------------------- */
+
+.ifc-ds-layout-container__content > .ifc-ds-curso-breadcrumb,
+.ifc-ds-layout-container__content > .ifc-ds-curso-sidebar,
+.ifc-ds-layout-container__content > .ifc-ds-curso-main {
+    grid-column: 1 / -1;
+    min-width: 0;
+}
+
+@media (min-width: 1280px) {
+    .ifc-ds-layout-container__content > .ifc-ds-curso-breadcrumb {
+        grid-column: 1 / -1;
+        grid-row: 1;
+    }
+
+    .ifc-ds-layout-container__content > .ifc-ds-curso-sidebar {
+        grid-column: 1 / span 3;
+        grid-row: 2;
+        align-self: start;
+        position: sticky;
+        top: var(--ifc-spacing-3);
+    }
+
+    .ifc-ds-layout-container__content > .ifc-ds-curso-main {
+        grid-column: 4 / -1;
+        grid-row: 2;
+    }
+}
+
+/* ---------------------------------------------------------------
+ * 3. Sidebar (lista de accordions).
+ * --------------------------------------------------------------- */
+
+.ifc-ds-curso-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: var(--ifc-spacing-1);
+}
+
+/* ---------------------------------------------------------------
+ * 4. Heading do curso (imagem + título + data).
+ * --------------------------------------------------------------- */
+
+.ifc-ds-curso-heading {
+    text-align: center;
+}
+
+.ifc-ds-curso-heading .wp-block-image img {
+    height: 80px;
+    width: auto;
+}
+
+.ifc-ds-text--update-date {
+    color: var(--ifc-color-neutral-500);
+    margin-top: var(--ifc-spacing-0-5);
+}
+
+/* ---------------------------------------------------------------
+ * 5. Seções do main (Sobre, Mercado, Grades, etc.).
+ * --------------------------------------------------------------- */
+
+.ifc-ds-curso-main section.wp-block-group + section.wp-block-group {
+    margin-top: var(--ifc-spacing-5);
+}
+
+.ifc-ds-curso-main section.wp-block-group .ifc-ds-text--subtitle {
+    margin-bottom: var(--ifc-spacing-1);
+}
+
+.ifc-ds-curso-main section.wp-block-group .ifc-ds-text--body + .ifc-ds-text--body {
+    margin-top: var(--ifc-spacing-1);
+}
+
+.ifc-ds-ppp-links {
+    display: flex;
+    flex-direction: column;
+    gap: var(--ifc-spacing-0-5);
+    margin-top: var(--ifc-spacing-2);
+}

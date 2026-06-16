@@ -1,0 +1,124 @@
+@import '../../../mixins-essentials.scss';
+
+.ifc-ds-link {
+    display: inline-block;
+
+    &__element {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--ifc-spacing-1);
+        text-decoration: none;
+        border: none;
+        cursor: pointer;
+        font-family: var(--ifc-font-family);
+        font-weight: var(--ifc-font-weight-semibold);
+        @include ifc-transition(all);
+
+        &:focus {
+            @include ifc-focus-ring;
+        }
+    }
+
+    &__label {
+        line-height: 1.2;
+    }
+
+    &__icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+
+        img {
+            object-fit: contain;
+        }
+
+        &--right {
+            order: 2;
+        }
+    }
+
+    &--neutral {
+        .ifc-ds-link__element {
+            color: var(--ifc-color-neutral-700);
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    &--primary {
+        .ifc-ds-link__element {
+            color: var(--ifc-color-primary-500);
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    &--white {
+        .ifc-ds-link__element {
+            color: var(--ifc-color-neutral-100);
+
+            &:hover {
+                text-decoration: underline;
+            }
+
+            &:focus {
+                @include ifc-focus-ring;
+            }
+        }
+
+        .ifc-ds-link__label,
+        .ifc-ds-text.ifc-ds-link__label {
+            color: var(--ifc-color-neutral-100) !important;
+        }
+    }
+
+    &--small {
+        .ifc-ds-link__element {
+            font-size: var(--ifc-font-size-1-75);
+        }
+
+        .ifc-ds-link__icon {
+            width: 16px;
+            height: 16px;
+        }
+    }
+
+    &--medium {
+        .ifc-ds-link__element {
+            font-size: var(--ifc-font-size-2);
+        }
+
+        .ifc-ds-link__icon {
+            width: 20px;
+            height: 20px;
+        }
+    }
+
+    &--large {
+        .ifc-ds-link__element {
+            font-size: var(--ifc-font-size-3);
+        }
+
+        .ifc-ds-link__icon {
+            width: 24px;
+            height: 24px;
+        }
+    }
+
+    &--detail {
+        .ifc-ds-link__element {
+            font-size: var(--ifc-font-size-1-75);
+            font-weight: var(--ifc-font-weight-regular);
+        }
+
+        .ifc-ds-link__icon {
+            width: 16px;
+            height: 16px;
+        }
+    }
+}
