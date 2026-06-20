@@ -74,3 +74,49 @@
     @include ifc-focus-ring;
   }
 }
+
+/*
+ * Padrão "visualmente oculto" / "screen-reader only".
+ * eMAG Recomendação 1.5 — para ocultar elementos sem que sejam
+ * ignorados por leitores de tela (position: absolute fora da tela).
+ *
+ * Reexpostos em `.screen-reader-text` (compatível com WP) e
+ * `.ifc-sr-only` (utilitário do DS).
+ */
+@mixin ifc-sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+.screen-reader-text,
+.ifc-sr-only {
+  @include ifc-sr-only;
+}
+
+/*
+ * Variante "skip link": permanece invisível até receber foco do
+ * teclado, momento em que volta a aparecer no fluxo normal — eMAG
+ * 1.5 / 4.3 (Barra de Acessibilidade).
+ */
+@mixin ifc-sr-only-focusable {
+  @include ifc-sr-only;
+
+  &:focus,
+  &:focus-visible,
+  &:focus-within {
+    position: static !important;
+    width: auto !important;
+    height: auto !important;
+    margin: 0 !important;
+    overflow: visible !important;
+    clip: auto !important;
+    white-space: normal !important;
+  }
+}

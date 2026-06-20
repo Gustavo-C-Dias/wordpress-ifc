@@ -65,7 +65,11 @@
         },
         "altText": {
             "type": "string",
-            "default": "Logo IFC"
+            "default": "Logo Instituto Federal Catarinense"
+        },
+        "isDecorative": {
+            "type": "boolean",
+            "default": false
         }
     },
     "example": {

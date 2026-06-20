@@ -157,6 +157,12 @@
     "address": {
       "type": "string",
       "default": "Rua: Joaquim Garcia, s/c - CEP 88340-055 - Camboriú - SC - Fone: (47) 2104-0800 - E-mail: gabinete.camboriu@ifc.edu.br"
+    },
+    "sectionHeadingLevel": {
+      "type": "number",
+      "default": 2,
+      "minimum": 2,
+      "maximum": 6
     }
   }
 }

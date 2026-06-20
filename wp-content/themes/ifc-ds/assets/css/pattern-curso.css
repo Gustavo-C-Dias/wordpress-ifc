@@ -15,14 +15,19 @@
 
 /* ---------------------------------------------------------------
  * 1. Itens da info-list (Duração, Modalidade, etc.)
+ *
+ * Estrutura semântica (eMAG 1.2): <dl> com <dt>/<dd> agrupados por
+ * div .ifc-ds-info-item — pares chave/valor.
  * --------------------------------------------------------------- */
 
-.ifc-ds-info-list {
+dl.ifc-ds-info-list {
     display: flex;
     flex-wrap: wrap;
     gap: var(--ifc-spacing-4);
     align-items: flex-start;
     justify-content: space-between;
+    margin: 0;
+    padding: 0;
 }
 
 .ifc-ds-info-list > .ifc-ds-info-item {
@@ -31,8 +36,14 @@
     min-width: max-content;
 }
 
+.ifc-ds-info-list > .ifc-ds-info-item dt,
+.ifc-ds-info-list > .ifc-ds-info-item dd,
 .ifc-ds-info-list > .ifc-ds-info-item p {
     margin: 0;
+}
+
+.ifc-ds-info-list > .ifc-ds-info-item dd {
+    margin-inline-start: 0;
 }
 
 /* ---------------------------------------------------------------
@@ -108,7 +119,9 @@
     margin-top: var(--ifc-spacing-5);
 }
 
-.ifc-ds-curso-main section.wp-block-group .ifc-ds-text--subtitle {
+.ifc-ds-curso-main section.wp-block-group .ifc-ds-text--subtitle,
+.ifc-ds-curso-main section.wp-block-group h2.ifc-ds-section-title,
+.ifc-ds-curso-main section.wp-block-group h3.ifc-ds-section-title {
     margin-bottom: var(--ifc-spacing-1);
 }
 

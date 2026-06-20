@@ -44,6 +44,10 @@
             "type": "string",
             "default": "small",
             "enum": ["small", "medium", "large"]
+        },
+        "ariaLabel": {
+            "type": "string",
+            "default": ""
         }
     },
     "supports": {

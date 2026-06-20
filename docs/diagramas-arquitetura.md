@@ -255,3 +255,61 @@ flowchart LR
 | `parts/footer.html` | `ifc-ds/footer`          | `<!-- wp:ifc-ds/footer /-->`               |
 | `patterns/curso.php`| `ifc-ds/layout-container`, `breadcrumb`, `accordion`, `link`, `text`, `container` | Markup de bloco serializado |
 | CSS dos blocos      | `design-tokens.css`      | Variáveis CSS (`--ifc-spacing-*`, `--ifc-color-*`) |
+
+---
+
+## 4. Acessibilidade — eMAG / WCAG / WAI-ARIA
+
+A camada de acessibilidade é **transversal** ao DS. As decisões abaixo
+servem como referência rápida; o relatório completo está em
+`docs/acessibilidade-emag.md`.
+
+```mermaid
+flowchart TB
+    subgraph Body["<body> (FSE)"]
+        direction TB
+        SkipGlobal["<a class='ifc-ds-skip-link' accesskey='1'><br/>Ir para o conteúdo</a><br/><i>injetado via wp_body_open</i>"]
+        BarraBrasil["<nav aria-label='Barra Brasil'>"]
+        Header["<header role='banner'><br/>ifc-ds/header"]
+        Main["<main id='main' tabindex='-1'>"]
+        Footer["<footer role='contentinfo' id='footer'><br/>ifc-ds/footer"]
+    end
+
+    subgraph HeaderInner["dentro do bloco header"]
+        direction TB
+        SkipNav["<nav aria-label='Atalhos de acessibilidade'><br/>accesskey 1·2·3·4"]
+        Search["<form role='search'>"]
+        SocialNav["<nav aria-label='Redes sociais'><br/>aria-label='X (abre em nova janela)'"]
+        InstNav["<nav aria-label='Menu institucional' id='nav'>"]
+    end
+
+    SkipGlobal --> Main
+    SkipNav -- "#main" --> Main
+    SkipNav -- "#nav" --> InstNav
+    SkipNav -- "#busca" --> Search
+    SkipNav -- "#footer" --> Footer
+
+    Header --> HeaderInner
+
+    classDef ax fill:#fff8c5,color:#5b4a00,stroke:#bfa700
+    classDef nav fill:#e3f2fd,color:#0d3c61,stroke:#1976d2
+    classDef main fill:#e8f5e9,color:#1b3d1f,stroke:#388e3c
+
+    class SkipGlobal,SkipNav ax
+    class BarraBrasil,SocialNav,InstNav,Header,Footer nav
+    class Main,Search main
+```
+
+| eMAG / WCAG | Onde está implementado | Resumo |
+|---|---|---|
+| 1.5 / 4.1 (skip-link como 1º foco) | `themes/ifc-ds/functions.php` (`wp_body_open`) | `<a class="ifc-ds-skip-link" accesskey="1">` |
+| 4.1 (atalhos 1·2·3·4) | `src/shared/utils.php` + `molecules/skip-navigation` | Conteúdo, Menu, Busca, Rodapé |
+| 1.2 / 1.3 (semântica) | `atoms/text` + `molecules/accordion` + `organisms/footer` | `<h2>` por seção; `headingLevel` configurável |
+| 1.8 (landmarks) | `organisms/header` (banner) e `footer` (contentinfo) | Templates expõem `<main id="main" tabindex="-1">` |
+| 1.9 / 3.2.5 (nova aba) | `atoms/link` + `atoms/logo` | `aria-label` recebe sufixo "(abre em nova janela)" |
+| 2.1 (teclado) | `molecules/accordion/frontend.js` | Enter, Space, Setas, Home, End |
+| 3.4 (localização) | `molecules/breadcrumb` | `<nav aria-label="Navegação estrutural">` |
+| 3.5 (descrição de link) | `atoms/link` (drop `title`) | `aria-label` para ícones; texto descritivo |
+| 4.4 (foco visível) | `mixins-essentials.scss` | `@mixin ifc-focus-ring` em todos os interativos |
+| 6.2 (label associado) | `atoms/input` | `<label for>` obrigatório ou `aria_label` + `hideLabel` |
+| 6.5 / 6.6 (validação) | `atoms/input` | `aria-required`, `aria-invalid`, `role="alert"` |

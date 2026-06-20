@@ -50,6 +50,10 @@
         "customHeight": {
             "type": "number",
             "default": 40
+        },
+        "isDecorative": {
+            "type": "boolean",
+            "default": true
         }
     },
     "example": {

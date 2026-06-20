@@ -15,10 +15,24 @@
 .ifc-ds-input__label {
     display: block;
     margin-bottom: var(--ifc-spacing-1);
-    
+
     .ifc-ds-input__required {
-        color: var(--ifc-color-error);
+        color: var(--ifc-color-error, var(--ifc-color-secondary-500, #A50D10));
         margin-left: var(--ifc-spacing-0-5);
+        font-weight: var(--ifc-font-weight-bold);
+    }
+}
+
+.ifc-ds-input__error {
+    margin-top: var(--ifc-spacing-0-5);
+    color: var(--ifc-color-error, var(--ifc-color-secondary-500, #A50D10));
+    font-size: var(--ifc-font-size-1-75);
+    font-weight: var(--ifc-font-weight-semibold);
+}
+
+.ifc-ds-input-wrapper--error {
+    .ifc-ds-input {
+        border-color: var(--ifc-color-error, var(--ifc-color-secondary-500, #A50D10));
     }
 }
 

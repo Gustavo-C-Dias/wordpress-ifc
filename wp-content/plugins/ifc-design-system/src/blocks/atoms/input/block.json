@@ -18,6 +18,18 @@
             "type": "string",
             "default": ""
         },
+        "ariaLabel": {
+            "type": "string",
+            "default": ""
+        },
+        "hideLabel": {
+            "type": "boolean",
+            "default": false
+        },
+        "autocomplete": {
+            "type": "string",
+            "default": ""
+        },
         "placeholder": {
             "type": "string",
             "default": ""

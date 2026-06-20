@@ -1,18 +1,24 @@
 <?php
 /**
- * @param array    $attributes
- * @param string   $content
- * @param WP_Block $block
+ * Render do bloco ifc-ds/logo.
+ *
+ * Acessibilidade:
+ *  - eMAG 3.6 / WCAG 1.1.1 — `alt` descritivo obrigatório.
+ *  - Quando o autor marca a imagem como decorativa (`isDecorative=true`)
+ *    o `alt` fica vazio e a imagem recebe `role="presentation"`.
+ *  - Quando há link, o `<a>` ganha `aria-label` espelhando o `alt` para
+ *    leitores de tela (eMAG 3.5 — descrição clara do destino).
  */
 
-$campus      = isset($attributes['campus']) ? $attributes['campus'] : 'camboriu';
-$orientation = isset($attributes['orientation']) ? $attributes['orientation'] : 'horizontal';
-$variant     = isset($attributes['variant']) ? $attributes['variant'] : 'default';
-$width       = isset($attributes['width']) ? intval($attributes['width']) : 200;
-$height      = isset($attributes['height']) ? intval($attributes['height']) : 60;
-$link_url    = isset($attributes['linkUrl']) ? $attributes['linkUrl'] : '';
-$link_target = isset($attributes['linkTarget']) ? $attributes['linkTarget'] : '_self';
-$alt_text    = isset($attributes['altText']) ? $attributes['altText'] : 'Logo IFC';
+$campus       = isset($attributes['campus']) ? $attributes['campus'] : 'camboriu';
+$orientation  = isset($attributes['orientation']) ? $attributes['orientation'] : 'horizontal';
+$variant      = isset($attributes['variant']) ? $attributes['variant'] : 'default';
+$width        = isset($attributes['width']) ? intval($attributes['width']) : 200;
+$height       = isset($attributes['height']) ? intval($attributes['height']) : 60;
+$link_url     = isset($attributes['linkUrl']) ? $attributes['linkUrl'] : '';
+$link_target  = isset($attributes['linkTarget']) ? $attributes['linkTarget'] : '_self';
+$alt_text     = isset($attributes['altText']) ? $attributes['altText'] : 'Logo Instituto Federal Catarinense';
+$is_decorative = !empty($attributes['isDecorative']);
 
 $campus      = sanitize_key($campus);
 $orientation = in_array($orientation, ['horizontal', 'vertical'], true) ? $orientation : 'horizontal';
@@ -35,14 +41,24 @@ $image_style = sprintf(
     $height
 );
 
-$image_html = sprintf(
-    '<img src="%s" alt="%s" width="%d" height="%d" style="%s" class="ifc-ds-logo__image" loading="lazy" decoding="async" />',
-    esc_url($logo_url),
-    esc_attr($alt_text),
-    $width,
-    $height,
-    $image_style
-);
+if ($is_decorative) {
+    $image_html = sprintf(
+        '<img src="%s" alt="" role="presentation" aria-hidden="true" width="%d" height="%d" style="%s" class="ifc-ds-logo__image" loading="lazy" decoding="async" />',
+        esc_url($logo_url),
+        $width,
+        $height,
+        esc_attr($image_style)
+    );
+} else {
+    $image_html = sprintf(
+        '<img src="%s" alt="%s" width="%d" height="%d" style="%s" class="ifc-ds-logo__image" loading="lazy" decoding="async" />',
+        esc_url($logo_url),
+        esc_attr($alt_text),
+        $width,
+        $height,
+        esc_attr($image_style)
+    );
+}
 
 $wrapper_attributes = get_block_wrapper_attributes([
     'class' => implode(' ', $classes),
@@ -56,14 +72,23 @@ if (!empty($link_url)) {
         'class' => 'ifc-ds-logo__link',
     ];
 
+    if (!$is_decorative && !empty($alt_text)) {
+        $link_attrs['aria-label'] = $alt_text;
+    }
+
     if ($link_target === '_blank') {
         $link_attrs['target'] = '_blank';
         $link_attrs['rel']    = 'noopener noreferrer';
+
+        $link_attrs['aria-label'] = trim(
+            (isset($link_attrs['aria-label']) ? $link_attrs['aria-label'] : $alt_text) .
+            ' ' . ifc_ds_external_link_suffix()
+        );
     }
 
     $link_attrs_str = '';
     foreach ($link_attrs as $attr => $value) {
-        $link_attrs_str .= sprintf(' %s="%s"', $attr, esc_attr($value));
+        $link_attrs_str .= sprintf(' %s="%s"', esc_attr($attr), esc_attr($value));
     }
 
     $logo_html = sprintf('<a%s>%s</a>', $link_attrs_str, $logo_html);

@@ -31,6 +31,12 @@
     "isOpen": {
       "type": "boolean",
       "default": false
+    },
+    "headingLevel": {
+      "type": "number",
+      "default": 3,
+      "minimum": 2,
+      "maximum": 6
     }
   }
 }

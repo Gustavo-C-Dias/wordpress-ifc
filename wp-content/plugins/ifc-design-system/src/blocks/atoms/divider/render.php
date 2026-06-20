@@ -33,12 +33,26 @@ if ($orientation === 'horizontal') {
     $styles[] = 'height: ' . $custom_height . 'px';
 }
 
-$wrapper_attributes = get_block_wrapper_attributes([
-    'class'       => implode(' ', $classes),
-    'style'       => implode('; ', $styles),
-    'aria-hidden' => 'true',
-    'role'        => 'separator',
-]);
+/*
+ * Acessibilidade — eMAG 1.2 / WAI-ARIA:
+ *  - Quando o divisor é puramente decorativo (`isDecorative=true`,
+ *    padrão), usamos `role="presentation"` + `aria-hidden="true"`,
+ *    removendo-o totalmente da árvore de acessibilidade.
+ *  - Quando o divisor separa logicamente blocos de conteúdo, usamos
+ *    `role="separator"` (sem `aria-hidden`, para que leitores de
+ *    tela anunciem a separação) e `aria-orientation` reflete a
+ *    orientação visual.
+ */
+$is_decorative = !isset($attributes['isDecorative']) ? true : (bool) $attributes['isDecorative'];
+
+$aria_attrs = $is_decorative
+    ? ['role' => 'presentation', 'aria-hidden' => 'true']
+    : ['role' => 'separator', 'aria-orientation' => $orientation];
+
+$wrapper_attributes = get_block_wrapper_attributes(array_merge([
+    'class' => implode(' ', $classes),
+    'style' => implode('; ', $styles),
+], $aria_attrs));
 
 printf(
     '<div %s><div class="ifc-ds-divider__line"></div></div>',

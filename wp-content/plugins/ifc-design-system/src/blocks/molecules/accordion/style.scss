@@ -5,7 +5,15 @@
   border-top: 2px solid var(--ifc-color-primary-500);
   overflow: hidden;
   background: var(--ifc-color-neutral-100);
-  
+
+  &__title {
+    margin: 0;
+    padding: 0;
+    font-weight: inherit;
+    font-size: inherit;
+    line-height: inherit;
+  }
+
   &__toggle {
     background: transparent;
     border: none;
@@ -62,7 +70,15 @@
     @include ifc-transition(all, var(--ifc-transition-duration-3));
     max-height: 0;
     padding: 0;
-    
+
+    /*
+     * O atributo nativo `hidden` é mais robusto do que `display:none`
+     * (eMAG 2.1) — o JS adiciona/remove conforme `aria-expanded`.
+     */
+    &[hidden] {
+      display: none;
+    }
+
     &.is-open {
       max-height: 1000px;
       border-top: 1px solid var(--ifc-color-primary-500);
@@ -82,18 +98,22 @@
     }
   }
   
-  &__link {    
+  &__link {
     .ifc-ds-link__element {
       transition: all 0.2s ease;
-      
+
       &:hover {
         transform: translateX(4px);
       }
+
+      @media (prefers-reduced-motion: reduce) {
+        transition: none;
+
+        &:hover {
+          transform: none;
+        }
+      }
     }
-  }
-  
-  &:focus-within {
-    @include ifc-focus-ring;
   }
 
   @media (max-width: 768px) {

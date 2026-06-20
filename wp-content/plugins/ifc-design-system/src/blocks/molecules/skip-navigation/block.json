@@ -19,23 +19,37 @@
             "default": [
                 {
                     "id": 1,
-                    "label": "Ir para o conteúdo",
+                    "label": "Ir para o conteúdo [1]",
                     "target": "#main",
-                    "description": "Pula para o conteúdo principal da página"
+                    "description": "Pula para o conteúdo principal da página",
+                    "accesskey": "1"
                 },
                 {
                     "id": 2,
-                    "label": "Ir para o menu",
-                    "target": "nav",
-                    "description": "Pula para a navegação principal"
+                    "label": "Ir para o menu [2]",
+                    "target": "#nav",
+                    "description": "Pula para a navegação principal",
+                    "accesskey": "2"
                 },
                 {
                     "id": 3,
-                    "label": "Ir para o rodapé",
-                    "target": "footer",
-                    "description": "Pula para o rodapé da página"
+                    "label": "Ir para a busca [3]",
+                    "target": "#busca",
+                    "description": "Pula para o campo de busca",
+                    "accesskey": "3"
+                },
+                {
+                    "id": 4,
+                    "label": "Ir para o rodapé [4]",
+                    "target": "#footer",
+                    "description": "Pula para o rodapé da página",
+                    "accesskey": "4"
                 }
             ]
+        },
+        "ariaLabel": {
+            "type": "string",
+            "default": ""
         }
     },
     "supports": {

@@ -5,10 +5,13 @@
  * Responsabilidades do tema (camada fina):
  *  1. Declarar suportes do WordPress (title-tag, post-thumbnails, FSE).
  *  2. Enfileirar as fontes externas, o CSS de design tokens e o script
- *     da Barra do Governo (este último era inline em footer.php no tema
- *     clássico; agora é enfileirado via wp_enqueue_scripts).
+ *     da Barra do Governo.
  *  3. Expor block patterns descobertos automaticamente em /patterns.
  *  4. Helpers de formatação de data PT-BR.
+ *  5. Reforçar acessibilidade global (eMAG 1.5 / WCAG 2.4.1):
+ *     skip-link primário injetado em `wp_body_open`, idioma da página
+ *     fixado em pt-BR e foco visível no `<main>` quando alvo de
+ *     skip-link.
  *
  * Toda a UI (header, footer, conteúdo, hierarquia de templates) é
  * renderizada via Site Editor:
@@ -52,33 +55,36 @@ function ifc_ds_theme_setup() {
     add_theme_support('wp-block-styles');
     add_theme_support('responsive-embeds');
     add_theme_support('editor-styles');
+    add_theme_support('html5', [
+        'search-form',
+        'comment-form',
+        'comment-list',
+        'gallery',
+        'caption',
+        'style',
+        'script',
+    ]);
 
     /*
-     * FSE explícito. Em WP >= 5.9 a presença de `templates/index.html`
-     * já habilita o site editor, mas declarar os supports torna a
-     * intenção evidente e destrava o gerenciamento de template parts
-     * por área (header/footer) no editor.
+     * FSE explícito.
      */
     add_theme_support('block-templates');
     add_theme_support('block-template-parts');
 
-    /*
-     * Carrega CSS no iframe do block editor:
-     *  - design-tokens é a base (cores/espaçamentos)
-     *  - pattern-curso é específico do pattern "Página de Curso", mas
-     *    seus seletores são namespaced em `.ifc-ds-curso-*`, então é
-     *    inerte em outros editores.
-     */
     add_editor_style([
         'assets/css/design-tokens.css',
         'assets/css/pattern-curso.css',
     ]);
+
+    /*
+     * Carrega tradução do tema (eMAG 3.1 — idioma identificado).
+     */
+    load_theme_textdomain('ifc-ds', get_template_directory() . '/languages');
 }
 add_action('after_setup_theme', 'ifc_ds_theme_setup');
 
 /* =====================================================================
  * 3. Resource hints (preconnect Google Fonts)
- *    Reduz o handshake TLS antes do request real do CSS.
  * ================================================================== */
 
 function ifc_ds_resource_hints($urls, $relation_type) {
@@ -113,8 +119,6 @@ add_action('admin_enqueue_scripts', 'ifc_ds_enqueue_fonts');
 
 /* =====================================================================
  * 4.1. Script da Barra do Governo (defer, no footer)
- *      No tema clássico esse <script> ficava inline em footer.php; com
- *      a migração para FSE precisa ser registrado como asset.
  * ================================================================== */
 
 function ifc_ds_enqueue_barra_brasil() {
@@ -133,7 +137,6 @@ add_action('wp_enqueue_scripts', 'ifc_ds_enqueue_barra_brasil');
 
 /* =====================================================================
  * 5. Design tokens (CSS Custom Properties)
- *    Versionados via filemtime para invalidação correta de cache.
  * ================================================================== */
 
 function ifc_ds_enqueue_design_tokens() {
@@ -153,7 +156,6 @@ add_action('enqueue_block_editor_assets', 'ifc_ds_enqueue_design_tokens', 1);
 
 /* =====================================================================
  * 6. CSS específico do block pattern "Página de Curso"
- *    Carrega APENAS quando a página renderizada contém o pattern.
  * ================================================================== */
 
 function ifc_ds_enqueue_pattern_curso_assets() {
@@ -193,7 +195,6 @@ add_action('wp_enqueue_scripts', 'ifc_ds_enqueue_pattern_curso_assets', 20);
 
 /* =====================================================================
  * 7. Block pattern category
- *    O pattern em si é descoberto automaticamente em /patterns/curso.php.
  * ================================================================== */
 
 function ifc_ds_register_block_pattern_categories() {
@@ -203,3 +204,96 @@ function ifc_ds_register_block_pattern_categories() {
     );
 }
 add_action('init', 'ifc_ds_register_block_pattern_categories');
+
+/* =====================================================================
+ * 8. Acessibilidade global (eMAG / WCAG)
+ * ================================================================== */
+
+/**
+ * Garante `lang="pt-BR"` no <html> mesmo quando a configuração do
+ * WordPress estiver em outro idioma. eMAG 3.1 / WCAG 3.1.1.
+ */
+function ifc_ds_force_language_attributes($output) {
+    if (strpos($output, 'lang=') === false) {
+        $output .= ' lang="pt-BR"';
+    }
+    return $output;
+}
+add_filter('language_attributes', 'ifc_ds_force_language_attributes');
+
+/**
+ * Skip-link global como PRIMEIRO elemento focalizável da página.
+ * eMAG 1.5 / 4.1 — "É importante ressaltar que o primeiro link da
+ * página deve ser o de ir para o conteúdo".
+ *
+ * O link fica visualmente oculto até receber foco (sr-only-focusable).
+ */
+function ifc_ds_render_global_skip_link() {
+    $href  = '#main';
+    $label = __('Ir para o conteúdo principal', 'ifc-ds');
+    ?>
+    <a class="ifc-ds-skip-link" href="<?php echo esc_attr($href); ?>" accesskey="1">
+        <?php echo esc_html($label); ?>
+    </a>
+    <style>
+        .ifc-ds-skip-link {
+            position: absolute;
+            left: -9999px;
+            top: 0;
+            z-index: 100000;
+            padding: 12px 24px;
+            background-color: #237631;
+            color: #ffffff;
+            font-weight: 700;
+            text-decoration: underline;
+            font-family: 'Open Sans', sans-serif;
+        }
+        .ifc-ds-skip-link:focus,
+        .ifc-ds-skip-link:focus-visible {
+            left: 0;
+            outline: 2px solid #ffffff;
+            outline-offset: 2px;
+        }
+        /* Foco visível no <main> quando alvo de skip-link (WCAG 2.4.7). */
+        main:focus,
+        main:focus-visible {
+            outline: 2px solid #237631;
+            outline-offset: 4px;
+        }
+    </style>
+    <?php
+}
+add_action('wp_body_open', 'ifc_ds_render_global_skip_link', 1);
+
+/**
+ * Adiciona o ID `main` ao <main> emitido pelo `wp:group {tagName:"main"}`,
+ * caso o autor não tenha definido — garantindo que o skip-link
+ * "Ir para o conteúdo" sempre encontre seu alvo.
+ *
+ * Também adiciona `tabindex="-1"` para que o foco programático
+ * funcione em todos os navegadores (eMAG 4.1 / WCAG 2.4.1).
+ */
+function ifc_ds_ensure_main_id($block_content, $block) {
+    if (!isset($block['blockName']) || $block['blockName'] !== 'core/group') {
+        return $block_content;
+    }
+
+    $tag_name = $block['attrs']['tagName'] ?? 'div';
+    if ($tag_name !== 'main') {
+        return $block_content;
+    }
+
+    if (preg_match('/<main\b[^>]*\bid=/i', $block_content)) {
+        return $block_content;
+    }
+
+    $block_content = preg_replace(
+        '/<main\b/i',
+        '<main id="main" tabindex="-1"',
+        $block_content,
+        1
+    );
+
+    return $block_content;
+}
+add_filter('render_block', 'ifc_ds_ensure_main_id', 10, 2);

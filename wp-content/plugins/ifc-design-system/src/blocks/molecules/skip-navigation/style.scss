@@ -1,15 +1,59 @@
+@import '../../../mixins-essentials.scss';
+
+/*
+ * Skip-navigation — eMAG 4.1 / 4.3.
+ *
+ * Por padrão a "barra de acessibilidade" do governo aparece visível
+ * no topo da página. Para casos isolados (ex.: skip-link global
+ * inserido via `wp_body_open`) usamos a variante `--floating`, que
+ * fica oculta até receber foco do teclado.
+ */
+
 .ifc-ds-skip-navigation {
     display: block;
-    
+
     &__container {
         display: flex;
         align-items: center;
         padding: 0;
     }
-    
+
     &__links {
         display: flex;
         gap: 0.75rem;
         flex-wrap: wrap;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    &__item {
+        margin: 0;
+        padding: 0;
+    }
+
+    &--floating {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 99999;
+
+        .ifc-ds-skip-navigation__container {
+            padding: 0;
+        }
+
+        .ifc-ds-skip-navigation__link {
+            @include ifc-sr-only-focusable;
+
+            &:focus,
+            &:focus-visible {
+                background-color: var(--ifc-color-primary-500);
+                color: var(--ifc-color-neutral-100);
+                padding: var(--ifc-spacing-1-5) var(--ifc-spacing-3);
+                font-weight: var(--ifc-font-weight-bold);
+                text-decoration: underline;
+                @include ifc-focus-ring;
+            }
+        }
     }
 }
