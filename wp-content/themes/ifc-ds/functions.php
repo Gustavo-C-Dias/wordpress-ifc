@@ -13,9 +13,12 @@
  *     fixado em pt-BR e foco visível no `<main>` quando alvo de
  *     skip-link.
  *
- * Toda a UI (header, footer, conteúdo, hierarquia de templates) é
- * renderizada via Site Editor:
- *   templates/{index,page,single,404}.html  + parts/{header,footer}.html.
+ * Toda a UI (header, footer, conteúdo) é renderizada via Site Editor.
+ * O tema mantém um único template (`templates/index.html`) que o WP
+ * resolve como fallback universal para qualquer rota — incluindo a
+ * página de curso, que é uma Página estática contendo o block pattern
+ * `ifc-ds/template-curso`. Os template parts ficam em
+ * `parts/{header,footer}.html`.
  *
  * Os blocos são registrados pelo plugin `ifc-design-system`.
  */

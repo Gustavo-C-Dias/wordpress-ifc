@@ -13,9 +13,8 @@
  *    `aria-label`, identificando-se claramente como conteúdo
  *    complementar (eMAG 1.8).
  *  - O título "Nome do Curso" usa `<h2>` (subtitle). O `<h1>` da
- *    página é fornecido pelo `wp:post-title` em `single.html` /
- *    pelo título manual em outros templates, evitando duplicação
- *    (eMAG 1.3).
+ *    página é fornecido pelo `wp:post-title` no template
+ *    `templates/index.html`, evitando duplicação (eMAG 1.3).
  *  - As "informações do curso" (Duração, Modalidade, etc.) viram uma
  *    description list (`<dl>/<dt>/<dd>`) — a marcação correta para
  *    pares chave/valor (eMAG 1.2).
